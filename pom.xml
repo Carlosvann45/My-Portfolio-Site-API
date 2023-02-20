@@ -191,7 +191,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.4.4</version>
 				<configuration>
-					<mainClass>io.thedatapirates.financeapi.AppRunner</mainClass>
+					<mainClass>io.myportfolioproject.api.AppRunner</mainClass>
 				</configuration>
 				<executions>
 					<execution>
