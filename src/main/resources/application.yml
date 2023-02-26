@@ -1,10 +1,6 @@
 server:
   port: 8085
 
-customers:
-  number: 1
-  load: true
-
 logging:
   level:
     org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
@@ -39,6 +35,6 @@ spring:
 jwt:
   secret: ${JWT_SECRET}
 
-user:
-  username: ${USER_EMAIL}
-  password: ${USER_PASSWORD}
+admin:
+  username: ${ADMIN_EMAIL}
+  password: ${ADMIN_PASSWORD}

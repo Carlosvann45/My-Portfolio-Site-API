@@ -39,4 +39,15 @@ public class AppRunner {
             }
         };
     }
+
+    /**
+     * Creates a password encoder
+     *
+     * @return instance of BCrypt password encoder
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+
+        return new BCryptPasswordEncoder();
+    }
 }

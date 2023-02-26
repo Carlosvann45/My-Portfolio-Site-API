@@ -1,18 +1,15 @@
 package io.myportfolioproject.api.data;
 
-import io.myportfolioproject.api.domains.experiences.Experience;
+import io.myportfolioproject.api.domains.admin.Admin;
+import io.myportfolioproject.api.domains.admin.AdminRepository;
 import io.myportfolioproject.api.domains.experiences.ExperienceRepository;
-import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 /**
  * This class handles Seeding selected data into the database depending on the application.yml
@@ -26,10 +23,13 @@ public class SeedData implements CommandLineRunner {
     private ExperienceRepository userRepository;
 
     @Autowired
-    private Environment env;
+    private AdminRepository adminRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private Environment env;
 
     /**
      * This code gets called when the api started to check if we should load data into the database
@@ -38,28 +38,24 @@ public class SeedData implements CommandLineRunner {
      */
     @Override
     public void run(String... strings) {
-        boolean loadData;
-
-        try {
-            // retrieves the value of custom property in application.yml
-            loadData = Boolean.parseBoolean(env.getProperty("customers.load"));
-        } catch (NumberFormatException ex) {
-            logger.error("config variable loadData could not be parsed, falling back to default");
-            loadData = true;
-        }
-
-        if (loadData) {
-            seedDatabase();
-        }
+        seedDatabase();
     }
 
     /**
      * Seeds database into the repositories with randomly generated data
      */
     private void seedDatabase() {
+        String username = env.getProperty("admin.username");
+        String password = env.getProperty("admin.password");
 
         // Persist data to database
-        logger.info("Loading data...");
+        logger.info("Loading Admin data...");
+
+        Admin admin_1 = new Admin(username, passwordEncoder.encode(password));
+
+        adminRepository.save(admin_1);
+
+        logger.info("Loading Experience data");
 
         logger.info("Data load is complete. You can now make request.");
     }

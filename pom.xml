@@ -3,8 +3,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<groupId>The-Data-Pirates-Finance-API</groupId>
-	<artifactId>data-pirates-finance-api</artifactId>
+	<groupId>My-Portfolio-Site-API</groupId>
+	<artifactId>my-portfolio-site-api</artifactId>
 	<modelVersion>4.0.0</modelVersion>
 	<version>1.1-SNAPSHOT</version>
 
