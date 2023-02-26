@@ -30,6 +30,12 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
     private JWTUtility jwtUtility;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
     private AdminRepository adminRepository;
 
     /**
@@ -96,7 +102,10 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
         }
 
         if (admin == null) {
-            admin = new Admin(StringConstants.EMPTY_STRING, StringConstants.EMPTY_STRING);
+            admin = new Admin();
+
+            admin.setUsername(StringConstants.EMPTY_STRING);
+            admin.setPassword(StringConstants.EMPTY_STRING);
         }
 
         return new User(admin.getUsername(), admin.getPassword(), new ArrayList<>());

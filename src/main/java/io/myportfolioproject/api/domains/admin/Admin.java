@@ -17,9 +17,7 @@ public class Admin extends BaseEntity {
 
     private String password;
 
-    public Admin(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Admin() {
     }
 
     public String getUsername() {

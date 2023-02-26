@@ -24,14 +24,12 @@ public class StringConstants {
     // Error Messages
     public static final String INVALID_LOGIN = "Invalid Credentials. Please try again.";
     public static final String BAD_TOKEN = "Invalid token.";
-    public static final String USERNAME_CONFLICT = "Username is a required field.";
-    public static final String USERNAME_MISMATCH = "Username in pathway does not match username from token";
     public static final String JWT_ERROR_BEGINNING = "Jwt token error: ";
     public static final String JWT_CREDENTIAL_BEGINNING = "Bad credentials error: ";
 
     // Misc
     public static final String STAR = "*";
-    public static final String EMPTY_STRING = "";
+    public static final String EMPTY_STRING = " ";
     public static final String WEBSITE_URL ="http://localhost:3000";
     public static final String DESCRIPTION = "description";
     public static final String EXPERIENCE_ID = "experience_id";

@@ -11,6 +11,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 /**
  * This class handles Seeding selected data into the database depending on the application.yml
  */
@@ -51,7 +53,12 @@ public class SeedData implements CommandLineRunner {
         // Persist data to database
         logger.info("Loading Admin data...");
 
-        Admin admin_1 = new Admin(username, passwordEncoder.encode(password));
+        Admin admin_1 = new Admin();
+
+        admin_1.setDateCreated(LocalDateTime.now());
+        admin_1.setDateUpdated(LocalDateTime.now());
+        admin_1.setUsername(username);
+        admin_1.setPassword(passwordEncoder.encode(password));
 
         adminRepository.save(admin_1);
 
