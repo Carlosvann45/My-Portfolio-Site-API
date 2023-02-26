@@ -8,7 +8,11 @@ import io.myportfolioproject.api.domains.entities.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +28,15 @@ public class Experience extends BaseEntity {
 
     private String position;
 
-    private LocalDate startDate;
+    private Month startMonth;
 
-    private LocalDate endDate;
+    private Year startYear;
+
+    private Month endMonth;
+
+    private Year endYear;
+
+    private Boolean current;
 
     @OneToMany(mappedBy = StringConstants.DESCRIPTION)
     @JsonManagedReference
@@ -51,20 +61,44 @@ public class Experience extends BaseEntity {
         this.position = position;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public Month getStartMonth() {
+        return startMonth;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setStartMonth(Month startMonth) {
+        this.startMonth = startMonth;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public Year getStartYear() {
+        return startYear;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setStartYear(Year startYear) {
+        this.startYear = startYear;
+    }
+
+    public Month getEndMonth() {
+        return endMonth;
+    }
+
+    public void setEndMonth(Month endMonth) {
+        this.endMonth = endMonth;
+    }
+
+    public Year getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(Year endYear) {
+        this.endYear = endYear;
+    }
+
+    public Boolean getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Boolean current) {
+        this.current = current;
     }
 
     public List<Description> getDescriptions() {
@@ -81,12 +115,12 @@ public class Experience extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Experience that = (Experience) o;
-        return company.equals(that.company) && position.equals(that.position) && startDate.equals(that.startDate) && endDate.equals(that.endDate) && descriptions.equals(that.descriptions);
+        return company.equals(that.company) && position.equals(that.position) && startMonth == that.startMonth && startYear.equals(that.startYear) && endMonth == that.endMonth && Objects.equals(endYear, that.endYear) && current.equals(that.current) && descriptions.equals(that.descriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), company, position, startDate, endDate, descriptions);
+        return Objects.hash(super.hashCode(), company, position, startMonth, startYear, endMonth, endYear, current, descriptions);
     }
 
     @Override
@@ -94,8 +128,11 @@ public class Experience extends BaseEntity {
         return "Experience{" +
                 "company='" + company + '\'' +
                 ", position='" + position + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
+                ", startMonth=" + startMonth +
+                ", startYear=" + startYear +
+                ", endMonth=" + endMonth +
+                ", endYear=" + endYear +
+                ", current=" + current +
                 ", descriptions=" + descriptions +
                 '}';
     }
