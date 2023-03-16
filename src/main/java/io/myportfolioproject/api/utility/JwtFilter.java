@@ -61,7 +61,6 @@ public class JwtFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String url = request.getServletPath();
         String[] pathArray = new String[]{
-                Paths.ADMIN.concat(Paths.REFRESH_TOKEN),
                 Paths.EXPERIENCE,
                 Paths.LOGIN
         };
