@@ -9,14 +9,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+import static org.apache.http.HttpHeaders.AUTHORIZATION;
+
 /**
- * Controller for customer endpoints
+ * Controller for experience endpoints
  */
 @RestController
 @RequestMapping(value = Paths.EXPERIENCE)
@@ -42,5 +43,51 @@ public class ExperienceController {
         List<ExperienceDTO> experienceDTOList = experienceList.mapExperiences();
 
         return new ResponseEntity<>(experienceDTOList, HttpStatus.OK);
+    }
+
+    /**
+     * Makes a call to experience service to create a new experience
+     *
+     * @param token token to validate
+     * @param experienceDTO new experience
+     * @return newly created experience
+     */
+    @PostMapping()
+    @RequestMapping(value = Paths.EXPERIENCE_POST)
+    public ResponseEntity<ExperienceDTO> createExperience(
+            @RequestHeader(AUTHORIZATION) String token, @Valid @RequestBody ExperienceDTO experienceDTO
+    ) {
+        logger.info(StringConstants.LOG_POST_EXPERIENCE);
+
+        Experience experience = experienceDTO.mapExperience();
+
+        Experience newExperience = experienceService.createExperience(token, experience);
+
+        ExperienceDTO newExperienceDTO = newExperience.mapExperience();
+
+        return new ResponseEntity<>(newExperienceDTO, HttpStatus.CREATED);
+    }
+
+    /**
+     * Makes a call to experience service to update an existing experience
+     *
+     * @param token token to validate
+     * @param id id to verify
+     * @param experienceDTO updated experience
+     * @return newly updated experience
+     */
+    @PutMapping(Paths.ID)
+    public ResponseEntity<ExperienceDTO> updateExperience(
+            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id, @Valid @RequestBody ExperienceDTO experienceDTO
+    ) {
+        logger.info(StringConstants.LOG_PUT_EXPERIENCE);
+
+        Experience experience = experienceDTO.mapExperience();
+
+        Experience newExperience = experienceService.updateExperience(token, id, experience);
+
+        ExperienceDTO newExperienceDTO = newExperience.mapExperience();
+
+        return new ResponseEntity<>(newExperienceDTO, HttpStatus.OK);
     }
 }

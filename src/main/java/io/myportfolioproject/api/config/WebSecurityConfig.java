@@ -67,6 +67,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         security.csrf().disable();
 
         security.authorizeRequests()
+                .antMatchers(GET, Paths.ADMIN.concat(Paths.REFRESH_TOKEN))
+                .permitAll();
+
+        security.authorizeRequests()
                 .antMatchers(GET, Paths.EXPERIENCE)
                 .permitAll();
 

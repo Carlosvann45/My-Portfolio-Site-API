@@ -7,6 +7,7 @@ public class Paths {
 
     // Experience
     public static final String EXPERIENCE = "/experiences";
+    public static final String EXPERIENCE_POST = "/admin/experiences";
 
     // Admin
     public static final String ADMIN = "/admin";
@@ -15,4 +16,5 @@ public class Paths {
 
     // Misc
     public static final String ALL_EXTENSIONS = "/**";
+    public static final String ID = "/{id}";
 }

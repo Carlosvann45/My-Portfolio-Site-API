@@ -47,10 +47,8 @@ public class MapperExtensions {
         experience.setDateUpdated(experienceDTO.getDateUpdated());
         experience.setCompany(experienceDTO.getCompany());
         experience.setPosition(experienceDTO.getPosition());
-        experience.setStartMonth(experienceDTO.getStartMonth());
-        experience.setStartYear(experienceDTO.getStartYear());
-        experience.setEndMonth(experienceDTO.getEndMonth());
-        experience.setEndYear(experienceDTO.getEndYear());
+        experience.setStartDate(experienceDTO.getStartDate());
+        experience.setEndDate(experienceDTO.getEndDate());
         experience.setCurrent(experienceDTO.getCurrent());
 
         List<Description> descriptions = experienceDTO.getDescriptions()
@@ -77,10 +75,8 @@ public class MapperExtensions {
         experienceDTO.setDateUpdated(experience.getDateUpdated());
         experienceDTO.setCompany(experience.getCompany());
         experienceDTO.setPosition(experience.getPosition());
-        experienceDTO.setStartMonth(experience.getStartMonth());
-        experienceDTO.setStartYear(experience.getStartYear());
-        experienceDTO.setEndMonth(experience.getEndMonth());
-        experienceDTO.setEndYear(experience.getEndYear());
+        experienceDTO.setStartDate(experience.getStartDate());
+        experienceDTO.setEndDate(experience.getEndDate());
         experienceDTO.setCurrent(experience.getCurrent());
 
         List<DescriptionDTO> descriptions = experience.getDescriptions()

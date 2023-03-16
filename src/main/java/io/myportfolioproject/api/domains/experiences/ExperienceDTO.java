@@ -3,12 +3,11 @@ package io.myportfolioproject.api.domains.experiences;
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.descriptions.DescriptionDTO;
 import io.myportfolioproject.api.domains.entities.BaseEntityDTO;
+import io.myportfolioproject.api.validators.experienceDate.ValidDate;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,20 +18,18 @@ import java.util.Objects;
 public class ExperienceDTO extends BaseEntityDTO {
 
     @NotBlank(message = StringConstants.COMPANY_REQUIRED)
+    @Length(min = 2, message = StringConstants.COMPANY_MIN_LEN)
     private String company;
 
     @NotBlank(message = StringConstants.POSITION_REQUIRED)
+    @Length(min = 2, message = StringConstants.POSITION_MIN_LEN)
     private String position;
 
-    @NotNull(message = StringConstants.START_MONTH_REQUIRED)
-    private Month startMonth;
+    @ValidDate()
+    private String startDate;
 
-    @NotNull(message = StringConstants.START_YEAR_REQUIRED)
-    private Year startYear;
-
-    private Month endMonth;
-
-    private Year endYear;
+    @ValidDate(isRequired = false)
+    private String endDate;
 
     @NotNull(message = StringConstants.CURRENT_REQUIRED)
     private Boolean current;
@@ -58,38 +55,6 @@ public class ExperienceDTO extends BaseEntityDTO {
         this.position = position;
     }
 
-    public Month getStartMonth() {
-        return startMonth;
-    }
-
-    public void setStartMonth(Month startMonth) {
-        this.startMonth = startMonth;
-    }
-
-    public Year getStartYear() {
-        return startYear;
-    }
-
-    public void setStartYear(Year startYear) {
-        this.startYear = startYear;
-    }
-
-    public Month getEndMonth() {
-        return endMonth;
-    }
-
-    public void setEndMonth(Month endMonth) {
-        this.endMonth = endMonth;
-    }
-
-    public Year getEndYear() {
-        return endYear;
-    }
-
-    public void setEndYear(Year endYear) {
-        this.endYear = endYear;
-    }
-
     public Boolean getCurrent() {
         return current;
     }
@@ -106,17 +71,33 @@ public class ExperienceDTO extends BaseEntityDTO {
         this.descriptions = descriptions;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ExperienceDTO that = (ExperienceDTO) o;
-        return company.equals(that.company) && position.equals(that.position) && startMonth == that.startMonth && startYear.equals(that.startYear) && endMonth == that.endMonth && Objects.equals(endYear, that.endYear) && current.equals(that.current) && descriptions.equals(that.descriptions);
+        return company.equals(that.company) && position.equals(that.position) && startDate.equals(that.startDate) && Objects.equals(endDate, that.endDate) && current.equals(that.current) && descriptions.equals(that.descriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(company, position, startMonth, startYear, endMonth, endYear, current, descriptions);
+        return Objects.hash(company, position, startDate, endDate, current, descriptions);
     }
 
     @Override
@@ -124,10 +105,8 @@ public class ExperienceDTO extends BaseEntityDTO {
         return "ExperienceDTO{" +
                 "company='" + company + '\'' +
                 ", position='" + position + '\'' +
-                ", startMonth=" + startMonth +
-                ", startYear=" + startYear +
-                ", endMonth=" + endMonth +
-                ", endYear=" + endYear +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 ", current=" + current +
                 ", descriptions=" + descriptions +
                 '}';

@@ -2,6 +2,7 @@ package io.myportfolioproject.api.domains.admin;
 
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.jwts.JwtResponse;
+import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import io.myportfolioproject.api.exceptions.Unauthorized;
 import io.myportfolioproject.api.utility.JWTUtility;
@@ -109,5 +110,31 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
         }
 
         return new User(admin.getUsername(), admin.getPassword(), new ArrayList<>());
+    }
+
+
+    /**
+     * Helper method to retrieve admin from token
+     *
+     * @param token token to get admin from
+     */
+    public void adminExistFromToken(String token) {
+        // removes bearer from the token
+        token = token.substring(7).trim();
+
+        Admin existingAdmin;
+        String customerUsername = jwtUtility.getUsernameFromToken(token);
+
+        try {
+            existingAdmin = adminRepository.findAdminByUsername(customerUsername);
+        } catch (DataAccessException e) {
+            logger.error(e.getMessage());
+
+            throw new ServerUnavailable(e.getMessage());
+        }
+
+        if (existingAdmin == null) {
+            throw new NotFound(StringConstants.ADMIN_NOT_FOUND);
+        }
     }
 }

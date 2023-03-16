@@ -46,4 +46,5 @@ public class AdminController {
 
         return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
     }
+
 }

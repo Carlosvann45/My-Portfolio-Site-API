@@ -1,9 +1,14 @@
 package io.myportfolioproject.api.constants;
 
+import java.util.regex.Pattern;
+
 /**
  * A class to represent constant string variables
  */
 public class StringConstants {
+
+    // Regex
+    public static final String DATE_REGEX = "^((0[1-9])|(1[0-2]))\\/((19[0-9][0-9])|(20[0-2][0-9]))$";
 
     // JWT
     public static final String BEARER_BEGINNING = "Bearer ";
@@ -19,6 +24,8 @@ public class StringConstants {
 
     // Logger
     public static final String LOG_GET_EXPERIENCE = "Request received for getExperience.";
+    public static final String LOG_POST_EXPERIENCE = "Request received for createExperience.";
+    public static final String LOG_PUT_EXPERIENCE = "Request received for updateExperience.";
     public static final String LOG_REFRESH_ADMIN_TOKEN = "Request received for refreshAdminToken.";
 
     // Error Messages
@@ -27,10 +34,13 @@ public class StringConstants {
     public static final String JWT_ERROR_BEGINNING = "Jwt token error: ";
     public static final String JWT_CREDENTIAL_BEGINNING = "Bad credentials error: ";
     public static final String COMPANY_REQUIRED = "Company is a required field.";
+    public static final String COMPANY_MIN_LEN = "Company must be at least two characters long.";
     public static final String POSITION_REQUIRED = "Position is a required field.";
-    public static final String START_MONTH_REQUIRED = "Start Month is a required field.";
-    public static final String START_YEAR_REQUIRED = "Start Year is a required field.";
+    public static final String POSITION_MIN_LEN = "Position must be at least two characters long.";
     public static final String CURRENT_REQUIRED = "Current is a required field.";
+    public static final String ADMIN_NOT_FOUND = "Admin with given username does not exist.";
+    public static final String EXPERIENCE_NOT_FOUND = "Experience with given id does not exist.";
+    public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
 
     // Misc
     public static final String STAR = "*";

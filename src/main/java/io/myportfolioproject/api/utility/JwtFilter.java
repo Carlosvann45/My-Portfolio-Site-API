@@ -61,12 +61,13 @@ public class JwtFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String url = request.getServletPath();
         String[] pathArray = new String[]{
+                Paths.ADMIN.concat(Paths.REFRESH_TOKEN),
                 Paths.EXPERIENCE,
                 Paths.LOGIN
         };
 
         try {
-            if (Arrays.stream(pathArray).noneMatch(url::contains)) {
+            if (Arrays.stream(pathArray).noneMatch(url::equals)) {
                 String authorization = request.getHeader(AUTHORIZATION);
                 String token = null;
                 String username = null;
@@ -86,7 +87,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UserDetails userDetails = adminService.loadUserByUsername(username);
 
-                    boolean validToken = false;
+                    boolean validToken;
 
                     try {
                         validToken = jwtUtility.validateToken(token, userDetails);
@@ -113,7 +114,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            logger.error(StringConstants.JWT_ERROR_BEGINNING.concat(e.getMessage()));
+            logger.error(e.getMessage());
 
             resolver.resolveException(request, response, null, e);
         }
