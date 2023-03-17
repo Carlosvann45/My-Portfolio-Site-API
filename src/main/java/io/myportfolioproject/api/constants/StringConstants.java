@@ -48,7 +48,6 @@ public class StringConstants {
     public static final String STAR = "*";
     public static final String EMPTY_STRING = " ";
     public static final String WEBSITE_URL ="http://localhost:3000";
-    public static final String DESCRIPTION = "description";
     public static final String EXPERIENCE = "experience";
     public static final String EXPERIENCE_ID = "experience_id";
     public static final String EXCEPTION_RESOLVER = "handlerExceptionResolver";
