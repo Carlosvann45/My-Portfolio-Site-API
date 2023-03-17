@@ -27,6 +27,9 @@ public class StringConstants {
     public static final String LOG_POST_EXPERIENCE = "Request received for createExperience.";
     public static final String LOG_PUT_EXPERIENCE = "Request received for updateExperience.";
     public static final String LOG_DELETE_EXPERIENCE = "Request received for deleteExperience.";
+    public static final String LOG_POST_DESCRIPTION = "Request received for createDescription.";
+    public static final String LOG_PUT_DESCRIPTION = "Request received for updateDescription.";
+    public static final String LOG_DELETE_DESCRIPTION = "Request received for deleteDescription.";
     public static final String LOG_REFRESH_ADMIN_TOKEN = "Request received for refreshAdminToken.";
 
     // Error Messages

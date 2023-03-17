@@ -7,7 +7,7 @@ import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import java.util.List;
 
 /**
- * Interface class provides abstraction layer for customer service
+ * Interface class provides abstraction layer for experience service
  */
 public interface ExperienceService {
 

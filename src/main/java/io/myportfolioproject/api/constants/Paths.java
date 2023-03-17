@@ -5,6 +5,10 @@ package io.myportfolioproject.api.constants;
  */
 public class Paths {
 
+    // Description
+    public static final String DESCRIPTION = "/descriptions";
+    public static final String DESCRIPTION_CREATE = "/experience_id/{id}";
+
     // Experience
     public static final String EXPERIENCE = "/experiences";
 
