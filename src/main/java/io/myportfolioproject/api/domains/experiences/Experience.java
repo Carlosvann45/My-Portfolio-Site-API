@@ -6,6 +6,8 @@ import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.entities.BaseEntity;
 import io.myportfolioproject.api.validators.experienceDate.ValidDate;
 
+import javax.annotation.Nullable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,11 +33,12 @@ public class Experience extends BaseEntity {
 
     private String startDate;
 
+
     private String endDate;
 
     private Boolean current;
 
-    @OneToMany(mappedBy = StringConstants.DESCRIPTION)
+    @OneToMany(mappedBy = StringConstants.EXPERIENCE, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Description> descriptions = new ArrayList<>();
 

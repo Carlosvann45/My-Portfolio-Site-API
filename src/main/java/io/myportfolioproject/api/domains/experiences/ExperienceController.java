@@ -52,8 +52,7 @@ public class ExperienceController {
      * @param experienceDTO new experience
      * @return newly created experience
      */
-    @PostMapping()
-    @RequestMapping(value = Paths.EXPERIENCE_POST)
+    @PostMapping(Paths.POST)
     public ResponseEntity<ExperienceDTO> createExperience(
             @RequestHeader(AUTHORIZATION) String token, @Valid @RequestBody ExperienceDTO experienceDTO
     ) {
@@ -89,5 +88,23 @@ public class ExperienceController {
         ExperienceDTO newExperienceDTO = newExperience.mapExperience();
 
         return new ResponseEntity<>(newExperienceDTO, HttpStatus.OK);
+    }
+
+    /**
+     * Makes a call to experience service to delete experience
+     *
+     * @param token token to verify admin account
+     * @param id id to get experience
+     * @return Http Status No content
+     */
+    @DeleteMapping(Paths.ID)
+    public ResponseEntity<?> deleteExperience(
+            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id
+    ) {
+        logger.info(StringConstants.LOG_DELETE_EXPERIENCE);
+
+        experienceService.deleteExperience(token, id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

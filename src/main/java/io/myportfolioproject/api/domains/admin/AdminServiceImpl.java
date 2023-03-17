@@ -40,16 +40,12 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
     private AdminRepository adminRepository;
 
     /**
-     * Validates refresh token and generates new access token
-     *
-     * @param refreshToken refresh token to validate
-     * @param url          url to use for access token creation
-     * @return Jwt response with access/refresher tokens
+     * {@inheritDoc}
      */
     @Override
     public JwtResponse refreshAdminToken(String refreshToken, String url) {
-        String token = null;
-        String username = null;
+        String token;
+        String username;
 
         if (refreshToken.startsWith(StringConstants.BEARER_BEGINNING)) {
             token = refreshToken.substring(7).trim();
@@ -57,7 +53,7 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
             try {
                 username = jwtUtility.getUsernameFromToken(token);
             } catch (Exception e) {
-                logger.error(StringConstants.JWT_ERROR_BEGINNING.concat(e.getMessage()));
+                logger.error(e.getMessage());
 
                 throw new Unauthorized(StringConstants.BAD_TOKEN);
             }
@@ -65,7 +61,7 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
             if (username != null) {
                 UserDetails userDetails = loadUserByUsername(username);
 
-                boolean validToken = false;
+                boolean validToken;
 
                 try {
                     validToken = jwtUtility.validateToken(token, userDetails);
@@ -85,7 +81,7 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
     }
 
     /**
-     * Loads a admin by a given username
+     * Loads an admin by a given username
      *
      * @param username username to search for
      * @return User details based from username
@@ -114,7 +110,7 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
 
 
     /**
-     * Helper method to retrieve admin from token
+     * Helper method: Retrieves admin from token
      *
      * @param token token to get admin from
      */

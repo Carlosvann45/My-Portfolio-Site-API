@@ -2,6 +2,8 @@ package io.myportfolioproject.api.domains.experiences;
 
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
+import io.myportfolioproject.api.domains.descriptions.Description;
+import io.myportfolioproject.api.domains.descriptions.DescriptionRepository;
 import io.myportfolioproject.api.exceptions.BadRequest;
 import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
@@ -32,15 +34,17 @@ public class ExperienceServiceImpl implements ExperienceService {
     @Autowired
     private ExperienceRepository experienceRepository;
 
+    @Autowired
+    private DescriptionRepository descriptionRepository;
+
     /**
-     * Retrieves all experiences from repository
-     *
-     * @return list of experiences
+     * {@inheritDoc}
      */
     @Override
     public List<Experience> getExperience() {
         try {
             return experienceRepository.findAll();
+
         } catch(DataAccessException e) {
             logger.error(e.getMessage());
 
@@ -49,11 +53,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     /**
-     * Creates a new experience
-     *
-     * @param token token to validate
-     * @param experience experience to create
-     * @return newly created experience
+     * {@inheritDoc}
      */
     @Override
     public Experience createExperience(String token, Experience experience) {
@@ -66,6 +66,13 @@ public class ExperienceServiceImpl implements ExperienceService {
         experience.setDateUpdated(LocalDateTime.now());
 
         try {
+            // update descriptions with new experience
+            experience.getDescriptions().forEach(description -> {
+                description.setDateCreated(LocalDateTime.now());
+                description.setDateUpdated(LocalDateTime.now());
+                description.setExperience(experience);
+            });
+
             return experienceRepository.save(experience);
         } catch (DataAccessException e) {
             logger.error(e);
@@ -75,15 +82,13 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     /**
-     * Updates a existing experience
-     *
-     * @param token token to validate
-     * @param id id to verify experience
-     * @param experience updated experience
-     * @return newly updated experience
+     * {@inheritDoc}
      */
     @Override
     public Experience updateExperience(String token, Long id, Experience experience) {
+        // Ensures admin from token exist before moving forward
+        adminService.adminExistFromToken(token);
+
         try {
             Experience existingExperience;
 
@@ -91,28 +96,68 @@ public class ExperienceServiceImpl implements ExperienceService {
                 throw new BadRequest(StringConstants.INCORRECT_PATH_ID);
             }
 
-            // Ensures admin from token exist before moving forward
-            adminService.adminExistFromToken(token);
+            // make sure all ids exist
+            experience.getDescriptions().forEach(description -> {
+                if (description.getId() == null) {
+                    throw new BadRequest(StringConstants.DESCRIPTION_ID_REQ);
+                }
 
-            try {
-                existingExperience = experienceRepository.getById(id);
-            } catch (EntityNotFoundException e) {
-                throw new NotFound(StringConstants.EXPERIENCE_NOT_FOUND);
-            }
+                Description existingDescription = descriptionRepository.getById(description.getId());
 
+                // make sure date created isn't changed
+                description.setDateCreated(existingDescription.getDateCreated());
+            });
+
+            existingExperience = experienceRepository.getById(id);
+
+            existingExperience.setDateUpdated(LocalDateTime.now());
             existingExperience.setCompany(capitalizeWords(experience.getCompany()));
             existingExperience.setPosition(capitalizeWords(experience.getPosition()));
             existingExperience.setStartDate(experience.getStartDate());
             existingExperience.setEndDate(experience.getEndDate());
             existingExperience.setCurrent(experience.getCurrent());
             existingExperience.setDescriptions(experience.getDescriptions());
-            existingExperience.setDateUpdated(LocalDateTime.now());
+
+            // update descriptions with new experience
+            existingExperience.getDescriptions().forEach(description -> {
+                description.setDateUpdated(LocalDateTime.now());
+                description.setExperience(existingExperience);
+            });
 
             return experienceRepository.save(experience);
         } catch (DataAccessException e) {
             logger.error(e);
 
             throw new ServerUnavailable(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            logger.error(e);
+
+            throw new NotFound(e.getMessage());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteExperience(String token, Long id) {
+        // Ensures admin from token exist before moving forward
+        adminService.adminExistFromToken(token);
+
+        Experience existingExperience;
+
+        try {
+            existingExperience = experienceRepository.getById(id);
+
+            experienceRepository.delete(existingExperience);
+        } catch (DataAccessException e) {
+            logger.error(e);
+
+            throw new ServerUnavailable(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            logger.error(e);
+
+            throw new NotFound(e.getMessage());
         }
     }
 

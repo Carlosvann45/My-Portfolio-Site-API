@@ -26,6 +26,7 @@ public class StringConstants {
     public static final String LOG_GET_EXPERIENCE = "Request received for getExperience.";
     public static final String LOG_POST_EXPERIENCE = "Request received for createExperience.";
     public static final String LOG_PUT_EXPERIENCE = "Request received for updateExperience.";
+    public static final String LOG_DELETE_EXPERIENCE = "Request received for deleteExperience.";
     public static final String LOG_REFRESH_ADMIN_TOKEN = "Request received for refreshAdminToken.";
 
     // Error Messages
@@ -40,6 +41,8 @@ public class StringConstants {
     public static final String CURRENT_REQUIRED = "Current is a required field.";
     public static final String ADMIN_NOT_FOUND = "Admin with given username does not exist.";
     public static final String EXPERIENCE_NOT_FOUND = "Experience with given id does not exist.";
+    public static final String DESCRIPTION_NOT_FOUND = "Description with given id does not exist.";
+    public static final String DESCRIPTION_ID_REQ = "Description id is required to update a experience.";
     public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
 
     // Misc
@@ -47,6 +50,7 @@ public class StringConstants {
     public static final String EMPTY_STRING = " ";
     public static final String WEBSITE_URL ="http://localhost:3000";
     public static final String DESCRIPTION = "description";
+    public static final String EXPERIENCE = "experience";
     public static final String EXPERIENCE_ID = "experience_id";
     public static final String EXCEPTION_RESOLVER = "handlerExceptionResolver";
 
