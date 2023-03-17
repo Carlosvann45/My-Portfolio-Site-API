@@ -1,5 +1,6 @@
 package io.myportfolioproject.api.domains.descriptions;
 
+import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceRepository;
@@ -43,7 +44,7 @@ public class DescriptionServiceImpl implements DescriptionService {
         try {
             Experience existingExperience;
 
-            existingExperience = experienceRepository.getById(id);
+            existingExperience = experienceRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(StringConstants.EXPERIENCE_NOT_FOUND));
 
             description.setDateCreated(LocalDateTime.now());
             description.setDateUpdated(LocalDateTime.now());
@@ -72,7 +73,7 @@ public class DescriptionServiceImpl implements DescriptionService {
         Description existingDescription;
 
         try {
-            existingDescription = descriptionRepository.getById(id);
+            existingDescription = descriptionRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(StringConstants.DESCRIPTION_NOT_FOUND));
 
             descriptionRepository.delete(existingDescription);
         } catch (DataAccessException e) {

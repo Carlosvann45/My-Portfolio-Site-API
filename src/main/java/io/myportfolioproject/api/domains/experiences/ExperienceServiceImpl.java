@@ -102,13 +102,17 @@ public class ExperienceServiceImpl implements ExperienceService {
                     throw new BadRequest(StringConstants.DESCRIPTION_ID_REQ);
                 }
 
-                Description existingDescription = descriptionRepository.getById(description.getId());
+                Description existingDescription = descriptionRepository
+                        .findById(description.getId())
+                        .orElseThrow(() -> new EntityNotFoundException(StringConstants.DESCRIPTION_NOT_FOUND));
 
                 // make sure date created isn't changed
                 description.setDateCreated(existingDescription.getDateCreated());
             });
 
-            existingExperience = experienceRepository.getById(id);
+            existingExperience = experienceRepository
+                    .findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException(StringConstants.EXPERIENCE_NOT_FOUND));
 
             existingExperience.setDateUpdated(LocalDateTime.now());
             existingExperience.setCompany(capitalizeWords(experience.getCompany()));
@@ -147,7 +151,9 @@ public class ExperienceServiceImpl implements ExperienceService {
         Experience existingExperience;
 
         try {
-            existingExperience = experienceRepository.getById(id);
+            existingExperience = experienceRepository
+                    .findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException(StringConstants.EXPERIENCE_NOT_FOUND));
 
             experienceRepository.delete(existingExperience);
         } catch (DataAccessException e) {
