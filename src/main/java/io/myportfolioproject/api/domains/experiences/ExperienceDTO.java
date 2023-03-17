@@ -6,6 +6,7 @@ import io.myportfolioproject.api.domains.entities.BaseEntityDTO;
 import io.myportfolioproject.api.validators.experienceDate.ValidDate;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ExperienceDTO extends BaseEntityDTO {
     @NotNull(message = StringConstants.CURRENT_REQUIRED)
     private Boolean current;
 
+    @Valid
     private List<DescriptionDTO> descriptions = new ArrayList<>();
 
     public ExperienceDTO() {

@@ -40,8 +40,7 @@ public class StringConstants {
     public static final String POSITION_MIN_LEN = "Position must be at least two characters long.";
     public static final String CURRENT_REQUIRED = "Current is a required field.";
     public static final String ADMIN_NOT_FOUND = "Admin with given username does not exist.";
-    public static final String EXPERIENCE_NOT_FOUND = "Experience with given id does not exist.";
-    public static final String DESCRIPTION_NOT_FOUND = "Description with given id does not exist.";
+    public static final String DESCRIPTION_LENGTH_ERROR = "Description length must be between 50 and 255 characters.";
     public static final String DESCRIPTION_ID_REQ = "Description id is required to update a experience.";
     public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
 

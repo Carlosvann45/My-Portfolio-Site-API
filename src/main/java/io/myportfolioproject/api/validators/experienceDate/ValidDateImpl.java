@@ -6,9 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * Class to run validation for custom experience date validation
+ * Class to run validation for custom date validation
  */
-public class ValidExperienceDateImpl implements ConstraintValidator<ValidDate, String> {
+public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
 
     private String message;
 
@@ -52,7 +52,7 @@ public class ValidExperienceDateImpl implements ConstraintValidator<ValidDate, S
      *
      * @validation
      * @param date string date to validate
-     * @return boolean value for if experience date is valid
+     * @return boolean value for if date is valid
      */
     private boolean defaultValidation(String date) {
         // returns true if date follow this format: mm/yyyy

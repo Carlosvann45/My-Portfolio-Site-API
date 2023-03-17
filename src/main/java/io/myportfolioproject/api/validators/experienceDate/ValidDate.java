@@ -5,10 +5,12 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
- * An interface for a custom annotation for experience date validation
+ * An interface for a custom annotation for date validation
+ *
+ * @see java.lang.annotation.Annotation
  */
 @Documented
-@Constraint(validatedBy = ValidExperienceDateImpl.class)
+@Constraint(validatedBy = ValidDateImpl.class)
 @Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidDate {

@@ -54,6 +54,7 @@ public class JwtFilter extends OncePerRequestFilter {
      * @param request     request to validate authorization header
      * @param response    servlet response
      * @param filterChain filter chain to pass to after validation
+     * @throws Unauthorized if there is an issue authenticating token
      */
     @Override
     protected void doFilterInternal(

@@ -44,6 +44,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
      *
      * @param request  http servlet request to get username/password parameters
      * @param response http servlet response
+     * @throws BadRequest if login fails
      * @return authentication result based on username and password
      */
     @Override

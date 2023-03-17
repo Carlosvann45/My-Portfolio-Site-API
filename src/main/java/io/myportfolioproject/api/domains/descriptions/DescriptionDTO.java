@@ -1,6 +1,8 @@
 package io.myportfolioproject.api.domains.descriptions;
 
+import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.entities.BaseEntityDTO;
+import io.myportfolioproject.api.validators.description.ValidDescription;
 
 import java.util.Objects;
 
@@ -9,6 +11,7 @@ import java.util.Objects;
  */
 public class DescriptionDTO extends BaseEntityDTO {
 
+    @ValidDescription(message = StringConstants.DESCRIPTION_LENGTH_ERROR)
     private String description;
 
     public DescriptionDTO() {
