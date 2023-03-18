@@ -1,7 +1,5 @@
 package io.myportfolioproject.api.validators.description;
 
-import io.myportfolioproject.api.validators.experienceDate.ValidDateImpl;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
@@ -13,7 +11,7 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = ValidDescriptionImpl.class)
-@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidDescription {
 

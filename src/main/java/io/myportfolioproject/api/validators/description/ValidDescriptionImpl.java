@@ -1,8 +1,5 @@
 package io.myportfolioproject.api.validators.description;
 
-import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.validators.experienceDate.ValidDate;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -36,9 +33,8 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
     /**
      * Overrides isValid function for constraint validator to run custom validation
      *
-     * @param description object to validate
+     * @param description      object to validate
      * @param validatorContext context in which the constraint is evaluated
-     *
      * @return boolean value for if field was valid
      */
     @Override
@@ -58,9 +54,9 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
     /**
      * Runs default validation for a description
      *
-     * @validation
      * @param description string description to validate
      * @return boolean value for if description is valid
+     * @validation
      */
     private boolean defaultValidation(String description) {
         return description.trim().length() >= minLength && description.trim().length() <= maxLength;
@@ -75,6 +71,7 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
     private boolean validateNonRequired(String description) {
         // returns true if description is null or
         // if default validator returns true
-        if (description == null || description.isBlank() || description.isEmpty()) return true; else return defaultValidation(description);
+        if (description == null || description.isBlank() || description.isEmpty()) return true;
+        else return defaultValidation(description);
     }
 }

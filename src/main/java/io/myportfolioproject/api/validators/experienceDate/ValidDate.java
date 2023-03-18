@@ -11,7 +11,7 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = ValidDateImpl.class)
-@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidDate {
 
@@ -27,7 +27,7 @@ public @interface ValidDate {
      *
      * @return boolean
      */
-    boolean isRequired() default  true;
+    boolean isRequired() default true;
 
     Class<?>[] groups() default {};
 

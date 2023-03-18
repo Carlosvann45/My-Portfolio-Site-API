@@ -13,10 +13,10 @@ public interface AdminService {
      * Validates refresh token and generates new access token
      *
      * @param refreshToken refresh token to validate
-     * @param url url to use for access token creation
-     * @throws ServerUnavailable if there is a database issue
-     * @throws Unauthorized if there is an issue authenticating token
+     * @param url          url to use for access token creation
      * @return Jwt response with access/refresher tokens
+     * @throws ServerUnavailable if there is a database issue
+     * @throws Unauthorized      if there is an issue authenticating token
      */
     JwtResponse refreshAdminToken(String refreshToken, String url);
 }

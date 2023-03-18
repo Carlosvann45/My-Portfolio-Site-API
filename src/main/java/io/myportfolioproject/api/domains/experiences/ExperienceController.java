@@ -48,13 +48,14 @@ public class ExperienceController {
     /**
      * Makes a call to experience service to create a new experience
      *
-     * @param token token to validate
+     * @param token         token to validate
      * @param experienceDTO new experience
      * @return newly created experience
      */
     @PostMapping(Paths.POST)
     public ResponseEntity<ExperienceDTO> createExperience(
-            @RequestHeader(AUTHORIZATION) String token, @Valid @RequestBody ExperienceDTO experienceDTO
+            @RequestHeader(AUTHORIZATION) String token,
+            @Valid @RequestBody ExperienceDTO experienceDTO
     ) {
         logger.info(StringConstants.LOG_POST_EXPERIENCE);
 
@@ -70,14 +71,16 @@ public class ExperienceController {
     /**
      * Makes a call to experience service to update an existing experience
      *
-     * @param token token to validate
-     * @param id id to verify
+     * @param token         token to validate
+     * @param id            id to verify
      * @param experienceDTO updated experience
      * @return newly updated experience
      */
     @PutMapping(Paths.ID)
     public ResponseEntity<ExperienceDTO> updateExperience(
-            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id, @Valid @RequestBody ExperienceDTO experienceDTO
+            @RequestHeader(AUTHORIZATION) String token,
+            @PathVariable Long id,
+            @Valid @RequestBody ExperienceDTO experienceDTO
     ) {
         logger.info(StringConstants.LOG_PUT_EXPERIENCE);
 
@@ -94,12 +97,13 @@ public class ExperienceController {
      * Makes a call to experience service to delete experience
      *
      * @param token token to verify admin account
-     * @param id id to get experience
+     * @param id    id to get experience
      * @return Http Status No content
      */
     @DeleteMapping(Paths.ID)
     public ResponseEntity<?> deleteExperience(
-            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id
+            @RequestHeader(AUTHORIZATION) String token,
+            @PathVariable Long id
     ) {
         logger.info(StringConstants.LOG_DELETE_EXPERIENCE);
 

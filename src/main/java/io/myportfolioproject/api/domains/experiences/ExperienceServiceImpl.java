@@ -45,7 +45,7 @@ public class ExperienceServiceImpl implements ExperienceService {
         try {
             return experienceRepository.findAll();
 
-        } catch(DataAccessException e) {
+        } catch (DataAccessException e) {
             logger.error(e.getMessage());
 
             throw new ServerUnavailable(e.getMessage());
@@ -92,15 +92,11 @@ public class ExperienceServiceImpl implements ExperienceService {
         try {
             Experience existingExperience;
 
-            if (!Objects.equals(id, experience.getId())) {
-                throw new BadRequest(StringConstants.INCORRECT_PATH_ID);
-            }
+            if (!Objects.equals(id, experience.getId())) throw new BadRequest(StringConstants.INCORRECT_PATH_ID);
 
             // make sure all ids exist
             experience.getDescriptions().forEach(description -> {
-                if (description.getId() == null) {
-                    throw new BadRequest(StringConstants.DESCRIPTION_ID_REQ);
-                }
+                if (description.getId() == null) throw new BadRequest(StringConstants.DESCRIPTION_ID_REQ);
 
                 Description existingDescription = descriptionRepository
                         .findById(description.getId())
@@ -122,13 +118,13 @@ public class ExperienceServiceImpl implements ExperienceService {
             existingExperience.setCurrent(experience.getCurrent());
             existingExperience.setDescriptions(experience.getDescriptions());
 
-            // update descriptions with new experience
+            // update descriptions with new experience350
             existingExperience.getDescriptions().forEach(description -> {
                 description.setDateUpdated(LocalDateTime.now());
                 description.setExperience(existingExperience);
             });
 
-            return experienceRepository.save(experience);
+            return experienceRepository.save(existingExperience);
         } catch (DataAccessException e) {
             logger.error(e);
 

@@ -28,14 +28,13 @@ public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
     /**
      * Overrides isValid function for constraint validator to run custom validation
      *
-     * @param date object to validate
+     * @param date             object to validate
      * @param validatorContext context in which the constraint is evaluated
-     *
      * @return boolean value for if field was valid
      */
     @Override
     public boolean isValid(String date, ConstraintValidatorContext validatorContext) {
-        boolean isValid =  isRequired ? defaultValidation(date) : validateNonRequired(date);
+        boolean isValid = isRequired ? defaultValidation(date) : validateNonRequired(date);
 
         // adds message constraint if date is not valid,
         // so we can show a custom message based from an annotation
@@ -50,9 +49,9 @@ public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
     /**
      * Runs default validation for a date
      *
-     * @validation
      * @param date string date to validate
      * @return boolean value for if date is valid
+     * @validation
      */
     private boolean defaultValidation(String date) {
         // returns true if date follow this format: mm/yyyy
@@ -68,6 +67,7 @@ public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
     private boolean validateNonRequired(String date) {
         // returns true if date is null or
         // if default validator returns true
-        if (date == null || date.isBlank() || date.isEmpty()) return true; else return defaultValidation(date);
+        if (date == null || date.isBlank() || date.isEmpty()) return true;
+        else return defaultValidation(date);
     }
 }

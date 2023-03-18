@@ -4,18 +4,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.entities.BaseEntity;
-import io.myportfolioproject.api.validators.experienceDate.ValidDate;
 
-import javax.annotation.Nullable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

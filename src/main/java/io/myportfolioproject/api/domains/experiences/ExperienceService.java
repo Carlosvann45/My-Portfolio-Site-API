@@ -22,7 +22,7 @@ public interface ExperienceService {
     /**
      * Creates a new experience
      *
-     * @param token token to validate
+     * @param token      token to validate
      * @param experience experience to create
      * @throws ServerUnavailable if there is a database issue
      * @return newly created experience
@@ -32,12 +32,12 @@ public interface ExperienceService {
     /**
      * Updates a existing experience
      *
-     * @param token token to validate
-     * @param id id to verify experience
+     * @param token      token to validate
+     * @param id         id to verify experience
      * @param experience updated experience
      * @throws ServerUnavailable if there is a database issue
-     * @throws BadRequest if there is an issue with experience/description ids
-     * @throws NotFound if experience/description is not found
+     * @throws BadRequest        if there is an issue with experience/description ids
+     * @throws NotFound          if experience/description is not found
      * @return newly updated experience
      */
     Experience updateExperience(String token, Long id, Experience experience);
@@ -46,9 +46,9 @@ public interface ExperienceService {
      * Deletes an existing experience
      *
      * @param token token to verify admin account
-     * @param id id to find existing experience
+     * @param id    id to find existing experience
      * @throws ServerUnavailable if there is a database issue
-     * @throws NotFound if experience is not found
+     * @throws NotFound          if experience is not found
      */
     void deleteExperience(String token, Long id);
 }

@@ -2,10 +2,6 @@ package io.myportfolioproject.api.domains.descriptions;
 
 import io.myportfolioproject.api.constants.Paths;
 import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.experiences.Experience;
-import io.myportfolioproject.api.domains.experiences.ExperienceController;
-import io.myportfolioproject.api.domains.experiences.ExperienceDTO;
-import io.myportfolioproject.api.domains.experiences.ExperienceService;
 import io.myportfolioproject.api.utility.MapperExtensions;
 import lombok.experimental.ExtensionMethod;
 import org.apache.logging.log4j.LogManager;
@@ -35,13 +31,15 @@ public class DescriptionController {
     /**
      * Makes a call to description service to create a new description
      *
-     * @param token token to validate
+     * @param token          token to validate
      * @param descriptionDTO new description
      * @return newly created description
      */
     @PostMapping(Paths.DESCRIPTION_CREATE)
     public ResponseEntity<DescriptionDTO> createDescription(
-            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id, @Valid @RequestBody DescriptionDTO descriptionDTO
+            @RequestHeader(AUTHORIZATION) String token,
+            @PathVariable Long id,
+            @Valid @RequestBody DescriptionDTO descriptionDTO
     ) {
         logger.info(StringConstants.LOG_POST_DESCRIPTION);
 
@@ -55,15 +53,42 @@ public class DescriptionController {
     }
 
     /**
+     * Makes a call to description service to update an existing description
+     *
+     * @param token          token to validate
+     * @param id             id to verify
+     * @param descriptionDTO updated description
+     * @return newly updated description
+     */
+    @PutMapping(Paths.DESCRIPTION_UPDATE)
+    public ResponseEntity<DescriptionDTO> updateDescription(
+            @RequestHeader(AUTHORIZATION) String token,
+            @PathVariable Long id,
+            @PathVariable Long experienceId,
+            @Valid @RequestBody DescriptionDTO descriptionDTO
+    ) {
+        logger.info(StringConstants.LOG_PUT_DESCRIPTION);
+
+        Description description = descriptionDTO.mapDescription();
+
+        Description newDescription = descriptionService.updateDescription(token, id, experienceId, description);
+
+        DescriptionDTO newDescriptionDTO = newDescription.mapDescription();
+
+        return new ResponseEntity<>(newDescriptionDTO, HttpStatus.OK);
+    }
+
+    /**
      * Makes a call to description service to delete description
      *
      * @param token token to verify admin account
-     * @param id id to get description
+     * @param id    id to get description
      * @return Http Status No content
      */
     @DeleteMapping(Paths.ID)
     public ResponseEntity<?> deleteDescription(
-            @RequestHeader(AUTHORIZATION) String token, @PathVariable Long id
+            @RequestHeader(AUTHORIZATION) String token,
+            @PathVariable Long id
     ) {
         logger.info(StringConstants.LOG_DELETE_DESCRIPTION);
 
