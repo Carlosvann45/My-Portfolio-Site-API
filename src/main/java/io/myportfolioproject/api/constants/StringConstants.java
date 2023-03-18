@@ -46,6 +46,12 @@ public class StringConstants {
     public static final String DESCRIPTION_LENGTH_ERROR = "Description length must be between 50 and 255 characters.";
     public static final String DESCRIPTION_ID_REQ = "Description id is required to update a experience.";
     public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
+    public static final String EMAIL_REQUIRED = "Email is a required field.";
+    public static final String EMAIL_VALID_FORMAT = "Email must be a valid format. (e.g. example@gmail.com)";
+    public static final String SUBJECT_REQUIRED = "Subject is a required field.";
+    public static final String SUBJECT_LENGTH_REQ = "Subject length must be between 15 to 50 characters.";
+    public static final String BODY_REQUIRED = "Body is a required field.";
+    public static final String BODY_LENGTH_REQ = "Body length must be between 50 to 255 characters.";
 
     // Misc
     public static final String STAR = "*";
@@ -54,6 +60,8 @@ public class StringConstants {
     public static final String EXPERIENCE = "experience";
     public static final String EXPERIENCE_ID = "experience_id";
     public static final String EXCEPTION_RESOLVER = "handlerExceptionResolver";
+    public static final String CONTACT = "contact";
+    public static final String CONTACT_ID = "contact_id";
 
     // Email Templates
 

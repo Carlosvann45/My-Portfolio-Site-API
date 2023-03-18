@@ -1,4 +1,4 @@
-package io.myportfolioproject.api.validators.description;
+package io.myportfolioproject.api.validators.length;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -10,10 +10,10 @@ import java.lang.annotation.*;
  * @see java.lang.annotation.Annotation
  */
 @Documented
-@Constraint(validatedBy = ValidDescriptionImpl.class)
+@Constraint(validatedBy = ValidLengthImpl.class)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidDescription {
+public @interface ValidLength {
 
     /**
      * Message for validation error

@@ -1,4 +1,4 @@
-package io.myportfolioproject.api.validators.description;
+package io.myportfolioproject.api.validators.length;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * Class to run validation for custom description validation
  */
-public class ValidDescriptionImpl implements ConstraintValidator<ValidDescription, String> {
+public class ValidLengthImpl implements ConstraintValidator<ValidLength, String> {
 
     private String message;
 
@@ -23,7 +23,7 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
      * @param validDateAnnotations annotation instance for a given constraint declaration
      */
     @Override
-    public void initialize(ValidDescription validDateAnnotations) {
+    public void initialize(ValidLength validDateAnnotations) {
         this.message = validDateAnnotations.message();
         this.isRequired = validDateAnnotations.isRequired();
         this.minLength = validDateAnnotations.minLength();
