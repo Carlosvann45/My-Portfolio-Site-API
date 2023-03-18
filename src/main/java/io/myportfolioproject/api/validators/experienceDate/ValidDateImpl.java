@@ -55,7 +55,8 @@ public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
      */
     private boolean defaultValidation(String date) {
         // returns true if date follow this format: mm/yyyy
-        return date.trim().matches(StringConstants.DATE_REGEX);
+        if (date == null || date.isBlank() || date.isEmpty()) return false;
+        else return date.trim().matches(StringConstants.DATE_REGEX);
     }
 
     /**
@@ -68,6 +69,6 @@ public class ValidDateImpl implements ConstraintValidator<ValidDate, String> {
         // returns true if date is null or
         // if default validator returns true
         if (date == null || date.isBlank() || date.isEmpty()) return true;
-        else return defaultValidation(date);
+        else return date.trim().matches(StringConstants.DATE_REGEX);
     }
 }

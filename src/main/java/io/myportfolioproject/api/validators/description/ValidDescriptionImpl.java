@@ -59,7 +59,8 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
      * @validation
      */
     private boolean defaultValidation(String description) {
-        return description.trim().length() >= minLength && description.trim().length() <= maxLength;
+        if (description == null || description.isBlank() || description.isEmpty()) return false;
+        else return description.trim().length() >= minLength && description.trim().length() <= maxLength;
     }
 
     /**
@@ -72,6 +73,6 @@ public class ValidDescriptionImpl implements ConstraintValidator<ValidDescriptio
         // returns true if description is null or
         // if default validator returns true
         if (description == null || description.isBlank() || description.isEmpty()) return true;
-        else return defaultValidation(description);
+        else return description.trim().length() >= minLength && description.trim().length() <= maxLength;
     }
 }
