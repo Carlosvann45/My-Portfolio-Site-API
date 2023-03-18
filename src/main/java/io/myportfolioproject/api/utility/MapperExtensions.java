@@ -1,7 +1,11 @@
 package io.myportfolioproject.api.utility;
 
+import io.myportfolioproject.api.domains.contacts.Contact;
+import io.myportfolioproject.api.domains.contacts.ContactDTO;
 import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.descriptions.DescriptionDTO;
+import io.myportfolioproject.api.domains.email.Email;
+import io.myportfolioproject.api.domains.email.EmailDTO;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceDTO;
 
@@ -141,5 +145,101 @@ public class MapperExtensions {
         descriptionDTO.setDescription(description.getDescription());
 
         return descriptionDTO;
+    }
+
+    /**
+     * Maps a contact DTO entity to a contact
+     *
+     * @param contactDTO entity to map out
+     * @return new contact
+     */
+    public static Contact mapContact(ContactDTO contactDTO) {
+        Contact contact = new Contact();
+
+        contact.setId(contactDTO.getId());
+        contact.setDateCreated(contactDTO.getDateCreated());
+        contact.setDateUpdated(contactDTO.getDateUpdated());
+        contact.setEmail(contactDTO.getEmail());
+        contact.setSubject(contactDTO.getSubject());
+        contact.setBody(contactDTO.getBody());
+        contact.setResponded(contactDTO.getResponded());
+
+        List<Email> emails = contactDTO
+                .getEmails()
+                .stream()
+                .map(MapperExtensions::mapEmail)
+                .toList();
+
+        contact.setEmails(emails);
+
+        return contact;
+    }
+
+    /**
+     * Maps a contact entity to a contact DTO
+     *
+     * @param contact entity to map out
+     * @return new contact DTO
+     */
+    public static ContactDTO mapContact(Contact contact) {
+        ContactDTO contactDTO = new ContactDTO();
+
+        contactDTO.setId(contact.getId());
+        contactDTO.setDateCreated(contact.getDateCreated());
+        contactDTO.setDateUpdated(contact.getDateUpdated());
+        contactDTO.setEmail(contact.getEmail());
+        contactDTO.setSubject(contact.getSubject());
+        contactDTO.setBody(contact.getBody());
+        contactDTO.setResponded(contact.getResponded());
+
+        List<EmailDTO> emailDTOS = contact
+                .getEmails()
+                .stream()
+                .map(MapperExtensions::mapEmail)
+                .collect(Collectors.toList());
+
+        contactDTO.setEmails(emailDTOS);
+
+        return contactDTO;
+    }
+
+    /**
+     * Maps an email DTO entity to an email
+     *
+     * @param emailDTO entity to map out
+     * @return new email
+     */
+    public static Email mapEmail(EmailDTO emailDTO) {
+        Email email = new Email();
+
+        email.setId(emailDTO.getId());
+        email.setDateCreated(emailDTO.getDateCreated());
+        email.setDateUpdated(emailDTO.getDateUpdated());
+        email.setEmail(emailDTO.getEmail());
+        email.setSubject(emailDTO.getSubject());
+        email.setBody(emailDTO.getBody());
+        email.setContact(emailDTO.getContact());
+
+        return email;
+    }
+
+    /**
+     * Maps an email entity to an email DTO
+     *
+     * @param email entity to map out
+     * @return new email DTO
+     */
+    public static EmailDTO mapEmail(Email email) {
+        EmailDTO emailDTO = new EmailDTO();
+
+        emailDTO.setId(email.getId());
+        emailDTO.setDateCreated(email.getDateCreated());
+        emailDTO.setDateUpdated(email.getDateUpdated());
+        emailDTO.setEmail(email.getEmail());
+        emailDTO.setSubject(email.getSubject());
+        emailDTO.setBody(email.getBody());
+        emailDTO.setContact(email.getContact());
+
+        return emailDTO;
     }
 }

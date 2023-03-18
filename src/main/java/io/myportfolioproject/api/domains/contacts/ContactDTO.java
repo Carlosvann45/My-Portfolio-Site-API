@@ -53,7 +53,7 @@ public class ContactDTO extends BaseEntityDTO {
         this.subject = subject;
     }
 
-    public boolean isResponded() {
+    public boolean getResponded() {
         return responded;
     }
 

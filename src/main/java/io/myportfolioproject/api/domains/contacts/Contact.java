@@ -51,7 +51,7 @@ public class Contact extends BaseEntity {
         this.subject = subject;
     }
 
-    public boolean isResponded() {
+    public boolean getResponded() {
         return responded;
     }
 

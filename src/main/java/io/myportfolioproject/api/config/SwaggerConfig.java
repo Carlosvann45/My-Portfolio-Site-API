@@ -43,8 +43,8 @@ public class SwaggerConfig {
      */
     private ApiInfo apiDetails() {
         return new ApiInfo(
-                "The Data Pirates Finance API",
-                "This API is used as the backend for a Android/Kotlin based frontend mobile application. It stores a user account and has additional functionality to help users manage their finances.",
+                "My Portfolio Site API",
+                "This API is used as the backend for a react based frontend application. It handles contact requests, email service, and experience/email/contact management.",
                 "1.0",
                 "",
                 new springfox.documentation.service.Contact("Carlos Santiago", "https://www.linkedin.com/in/carlos-santiago-b53967224/", "clsantiago@student.fullsail.edu"),
