@@ -40,9 +40,9 @@ public class ExperienceController {
 
         List<Experience> experienceList = experienceService.getExperience();
 
-        List<ExperienceDTO> experienceDTOList = experienceList.mapExperiences();
+        List<ExperienceDTO> experienceDTO = experienceList.mapExperiences();
 
-        return new ResponseEntity<>(experienceDTOList, HttpStatus.OK);
+        return new ResponseEntity<>(experienceDTO, HttpStatus.OK);
     }
 
     /**

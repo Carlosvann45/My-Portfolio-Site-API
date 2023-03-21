@@ -5,18 +5,12 @@ import io.myportfolioproject.api.domains.contacts.Contact;
 import io.myportfolioproject.api.domains.entities.BaseEntityDTO;
 import io.myportfolioproject.api.validators.length.ValidLength;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
  * This class represents a data transfer object for email entity
  */
 public class EmailDTO extends BaseEntityDTO {
-
-    @NotNull(message = StringConstants.EMAIL_REQUIRED)
-    @Email(message = StringConstants.EMAIL_VALID_FORMAT)
-    private String email;
 
     @ValidLength(
             minLength = 15,
@@ -31,14 +25,6 @@ public class EmailDTO extends BaseEntityDTO {
     private Contact contact;
 
     public EmailDTO() {
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getSubject() {
@@ -70,19 +56,18 @@ public class EmailDTO extends BaseEntityDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmailDTO emailDTO = (EmailDTO) o;
-        return email.equals(emailDTO.email) && subject.equals(emailDTO.subject) && body.equals(emailDTO.body) && contact.equals(emailDTO.contact);
+        return subject.equals(emailDTO.subject) && body.equals(emailDTO.body) && contact.equals(emailDTO.contact);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, subject, body, contact);
+        return Objects.hash(subject, body, contact);
     }
 
     @Override
     public String toString() {
         return "EmailDTO{" +
-                "email='" + email + '\'' +
-                ", subject='" + subject + '\'' +
+                "subject='" + subject + '\'' +
                 ", body='" + body + '\'' +
                 ", contact=" + contact +
                 '}';

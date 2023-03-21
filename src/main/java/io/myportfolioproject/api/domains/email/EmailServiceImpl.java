@@ -1,16 +1,25 @@
 package io.myportfolioproject.api.domains.email;
 
+import io.myportfolioproject.api.constants.StringConstants;
+import io.myportfolioproject.api.domains.admin.AdminService;
+import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
+import io.myportfolioproject.api.domains.contacts.Contact;
+import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * An email service class to send out emails
@@ -23,31 +32,68 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    private AdminServiceImpl adminService;
+
+    @Autowired
+    private EmailRepository emailRepository;
+
     /**
-     * Sends an email to selected account with subject and email
-     *
-     * @param to      person to send the email to
-     * @param subject subject of the email
-     * @param email   body of the email
+     * {@inheritDoc}
+     * TODO: Integrate Gmail API
      */
-    @Override
-    public void sendEmail(String to, String subject, String email) {
+    /*@Override
+    public List<Email> getEmails(String token, Long contactId) {
+        // Ensures admin from token exist before moving forward
+        adminService.adminExistFromToken(token);
+
         try {
+        return contactId == null ? emailRepository.findAll() : emailRepository.findEmailsByContactId(contactId);
+        } catch (DataAccessException e) {
+        logger.error(e);
+
+        throw new ServerUnavailable(e.getMessage());
+        }
+    }*/
+
+   /**
+     * {@inheritDoc}
+    * TODO: Integrate Gmail API
+     */
+    /*@Override
+    public Email sendEmail(String token, Long id, Email email) {
+        try {
+            Contact existingContact = new Contact();
+
+            existingContact = contactRepository
+                    .findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException(StringConstants.CONTACT_NOT_FOUND));
+
+            email.setDateCreated(LocalDateTime.now());
+            email.setDateUpdated(LocalDateTime.now());
+            email.setContact(existingContact);
+
+            Email newEmail = emailRepository.save(email);
+
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, "utf-8");
 
-            messageHelper.setText(email, true);
-            messageHelper.setTo(to);
-            messageHelper.setSubject(subject);
+            messageHelper.setText(email.getBody(), true);
+            messageHelper.setTo(existingContact.getEmail());
+            messageHelper.setSubject(email.getSubject());
             messageHelper.setFrom("carlosvann45.services@gmail.com", "Portfolio Site Contact Request");
 
             mailSender.send(mimeMessage);
 
-        } catch (MessagingException | UnsupportedEncodingException e) {
+        } catch (DataAccessException | MessagingException | UnsupportedEncodingException e) {
             logger.error(e.getMessage());
 
             throw new ServerUnavailable(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            logger.error(e);
+
+            throw new NotFound(e.getMessage());
         }
-    }
+    }*/
 
 }

@@ -10,6 +10,9 @@ public class Paths {
     public static final String DESCRIPTION_CREATE = "/experience_id/{id}";
     public static final String DESCRIPTION_UPDATE = "/{id}/experience_id/{experienceId}";
 
+    // Emails
+    public static final String EMAIL = "/emails";
+
     // Experience
     public static final String EXPERIENCE = "/experiences";
 

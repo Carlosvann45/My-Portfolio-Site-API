@@ -204,6 +204,26 @@ public class MapperExtensions {
     }
 
     /**
+     * Maps a list of email entities to email DTOs
+     *
+     * @param emails list to map out
+     * @return new list of email DTOs
+     */
+    public static List<EmailDTO> mapEmails(List<Email> emails) {
+        return emails.stream().map(MapperExtensions::mapEmail).collect(Collectors.toList());
+    }
+
+    /**
+     * Maps a list of email DTOs to email entities
+     *
+     * @param emailDTOs list to map out
+     * @return new list of email entities
+     */
+    public static List<Email> mapEmailDTOs(List<EmailDTO> emailDTOs) {
+        return emailDTOs.stream().map(MapperExtensions::mapEmail).collect(Collectors.toList());
+    }
+
+    /**
      * Maps an email DTO entity to an email
      *
      * @param emailDTO entity to map out
@@ -215,7 +235,6 @@ public class MapperExtensions {
         email.setId(emailDTO.getId());
         email.setDateCreated(emailDTO.getDateCreated());
         email.setDateUpdated(emailDTO.getDateUpdated());
-        email.setEmail(emailDTO.getEmail());
         email.setSubject(emailDTO.getSubject());
         email.setBody(emailDTO.getBody());
         email.setContact(emailDTO.getContact());
@@ -235,7 +254,6 @@ public class MapperExtensions {
         emailDTO.setId(email.getId());
         emailDTO.setDateCreated(email.getDateCreated());
         emailDTO.setDateUpdated(email.getDateUpdated());
-        emailDTO.setEmail(email.getEmail());
         emailDTO.setSubject(email.getSubject());
         emailDTO.setBody(email.getBody());
         emailDTO.setContact(email.getContact());

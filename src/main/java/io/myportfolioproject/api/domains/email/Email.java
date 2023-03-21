@@ -17,7 +17,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "emails")
 public class Email extends BaseEntity {
-    private String email;
 
     private String subject;
 
@@ -29,14 +28,6 @@ public class Email extends BaseEntity {
     private Contact contact;
 
     public Email() {
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getSubject() {
@@ -69,19 +60,18 @@ public class Email extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Email email1 = (Email) o;
-        return email.equals(email1.email) && subject.equals(email1.subject) && body.equals(email1.body) && contact.equals(email1.contact);
+        return subject.equals(email1.subject) && body.equals(email1.body) && contact.equals(email1.contact);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, subject, body, contact);
+        return Objects.hash(super.hashCode(), subject, body, contact);
     }
 
     @Override
     public String toString() {
         return "Email{" +
-                "email='" + email + '\'' +
-                ", subject='" + subject + '\'' +
+                "subject='" + subject + '\'' +
                 ", body='" + body + '\'' +
                 ", contact=" + contact +
                 '}';
