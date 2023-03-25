@@ -1,7 +1,6 @@
 package io.myportfolioproject.api.domains.contacts;
 
 import io.myportfolioproject.api.exceptions.Conflict;
-import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 
 import java.util.List;

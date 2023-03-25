@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.google.api.client.http.HttpMethods.POST;
 import static org.apache.http.HttpHeaders.AUTHORIZATION;
 
 /**

@@ -2,7 +2,6 @@ package io.myportfolioproject.api.domains.descriptions;
 
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.admin.AdminService;
-import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceRepository;
 import io.myportfolioproject.api.domains.experiences.ExperienceServiceImpl;

@@ -2,8 +2,6 @@ package io.myportfolioproject.api.domains.experiences;
 
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.admin.AdminService;
-import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
-import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.descriptions.DescriptionRepository;
 import io.myportfolioproject.api.exceptions.BadRequest;
 import io.myportfolioproject.api.exceptions.NotFound;
