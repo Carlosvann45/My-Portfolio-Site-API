@@ -1,6 +1,7 @@
 package io.myportfolioproject.api.domains.descriptions;
 
 import io.myportfolioproject.api.constants.StringConstants;
+import io.myportfolioproject.api.domains.admin.AdminService;
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceRepository;
@@ -27,7 +28,7 @@ public class DescriptionServiceImpl implements DescriptionService {
     private final Logger logger = LogManager.getLogger(ExperienceServiceImpl.class);
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private AdminService adminService;
 
     @Autowired
     private ExperienceRepository experienceRepository;

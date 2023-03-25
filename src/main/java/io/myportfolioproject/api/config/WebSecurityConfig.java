@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.google.api.client.http.HttpMethods.GET;
+import static com.google.api.client.http.HttpMethods.POST;
 
 /**
  * Configuration setup for spring boot web security
@@ -68,6 +69,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         security.authorizeRequests()
                 .antMatchers(GET, Paths.ADMIN.concat(Paths.REFRESH_TOKEN))
+                .permitAll();
+
+        security.authorizeRequests()
+                .antMatchers(POST, Paths.CONTACTS.concat(Paths.POST))
                 .permitAll();
 
         security.authorizeRequests()

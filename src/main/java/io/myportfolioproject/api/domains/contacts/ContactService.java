@@ -1,5 +1,7 @@
 package io.myportfolioproject.api.domains.contacts;
 
+import io.myportfolioproject.api.exceptions.Conflict;
+import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 
 import java.util.List;
@@ -17,4 +19,14 @@ public interface ContactService {
      * @return list of contacts
      */
     List<Contact> getContact(String token);
+
+    /**
+     * Creates contact in repository
+     *
+     * @param contact contact to create
+     * @throws Conflict if email already exist
+     * @throws ServerUnavailable if there is a database issue
+     * @return list of contacts
+     */
+    Contact createContact(Contact contact);
 }

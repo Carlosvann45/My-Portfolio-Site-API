@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static com.google.api.client.http.HttpMethods.POST;
 import static org.apache.http.HttpHeaders.AUTHORIZATION;
 
 /**
@@ -63,6 +64,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String url = request.getServletPath();
         String[] pathArray = new String[]{
                 Paths.ADMIN.concat(Paths.REFRESH_TOKEN),
+                Paths.CONTACTS.concat(Paths.POST),
                 Paths.EXPERIENCE,
                 Paths.LOGIN
         };

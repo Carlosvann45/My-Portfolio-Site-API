@@ -9,11 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.apache.http.HttpHeaders.AUTHORIZATION;
@@ -34,6 +32,7 @@ public class ContactController {
     /**
      * Makes call to contact service for all contacts
      *
+     * @param token token to verify admin account
      * @return list of contact DTOs
      */
     @GetMapping()
@@ -45,5 +44,24 @@ public class ContactController {
         List<ContactDTO> contactDTOs = contactList.mapContacts();
 
         return new ResponseEntity<>(contactDTOs, HttpStatus.OK);
+    }
+
+    /**
+     * Makes call ro contact service to create contact
+     *
+     * @param contactDTO contact to create
+     * @return newly created contact
+     */
+    @PostMapping(path = Paths.POST)
+    public ResponseEntity<ContactDTO> createContact(@Valid @RequestBody ContactDTO contactDTO) {
+        logger.info(StringConstants.LOG_POST_CONTACT);
+
+        Contact contact = contactDTO.mapContact();
+
+        Contact newContact = contactService.createContact(contact);
+
+        ContactDTO newContactDTO = newContact.mapContact();
+
+        return  new ResponseEntity<>(newContactDTO, HttpStatus.CREATED);
     }
 }

@@ -1,6 +1,7 @@
 package io.myportfolioproject.api.domains.experiences;
 
 import io.myportfolioproject.api.constants.StringConstants;
+import io.myportfolioproject.api.domains.admin.AdminService;
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
 import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.descriptions.DescriptionRepository;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +31,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     private final Logger logger = LogManager.getLogger(ExperienceServiceImpl.class);
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private AdminService adminService;
 
     @Autowired
     private ExperienceRepository experienceRepository;
@@ -64,15 +66,10 @@ public class ExperienceServiceImpl implements ExperienceService {
         experience.setPosition(capitalizeWords(experience.getPosition()));
         experience.setDateCreated(LocalDateTime.now());
         experience.setDateUpdated(LocalDateTime.now());
+        // ensures no new descriptions are made
+        experience.setDescriptions(new ArrayList<>());
 
         try {
-            // update descriptions with new experience
-            experience.getDescriptions().forEach(description -> {
-                description.setDateCreated(LocalDateTime.now());
-                description.setDateUpdated(LocalDateTime.now());
-                description.setExperience(experience);
-            });
-
             return experienceRepository.save(experience);
         } catch (DataAccessException e) {
             logger.error(e);
@@ -94,18 +91,6 @@ public class ExperienceServiceImpl implements ExperienceService {
 
             if (!Objects.equals(id, experience.getId())) throw new BadRequest(StringConstants.INCORRECT_PATH_ID);
 
-            // make sure all ids exist
-            experience.getDescriptions().forEach(description -> {
-                if (description.getId() == null) throw new BadRequest(StringConstants.DESCRIPTION_ID_REQ);
-
-                Description existingDescription = descriptionRepository
-                        .findById(description.getId())
-                        .orElseThrow(() -> new EntityNotFoundException(StringConstants.DESCRIPTION_NOT_FOUND));
-
-                // make sure date created isn't changed
-                description.setDateCreated(existingDescription.getDateCreated());
-            });
-
             existingExperience = experienceRepository
                     .findById(id)
                     .orElseThrow(() -> new EntityNotFoundException(StringConstants.EXPERIENCE_NOT_FOUND));
@@ -116,13 +101,6 @@ public class ExperienceServiceImpl implements ExperienceService {
             existingExperience.setStartDate(experience.getStartDate());
             existingExperience.setEndDate(experience.getEndDate());
             existingExperience.setCurrent(experience.getCurrent());
-            existingExperience.setDescriptions(experience.getDescriptions());
-
-            // update descriptions with new experience350
-            existingExperience.getDescriptions().forEach(description -> {
-                description.setDateUpdated(LocalDateTime.now());
-                description.setExperience(existingExperience);
-            });
 
             return experienceRepository.save(existingExperience);
         } catch (DataAccessException e) {

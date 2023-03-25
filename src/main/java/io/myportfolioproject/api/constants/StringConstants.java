@@ -57,6 +57,7 @@ public class StringConstants {
     public static final String SUBJECT_LENGTH_REQ = "Subject length must be between 15 to 50 characters.";
     public static final String BODY_LENGTH_REQ = "Body length must be between 50 to 255 characters.";
     public static final String CONTACT_NOT_FOUND = "Contact with given id does not exist.";
+    public static final String CONTACT_EXIST = "Contact with given email already exists.";
     public static final String TOO_MANY_CONTACTS_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
 
     // Misc

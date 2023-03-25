@@ -81,6 +81,30 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void adminExistFromToken(String token) {
+        // removes bearer from the token
+        token = token.substring(7).trim();
+
+        Admin existingAdmin;
+        String customerUsername = jwtUtility.getUsernameFromToken(token);
+
+        try {
+            existingAdmin = adminRepository.findAdminByUsername(customerUsername);
+        } catch (DataAccessException e) {
+            logger.error(e.getMessage());
+
+            throw new ServerUnavailable(e.getMessage());
+        }
+
+        if (existingAdmin == null) {
+            throw new NotFound(StringConstants.ADMIN_NOT_FOUND);
+        }
+    }
+
+    /**
      * Loads an admin by a given username
      *
      * @param username username to search for
@@ -106,31 +130,5 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
         }
 
         return new User(admin.getUsername(), admin.getPassword(), new ArrayList<>());
-    }
-
-
-    /**
-     * Helper method: Retrieves admin from token
-     *
-     * @param token token to get admin from
-     */
-    public void adminExistFromToken(String token) {
-        // removes bearer from the token
-        token = token.substring(7).trim();
-
-        Admin existingAdmin;
-        String customerUsername = jwtUtility.getUsernameFromToken(token);
-
-        try {
-            existingAdmin = adminRepository.findAdminByUsername(customerUsername);
-        } catch (DataAccessException e) {
-            logger.error(e.getMessage());
-
-            throw new ServerUnavailable(e.getMessage());
-        }
-
-        if (existingAdmin == null) {
-            throw new NotFound(StringConstants.ADMIN_NOT_FOUND);
-        }
     }
 }
