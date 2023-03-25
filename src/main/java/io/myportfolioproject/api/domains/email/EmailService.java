@@ -2,8 +2,6 @@ package io.myportfolioproject.api.domains.email;
 
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 
-import java.util.List;
-
 /**
  * Interface class for sending emails
  */

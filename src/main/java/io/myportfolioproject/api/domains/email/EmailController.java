@@ -1,23 +1,13 @@
 package io.myportfolioproject.api.domains.email;
 
 import io.myportfolioproject.api.constants.Paths;
-import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.experiences.Experience;
-import io.myportfolioproject.api.domains.experiences.ExperienceController;
-import io.myportfolioproject.api.domains.experiences.ExperienceDTO;
 import io.myportfolioproject.api.utility.MapperExtensions;
 import lombok.experimental.ExtensionMethod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-
-import static org.apache.http.HttpHeaders.AUTHORIZATION;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller for experience endpoints

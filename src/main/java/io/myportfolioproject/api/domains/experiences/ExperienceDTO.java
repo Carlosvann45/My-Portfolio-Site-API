@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * This class represents a data transfer object for experience entity
@@ -87,30 +86,5 @@ public class ExperienceDTO extends BaseEntityDTO {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ExperienceDTO that = (ExperienceDTO) o;
-        return company.equals(that.company) && position.equals(that.position) && startDate.equals(that.startDate) && Objects.equals(endDate, that.endDate) && current.equals(that.current) && descriptions.equals(that.descriptions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(company, position, startDate, endDate, current, descriptions);
-    }
-
-    @Override
-    public String toString() {
-        return "ExperienceDTO{" +
-                "company='" + company + '\'' +
-                ", position='" + position + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", current=" + current +
-                ", descriptions=" + descriptions +
-                '}';
     }
 }

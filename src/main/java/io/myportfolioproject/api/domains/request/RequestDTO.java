@@ -1,14 +1,14 @@
-package io.myportfolioproject.api.domains.email;
+package io.myportfolioproject.api.domains.request;
 
 import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.contacts.Contact;
+import io.myportfolioproject.api.domains.contacts.ContactDTO;
 import io.myportfolioproject.api.domains.entities.BaseEntityDTO;
 import io.myportfolioproject.api.validators.length.ValidLength;
 
 /**
- * This class represents a data transfer object for email entity
+ * This class represents a data transfer object for request entity
  */
-public class EmailDTO extends BaseEntityDTO {
+public class RequestDTO extends BaseEntityDTO {
 
     @ValidLength(
             minLength = 15,
@@ -20,9 +20,11 @@ public class EmailDTO extends BaseEntityDTO {
     @ValidLength(message = StringConstants.BODY_LENGTH_REQ)
     private String body;
 
-    private Contact contact;
+    private boolean responded;
 
-    public EmailDTO() {
+    private ContactDTO contactDTO;
+
+    public RequestDTO() {
     }
 
     public String getSubject() {
@@ -41,11 +43,19 @@ public class EmailDTO extends BaseEntityDTO {
         this.body = body;
     }
 
-    public Contact getContact() {
-        return contact;
+    public boolean getResponded() {
+        return responded;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setResponded(boolean responded) {
+        this.responded = responded;
+    }
+
+    public ContactDTO getContactDTO() {
+        return contactDTO;
+    }
+
+    public void setContactDTO(ContactDTO contactDTO) {
+        this.contactDTO = contactDTO;
     }
 }

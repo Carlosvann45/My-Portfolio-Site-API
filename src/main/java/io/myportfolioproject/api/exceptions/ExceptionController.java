@@ -114,6 +114,24 @@ public class ExceptionController {
     }
 
     /**
+     * Handles any exceptions that are thrown with the too many request class
+     *
+     * @param exception exception that was thrown
+     * @return new response entity the represents the error response
+     */
+    @ExceptionHandler(TooManyRequests.class)
+    protected ResponseEntity<ExceptionResponseMessage> tooManyRequest(TooManyRequests exception) {
+        List<String> errors = new ArrayList<>();
+
+        errors.add(exception.getMessage());
+
+        ExceptionResponseMessage response = new ExceptionResponseMessage(errors, new Date(),
+                StringConstants.TOO_MANY_REQUESTS);
+
+        return new ResponseEntity<>(response, HttpStatus.TOO_MANY_REQUESTS);
+    }
+
+    /**
      * Handles all exceptions thrown for validation annotation's
      *
      * @param exception exception to get messages from

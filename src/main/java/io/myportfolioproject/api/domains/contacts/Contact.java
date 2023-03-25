@@ -2,8 +2,8 @@ package io.myportfolioproject.api.domains.contacts;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.email.Email;
 import io.myportfolioproject.api.domains.entities.BaseEntity;
+import io.myportfolioproject.api.domains.request.Request;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,16 +22,9 @@ public class Contact extends BaseEntity {
 
     private String email;
 
-    private String subject;
-
-    private String body;
-
-    private boolean responded;
-
     @OneToMany(mappedBy = StringConstants.CONTACT, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Email> emails = new ArrayList<>();
-
+    private List<Request> requests = new ArrayList<>();
     public Contact() {
     }
 
@@ -43,36 +36,12 @@ public class Contact extends BaseEntity {
         this.email = email;
     }
 
-    public String getSubject() {
-        return subject;
+    public List<Request> getRequests() {
+        return requests;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public boolean getResponded() {
-        return responded;
-    }
-
-    public void setResponded(boolean responded) {
-        this.responded = responded;
-    }
-
-    public List<Email> getEmails() {
-        return emails;
-    }
-
-    public void setEmails(List<Email> emails) {
-        this.emails = emails;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 
     @Override
@@ -81,22 +50,19 @@ public class Contact extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Contact contact = (Contact) o;
-        return responded == contact.responded && email.equals(contact.email) && subject.equals(contact.subject) && body.equals(contact.body) && emails.equals(contact.emails);
+        return email.equals(contact.email) && requests.equals(contact.requests);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, subject, body, responded, emails);
+        return Objects.hash(super.hashCode(), email, requests);
     }
 
     @Override
     public String toString() {
         return "Contact{" +
                 "email='" + email + '\'' +
-                ", subject='" + subject + '\'' +
-                ", body='" + body + '\'' +
-                ", responded=" + responded +
-                ", emails=" + emails +
+                ", requests=" + requests +
                 '}';
     }
 }

@@ -19,6 +19,7 @@ public class StringConstants {
     public static final String NOT_FOUND = "404 Not Found";
     public static final String CONFLICT = "409 Conflict";
     public static final String UNAUTHORIZED = "401 Unauthorized";
+    public static final String TOO_MANY_REQUESTS = "429 Too Many Requests";
 
     // Logger
     public static final String LOG_GET_EXPERIENCE = "Request received for getExperiences.";
@@ -31,6 +32,9 @@ public class StringConstants {
     public static final String LOG_REFRESH_ADMIN_TOKEN = "Request received for refreshAdminToken.";
     public static final String LOG_GET_EMAIL = "Request received for getEmails.";
     public static final String LOG_SEND_EXPERIENCE = "Request received for sendEmail.";
+    public static final String LOG_GET_CONTACT = "Request received for getContacts.";
+    public static final String LOG_POST_CONTACT = "Request received for createContact.";
+    public static final String LOG_PUT_CONTACT = "Request received for updateContact.";
 
     // Error Messages
     public static final String INVALID_LOGIN = "Invalid Credentials. Please try again.";
@@ -53,6 +57,7 @@ public class StringConstants {
     public static final String SUBJECT_LENGTH_REQ = "Subject length must be between 15 to 50 characters.";
     public static final String BODY_LENGTH_REQ = "Body length must be between 50 to 255 characters.";
     public static final String CONTACT_NOT_FOUND = "Contact with given id does not exist.";
+    public static final String TOO_MANY_CONTACTS_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
 
     // Misc
     public static final String STAR = "*";

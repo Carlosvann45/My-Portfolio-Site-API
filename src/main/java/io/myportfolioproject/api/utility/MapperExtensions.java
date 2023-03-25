@@ -8,6 +8,8 @@ import io.myportfolioproject.api.domains.email.Email;
 import io.myportfolioproject.api.domains.email.EmailDTO;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceDTO;
+import io.myportfolioproject.api.domains.request.Request;
+import io.myportfolioproject.api.domains.request.RequestDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -148,6 +150,26 @@ public class MapperExtensions {
     }
 
     /**
+     * Maps a list of contact entities to contact DTOs
+     *
+     * @param contacts list to map out
+     * @return new list of contact DTOs
+     */
+    public static List<ContactDTO> mapContacts(List<Contact> contacts) {
+        return contacts.stream().map(MapperExtensions::mapContact).collect(Collectors.toList());
+    }
+
+    /**
+     * Maps a list of contact DTOs to contact entities
+     *
+     * @param contactDTOs list to map out
+     * @return new list of contact entities
+     */
+    public static List<Contact> mapContactDTOs(List<ContactDTO> contactDTOs) {
+        return contactDTOs.stream().map(MapperExtensions::mapContact).collect(Collectors.toList());
+    }
+
+    /**
      * Maps a contact DTO entity to a contact
      *
      * @param contactDTO entity to map out
@@ -160,17 +182,13 @@ public class MapperExtensions {
         contact.setDateCreated(contactDTO.getDateCreated());
         contact.setDateUpdated(contactDTO.getDateUpdated());
         contact.setEmail(contactDTO.getEmail());
-        contact.setSubject(contactDTO.getSubject());
-        contact.setBody(contactDTO.getBody());
-        contact.setResponded(contactDTO.getResponded());
 
-        List<Email> emails = contactDTO
-                .getEmails()
+        List<Request> requests = contactDTO
+                .getRequests()
                 .stream()
-                .map(MapperExtensions::mapEmail)
-                .toList();
+                .map(MapperExtensions::mapRequest).toList();
 
-        contact.setEmails(emails);
+        contact.setRequests(requests);
 
         return contact;
     }
@@ -188,19 +206,53 @@ public class MapperExtensions {
         contactDTO.setDateCreated(contact.getDateCreated());
         contactDTO.setDateUpdated(contact.getDateUpdated());
         contactDTO.setEmail(contact.getEmail());
-        contactDTO.setSubject(contact.getSubject());
-        contactDTO.setBody(contact.getBody());
-        contactDTO.setResponded(contact.getResponded());
 
-        List<EmailDTO> emailDTOS = contact
-                .getEmails()
+        List<RequestDTO> requestDTOs = contact
+                .getRequests()
                 .stream()
-                .map(MapperExtensions::mapEmail)
-                .collect(Collectors.toList());
+                .map(MapperExtensions::mapRequest).toList();
 
-        contactDTO.setEmails(emailDTOS);
+        contactDTO.setRequests(requestDTOs);
 
         return contactDTO;
+    }
+
+    /**
+     * Maps a request DTO entity to a request
+     *
+     * @param requestDTO entity to map out
+     * @return new request
+     */
+    public static Request mapRequest(RequestDTO requestDTO) {
+        Request request = new Request();
+
+        request.setId(requestDTO.getId());
+        request.setDateCreated(requestDTO.getDateCreated());
+        request.setDateUpdated(requestDTO.getDateUpdated());
+        request.setSubject(requestDTO.getSubject());
+        request.setBody(requestDTO.getBody());
+        request.setResponded(requestDTO.getResponded());
+
+        return request;
+    }
+
+    /**
+     * Maps a request entity to a request DTO
+     *
+     * @param request entity to map out
+     * @return new request DTO
+     */
+    public static RequestDTO mapRequest(Request request) {
+        RequestDTO requestDTO = new RequestDTO();
+
+        requestDTO.setId(request.getId());
+        requestDTO.setDateCreated(request.getDateCreated());
+        requestDTO.setDateUpdated(request.getDateUpdated());
+        requestDTO.setSubject(request.getSubject());
+        requestDTO.setBody(request.getBody());
+        requestDTO.setResponded(request.getResponded());
+
+        return requestDTO;
     }
 
     /**
@@ -237,7 +289,6 @@ public class MapperExtensions {
         email.setDateUpdated(emailDTO.getDateUpdated());
         email.setSubject(emailDTO.getSubject());
         email.setBody(emailDTO.getBody());
-        email.setContact(emailDTO.getContact());
 
         return email;
     }
@@ -256,7 +307,6 @@ public class MapperExtensions {
         emailDTO.setDateUpdated(email.getDateUpdated());
         emailDTO.setSubject(email.getSubject());
         emailDTO.setBody(email.getBody());
-        emailDTO.setContact(email.getContact());
 
         return emailDTO;
     }
