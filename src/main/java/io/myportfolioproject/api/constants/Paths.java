@@ -12,6 +12,10 @@ public class Paths {
 
     // Contacts
     public static final String CONTACTS = "/contacts";
+    public static final String CONTACT_EMAIL = "/contact_email/{email}";
+
+    // Requests
+    public static final String REQUESTS = "/requests";
 
     // Emails
     public static final String EMAIL = "/emails";

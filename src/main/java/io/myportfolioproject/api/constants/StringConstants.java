@@ -30,11 +30,9 @@ public class StringConstants {
     public static final String LOG_PUT_DESCRIPTION = "Request received for updateDescription.";
     public static final String LOG_DELETE_DESCRIPTION = "Request received for deleteDescription.";
     public static final String LOG_REFRESH_ADMIN_TOKEN = "Request received for refreshAdminToken.";
-    public static final String LOG_GET_EMAIL = "Request received for getEmails.";
-    public static final String LOG_SEND_EXPERIENCE = "Request received for sendEmail.";
     public static final String LOG_GET_CONTACT = "Request received for getContacts.";
     public static final String LOG_POST_CONTACT = "Request received for createContact.";
-    public static final String LOG_PUT_CONTACT = "Request received for updateContact.";
+    public static final String LOG_POST_REQUEST = "Request received for createRequest.";
 
     // Error Messages
     public static final String INVALID_LOGIN = "Invalid Credentials. Please try again.";
@@ -50,15 +48,14 @@ public class StringConstants {
     public static final String EXPERIENCE_NOT_FOUND = "Experience with given id does not exist.";
     public static final String DESCRIPTION_NOT_FOUND = "Description with given id does not exist.";
     public static final String DESCRIPTION_LENGTH_ERROR = "Description length must be between 50 and 255 characters.";
-    public static final String DESCRIPTION_ID_REQ = "Description id is required to update a experience.";
     public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
     public static final String EMAIL_REQUIRED = "Email is a required field.";
     public static final String EMAIL_VALID_FORMAT = "Email must be a valid format. (e.g. example@gmail.com)";
     public static final String SUBJECT_LENGTH_REQ = "Subject length must be between 15 to 50 characters.";
     public static final String BODY_LENGTH_REQ = "Body length must be between 50 to 255 characters.";
-    public static final String CONTACT_NOT_FOUND = "Contact with given id does not exist.";
+    public static final String CONTACT_EMAIL_NOT_FOUND = "Contact with given email does not exist.";
     public static final String CONTACT_EXIST = "Contact with given email already exists.";
-    public static final String TOO_MANY_CONTACTS_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
+    public static final String TOO_MANY_CONTACT_REQUEST_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
 
     // Misc
     public static final String STAR = "*";

@@ -47,7 +47,7 @@ public class ContactController {
     }
 
     /**
-     * Makes call ro contact service to create contact
+     * Makes call to contact service to create contact
      *
      * @param contactDTO contact to create
      * @return newly created contact

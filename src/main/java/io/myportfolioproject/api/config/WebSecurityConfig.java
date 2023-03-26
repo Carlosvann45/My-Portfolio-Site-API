@@ -76,6 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         security.authorizeRequests()
+                .antMatchers(POST, Paths.REQUESTS.concat(Paths.CONTACT_EMAIL))
+                .permitAll();
+
+        security.authorizeRequests()
                 .antMatchers(GET, Paths.EXPERIENCE)
                 .permitAll();
 

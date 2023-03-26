@@ -64,6 +64,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String[] pathArray = new String[]{
                 Paths.ADMIN.concat(Paths.REFRESH_TOKEN),
                 Paths.CONTACTS.concat(Paths.POST),
+                Paths.REQUESTS.concat(Paths.CONTACT_EMAIL),
                 Paths.EXPERIENCE,
                 Paths.LOGIN
         };
