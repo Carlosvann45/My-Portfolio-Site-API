@@ -1,11 +1,9 @@
 package io.myportfolioproject.api.domains.email;
 
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
-import io.myportfolioproject.api.utility.GmailUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
