@@ -50,7 +50,7 @@ public class GmailUtility {
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 httpTransport, jsonFactory, clientSecrets, Set.of(GMAIL_SEND))
                 .setDataStoreFactory(new FileDataStoreFactory(Paths.get("tokens").toFile()))
-                .setAccessType("offline")
+                .setAccessType("online")
                 .build();
 
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
