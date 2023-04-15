@@ -8,6 +8,7 @@
 *.iml
 target/*
 .DS_store
+tokens/
 # Sensitive or high-churn files:
 .idea/dataSources.ids
 .idea/dataSources.xml

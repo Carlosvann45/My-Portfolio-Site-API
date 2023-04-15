@@ -1,6 +1,7 @@
 package io.myportfolioproject.api.domains.email;
 
 import io.myportfolioproject.api.domains.admin.AdminServiceImpl;
+import io.myportfolioproject.api.utility.GmailUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,8 @@ public class EmailServiceImpl implements EmailService {
     private final Logger logger = LogManager.getLogger(EmailServiceImpl.class);
 
     @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
     private AdminServiceImpl adminService;
 
-    @Autowired
-    private EmailRepository emailRepository;
 
     /**
      * {@inheritDoc}

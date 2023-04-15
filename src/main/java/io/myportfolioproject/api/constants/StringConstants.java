@@ -56,6 +56,7 @@ public class StringConstants {
     public static final String CONTACT_EMAIL_NOT_FOUND = "Contact with given email does not exist.";
     public static final String CONTACT_EXIST = "Contact with given email already exists.";
     public static final String TOO_MANY_CONTACT_REQUEST_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
+    public static final String EMAIL_NOT_SENT = "Email was not able to be sent. There was an issue witht he server";
 
     // Misc
     public static final String STAR = "*";
@@ -66,6 +67,8 @@ public class StringConstants {
     public static final String EXCEPTION_RESOLVER = "handlerExceptionResolver";
     public static final String CONTACT = "contact";
     public static final String CONTACT_ID = "contact_id";
+
+    public static final String SERVICE_EMAIL = "carlosvann45.service@gmail.com";
 
     // Email Templates
 
