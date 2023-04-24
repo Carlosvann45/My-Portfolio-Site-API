@@ -2,8 +2,6 @@ package io.myportfolioproject.api.domains.request;
 
 import io.myportfolioproject.api.constants.Paths;
 import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.contacts.Contact;
-import io.myportfolioproject.api.domains.contacts.ContactDTO;
 import io.myportfolioproject.api.utility.MapperExtensions;
 import lombok.experimental.ExtensionMethod;
 import org.apache.logging.log4j.LogManager;

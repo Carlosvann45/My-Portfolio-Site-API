@@ -33,6 +33,8 @@ public class StringConstants {
     public static final String LOG_GET_CONTACT = "Request received for getContacts.";
     public static final String LOG_POST_CONTACT = "Request received for createContact.";
     public static final String LOG_POST_REQUEST = "Request received for createRequest.";
+    public static final String LOG_GET_EMAIL = "Request received for getEmails.";
+    public static final String LOG_SEND_EMAIL = "Request received for sendEmail.";
 
     // Error Messages
     public static final String INVALID_LOGIN = "Invalid Credentials. Please try again.";
@@ -47,6 +49,8 @@ public class StringConstants {
     public static final String ADMIN_NOT_FOUND = "Admin with given username does not exist.";
     public static final String EXPERIENCE_NOT_FOUND = "Experience with given id does not exist.";
     public static final String DESCRIPTION_NOT_FOUND = "Description with given id does not exist.";
+    public static final String CONTACT_NOT_FOUND = "Contact with given id does not exist.";
+    public static final String REQUEST_NOT_FOUND = "Request with given id does not exist.";
     public static final String DESCRIPTION_LENGTH_ERROR = "Description length must be between 50 and 255 characters.";
     public static final String INCORRECT_PATH_ID = "Path id does not match given entity id.";
     public static final String EMAIL_REQUIRED = "Email is a required field.";
@@ -56,22 +60,24 @@ public class StringConstants {
     public static final String CONTACT_EMAIL_NOT_FOUND = "Contact with given email does not exist.";
     public static final String CONTACT_EXIST = "Contact with given email already exists.";
     public static final String TOO_MANY_CONTACT_REQUEST_TODAY = "You have already sent two contact request today. Please try again tomorrow.";
-    public static final String EMAIL_NOT_SENT = "Email was not able to be sent. There was an issue witht he server";
+    public static final String EMAIL_NOT_SENT = "Email was not able to be sent. There was an issue with he server";
+    public static final String REQUEST_NOT_IN_CONTACT = "The given ";
 
     // Misc
     public static final String STAR = "*";
     public static final String EMPTY_STRING = " ";
+    public static final String UTF_ENCODING = "utf-8";
     public static final String WEBSITE_URL = "http://localhost:3000";
     public static final String EXPERIENCE = "experience";
     public static final String EXPERIENCE_ID = "experience_id";
     public static final String EXCEPTION_RESOLVER = "handlerExceptionResolver";
     public static final String CONTACT = "contact";
     public static final String CONTACT_ID = "contact_id";
-
     public static final String SERVICE_EMAIL = "carlosvann45.service@gmail.com";
+    public static final String SERVICE_PERSONAL = "Carlos Santiago Developer Contact Request";
 
     // Email Templates
-    public static final String EMAIL_AUTO_RESPONSE = """
+    public static final String AUTO_RESPONSE_TEMPLATE = """
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="font-family:arial, 'helvetica neue', helvetica, sans-serif">
             <head>

@@ -22,8 +22,6 @@ public class RequestDTO extends BaseEntityDTO {
 
     private boolean responded;
 
-    private ContactDTO contactDTO;
-
     public RequestDTO() {
     }
 
@@ -49,13 +47,5 @@ public class RequestDTO extends BaseEntityDTO {
 
     public void setResponded(boolean responded) {
         this.responded = responded;
-    }
-
-    public ContactDTO getContactDTO() {
-        return contactDTO;
-    }
-
-    public void setContactDTO(ContactDTO contactDTO) {
-        this.contactDTO = contactDTO;
     }
 }

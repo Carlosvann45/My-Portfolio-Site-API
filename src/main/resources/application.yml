@@ -19,12 +19,22 @@ spring:
     password: ${POSTGRES_PASSWORD}
     driverClassName: org.postgresql.Driver
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 jwt:
   secret: ${JWT_SECRET}
 
 admin:
   username: ${ADMIN_EMAIL}
   password: ${ADMIN_PASSWORD}
-
-gmail:
-  secret: ${GMAIL_JSON}

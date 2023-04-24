@@ -3,6 +3,7 @@ package io.myportfolioproject.api.domains.request;
 import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.contacts.Contact;
 import io.myportfolioproject.api.domains.contacts.ContactRepository;
+import io.myportfolioproject.api.domains.email.EmailService;
 import io.myportfolioproject.api.exceptions.NotFound;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import io.myportfolioproject.api.exceptions.TooManyRequests;
@@ -24,6 +25,9 @@ import java.util.List;
 public class RequestServiceImpl implements RequestService {
 
     private final Logger logger = LogManager.getLogger(RequestServiceImpl.class);
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private RequestRepository requestRepository;
@@ -54,7 +58,12 @@ public class RequestServiceImpl implements RequestService {
             request.setDateUpdated(LocalDateTime.now());
             request.setContact(existingContact);
 
-            return requestRepository.save(request);
+            Request newRequest = requestRepository.save(request);
+
+            emailService.sendEmail(email, newRequest.getSubject(), StringConstants.AUTO_RESPONSE_TEMPLATE);
+
+            return newRequest;
+
         } catch (DataAccessException e) {
             logger.error(e);
 

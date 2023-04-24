@@ -4,8 +4,6 @@ import io.myportfolioproject.api.domains.contacts.Contact;
 import io.myportfolioproject.api.domains.contacts.ContactDTO;
 import io.myportfolioproject.api.domains.descriptions.Description;
 import io.myportfolioproject.api.domains.descriptions.DescriptionDTO;
-import io.myportfolioproject.api.domains.email.Email;
-import io.myportfolioproject.api.domains.email.EmailDTO;
 import io.myportfolioproject.api.domains.experiences.Experience;
 import io.myportfolioproject.api.domains.experiences.ExperienceDTO;
 import io.myportfolioproject.api.domains.request.Request;
@@ -253,61 +251,5 @@ public class MapperExtensions {
         requestDTO.setResponded(request.getResponded());
 
         return requestDTO;
-    }
-
-    /**
-     * Maps a list of email entities to email DTOs
-     *
-     * @param emails list to map out
-     * @return new list of email DTOs
-     */
-    public static List<EmailDTO> mapEmails(List<Email> emails) {
-        return emails.stream().map(MapperExtensions::mapEmail).collect(Collectors.toList());
-    }
-
-    /**
-     * Maps a list of email DTOs to email entities
-     *
-     * @param emailDTOs list to map out
-     * @return new list of email entities
-     */
-    public static List<Email> mapEmailDTOs(List<EmailDTO> emailDTOs) {
-        return emailDTOs.stream().map(MapperExtensions::mapEmail).collect(Collectors.toList());
-    }
-
-    /**
-     * Maps an email DTO entity to an email
-     *
-     * @param emailDTO entity to map out
-     * @return new email
-     */
-    public static Email mapEmail(EmailDTO emailDTO) {
-        Email email = new Email();
-
-        email.setId(emailDTO.getId());
-        email.setDateCreated(emailDTO.getDateCreated());
-        email.setDateUpdated(emailDTO.getDateUpdated());
-        email.setSubject(emailDTO.getSubject());
-        email.setBody(emailDTO.getBody());
-
-        return email;
-    }
-
-    /**
-     * Maps an email entity to an email DTO
-     *
-     * @param email entity to map out
-     * @return new email DTO
-     */
-    public static EmailDTO mapEmail(Email email) {
-        EmailDTO emailDTO = new EmailDTO();
-
-        emailDTO.setId(email.getId());
-        emailDTO.setDateCreated(email.getDateCreated());
-        emailDTO.setDateUpdated(email.getDateUpdated());
-        emailDTO.setSubject(email.getSubject());
-        emailDTO.setBody(email.getBody());
-
-        return emailDTO;
     }
 }
