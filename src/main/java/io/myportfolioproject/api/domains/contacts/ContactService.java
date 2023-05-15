@@ -17,7 +17,7 @@ public interface ContactService {
      * @throws ServerUnavailable if there is a database issue
      * @return list of contacts
      */
-    List<Contact> getContact(String token);
+    List<Contact> getContacts(String token);
 
     /**
      * Creates contact in repository

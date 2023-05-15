@@ -39,7 +39,7 @@ public class ContactController {
     public ResponseEntity<List<ContactDTO>> getContacts(@RequestHeader(AUTHORIZATION) String token) {
         logger.info(StringConstants.LOG_GET_CONTACT);
 
-        List<Contact> contactList = contactService.getContact(token);
+        List<Contact> contactList = contactService.getContacts(token);
 
         List<ContactDTO> contactDTOs = contactList.mapContacts();
 

@@ -98,7 +98,6 @@ public class ExperienceServiceImpl implements ExperienceService {
             existingExperience.setPosition(capitalizeWords(experience.getPosition()));
             existingExperience.setStartDate(experience.getStartDate());
             existingExperience.setEndDate(experience.getEndDate());
-            existingExperience.setCurrent(experience.getCurrent());
 
             return experienceRepository.save(existingExperience);
         } catch (DataAccessException e) {

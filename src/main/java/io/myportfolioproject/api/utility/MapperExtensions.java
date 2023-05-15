@@ -53,7 +53,6 @@ public class MapperExtensions {
         experience.setPosition(experienceDTO.getPosition());
         experience.setStartDate(experienceDTO.getStartDate());
         experience.setEndDate(experienceDTO.getEndDate());
-        experience.setCurrent(experienceDTO.getCurrent());
 
         List<Description> descriptions = experienceDTO.getDescriptions()
                 .stream()
@@ -81,7 +80,6 @@ public class MapperExtensions {
         experienceDTO.setPosition(experience.getPosition());
         experienceDTO.setStartDate(experience.getStartDate());
         experienceDTO.setEndDate(experience.getEndDate());
-        experienceDTO.setCurrent(experience.getCurrent());
 
         List<DescriptionDTO> descriptions = experience.getDescriptions()
                 .stream()

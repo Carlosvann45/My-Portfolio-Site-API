@@ -29,8 +29,6 @@ public class Experience extends BaseEntity {
 
     private String endDate;
 
-    private Boolean current;
-
     @OneToMany(mappedBy = StringConstants.EXPERIENCE, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Description> descriptions = new ArrayList<>();
@@ -52,14 +50,6 @@ public class Experience extends BaseEntity {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public Boolean getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Boolean current) {
-        this.current = current;
     }
 
     public List<Description> getDescriptions() {
@@ -92,12 +82,12 @@ public class Experience extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Experience that = (Experience) o;
-        return company.equals(that.company) && position.equals(that.position) && startDate.equals(that.startDate) && Objects.equals(endDate, that.endDate) && current.equals(that.current) && descriptions.equals(that.descriptions);
+        return company.equals(that.company) && position.equals(that.position) && startDate.equals(that.startDate) && Objects.equals(endDate, that.endDate) && descriptions.equals(that.descriptions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), company, position, startDate, endDate, current, descriptions);
+        return Objects.hash(super.hashCode(), company, position, startDate, endDate, descriptions);
     }
 
     @Override
@@ -107,7 +97,6 @@ public class Experience extends BaseEntity {
                 ", position='" + position + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
-                ", current=" + current +
                 ", descriptions=" + descriptions +
                 '}';
     }

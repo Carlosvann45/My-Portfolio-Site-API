@@ -201,8 +201,13 @@
 			<artifactId>assertj-core</artifactId>
 			<groupId>org.assertj</groupId>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

@@ -5,10 +5,7 @@ import io.myportfolioproject.api.constants.StringConstants;
 import io.myportfolioproject.api.domains.entities.BaseEntity;
 import io.myportfolioproject.api.domains.experiences.Experience;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -18,6 +15,7 @@ import java.util.Objects;
 @Table(name = "descriptions")
 public class Description extends BaseEntity {
 
+    @Column(length = 300)
     private String description;
 
     @ManyToOne

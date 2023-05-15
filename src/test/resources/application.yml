@@ -10,6 +10,8 @@ logging:
     org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
 
 spring:
+  config:
+    import: optional:file:.env[.properties]
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -19,4 +21,25 @@ spring:
     username: sa
     password: sa
     driverClassName: org.h2.Driver
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+jwt:
+  secret: ${JWT_SECRET}
+
+admin:
+  username: ${ADMIN_EMAIL}
+  password: ${ADMIN_PASSWORD}
+
 

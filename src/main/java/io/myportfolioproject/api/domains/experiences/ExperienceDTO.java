@@ -28,11 +28,7 @@ public class ExperienceDTO extends BaseEntityDTO {
     @ValidDate()
     private String startDate;
 
-    @ValidDate(isRequired = false)
     private String endDate;
-
-    @NotNull(message = StringConstants.CURRENT_REQUIRED)
-    private Boolean current;
 
     @Valid
     private List<DescriptionDTO> descriptions = new ArrayList<>();
@@ -54,14 +50,6 @@ public class ExperienceDTO extends BaseEntityDTO {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public Boolean getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Boolean current) {
-        this.current = current;
     }
 
     public List<DescriptionDTO> getDescriptions() {

@@ -32,7 +32,7 @@ public class ContactServiceImpl implements ContactService {
      * {@inheritDoc}
      */
     @Override
-    public List<Contact> getContact(String token) {
+    public List<Contact> getContacts(String token) {
         // Ensures admin from token exist before moving forward
         adminService.adminExistFromToken(token);
 

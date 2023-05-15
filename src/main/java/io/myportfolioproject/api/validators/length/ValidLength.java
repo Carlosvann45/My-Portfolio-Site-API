@@ -27,14 +27,14 @@ public @interface ValidLength {
      *
      * @return integer
      */
-    int minLength() default 50;
+    int minLength() default 25;
 
     /**
      * Maximum length for string validation
      *
      * @return integer
      */
-    int maxLength() default 225;
+    int maxLength() default 300;
 
     /**
      * Boolean for if field is required
