@@ -1,7 +1,7 @@
 package io.myportfolioproject.api.domains.contacts;
 
 import io.myportfolioproject.api.constants.StringConstants;
-import io.myportfolioproject.api.domains.admin.AdminService;
+import io.myportfolioproject.api.domains.user.UserService;
 import io.myportfolioproject.api.exceptions.Conflict;
 import io.myportfolioproject.api.exceptions.ServerUnavailable;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +23,7 @@ public class ContactServiceImpl implements ContactService {
     private final Logger logger = LogManager.getLogger(ContactServiceImpl.class);
 
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
 
     @Autowired
     private ContactRepository contactRepository;
@@ -34,7 +34,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public List<Contact> getContacts(String token) {
         // Ensures admin from token exist before moving forward
-        adminService.adminExistFromToken(token);
+        userService.adminExistFromToken(token);
 
         try {
             return contactRepository.findAll();
