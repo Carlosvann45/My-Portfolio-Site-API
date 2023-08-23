@@ -2,17 +2,18 @@
   "name": "portfolio-site-api",
   "version": "1.0.0",
   "description": "a backend service for my portfolio site",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\""
   },
   "author": "Carlos Santiago",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "mongoose": "^7.4.3"
   },
   "devDependencies": {
