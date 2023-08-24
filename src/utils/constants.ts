@@ -3,10 +3,13 @@
  */
 export class Routes {
     private static DEFAULT_ROUTE = '/api';
-    public static  PROJECT_ROUTE = `${this.DEFAULT_ROUTE}/projects`;
-    public static  PROJECT_ID_ROUTE = `${this.PROJECT_ROUTE}/:id`;
-    public static  EXPERINCE_ROUTE = `${this.DEFAULT_ROUTE}/experinces`;
-    public static  EXPERINCE_ID_ROUTE = `${this.EXPERINCE_ROUTE}/:id`;
+    public static ALL_ROUTE = '*';
+    public static PROJECT_ROUTE = `${this.DEFAULT_ROUTE}/projects`;
+    public static PROJECT_ID_ROUTE = `${this.PROJECT_ROUTE}/:id`;
+    public static EXPERINCE_ROUTE = `${this.DEFAULT_ROUTE}/experinces`;
+    public static EXPERINCE_ID_ROUTE = `${this.EXPERINCE_ROUTE}/:id`;
+    public static TECH_ROUTE = `${this.DEFAULT_ROUTE}/technologies`;
+    public static TECH_ID_ROUTE = `${this.TECH_ROUTE}/:id`;
 }
 
 /**
@@ -26,6 +29,9 @@ export class Errors {
     public static EXPERINCE_REQUIRED = 'All fields in experince are required except endDate.';
     public static EXPERINCE_DATES = 'Date fields in experince must match format: mm/dd/yyyy';
     public static EXPERINCE_NOT_FOUND = 'Experince with given id does not exists.';
+    public static TECH_REQUIRED = 'All fields in technology are required and links must be valid.';
+    public static TECH_NOT_FOUND = 'Technology with given id does not exists.';
+    public static ROUTE_NOT_FOUND = 'The given route does not exists.';
 }
 
 /**

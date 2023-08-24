@@ -39,11 +39,10 @@ const handleCriticalError = (err: Error|BadRequest|Unauthorized|NotFound|Interna
     if (response) {
       response
         .status(HttpCode.INTERNAL_SERVER_ERROR)
-        .json({ message: 'Internal server error' });
+        .json({ name: 'Internal server error', message: 'Application encountered a critical error' });
     }
     console.log(err);
-    console.log('Application encountered a critical error. Exiting');
-    process.exit(1);
+    console.log('Application encountered a critical error');
 }
 
 /**

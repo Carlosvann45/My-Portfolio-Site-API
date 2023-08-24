@@ -24,6 +24,12 @@ export default class Common {
         return Regex.LINK.test(data);
     }
 
+    /**
+     * checks if string is a valid date
+     * 
+     * @param date date stirng
+     * @returns boolean
+     */
     static validDate(date: string): boolean {
         return Regex.DATE.test(date);
     }

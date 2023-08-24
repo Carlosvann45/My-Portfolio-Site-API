@@ -2,12 +2,12 @@ import { Schema, Document, model } from "mongoose";
 
 interface ITechnology extends Document {
     name: string,
-    images: Array<string>,
+    image: string,
 }
 
 const TechnologySchema: Schema = new Schema({
     name: { type: String, required: true },
-    images: { type: Array, required: true }
+    image: { type: String, required: true }
 }, {
     timestamps: true
 });

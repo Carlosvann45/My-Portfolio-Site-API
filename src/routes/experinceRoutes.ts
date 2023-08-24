@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
-import { HttpCode, Routes } from '../utils/constants';
+import { HttpCode, Routes, Errors } from '../utils/constants';
 import { validateExperince } from '../utils/validation';
 import { BadRequest, NotFound } from '../models/errors';
-import { Errors } from '../utils/constants';
 import { Experinces } from '../models/experinces';
 import Common from '../utils/common';
 import asyncHandler from 'express-async-handler';

@@ -1,7 +1,9 @@
-import express, { Express} from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import projectRoutes from './routes/projectRoutes';
 import experinceRoutes from './routes/experinceRoutes';
+import technologyRoutes from './routes/techologyRoutes';
+import errorRoutes from './routes/errorRoutes';
 import errorHandler from './middleware/middleware';
 import connectDB from './config/db';
 
@@ -14,11 +16,14 @@ const port = process.env.PORT;
 
 routes.use(projectRoutes);
 routes.use(experinceRoutes);
+routes.use(technologyRoutes);
+routes.use(errorRoutes)
 
 app.use(express.json());
-app.use((express.urlencoded({extended: false })));
+app.use(express.urlencoded({extended: false }));
 app.use(routes);
 app.use(errorHandler);
+
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

@@ -1,5 +1,6 @@
 import { IProject } from "../models/projects";
 import { IExperince } from "../models/experinces";
+import { ITechnology } from "../models/technologies";
 import Common from "./common";
 
 /**
@@ -48,4 +49,14 @@ const validateExperince = (experince: IExperince) => {
     return validTitle && validCompany && validStartDate && !descriptions.includes(false);
 }
 
-export { validateProject, validateExperince };
+/**
+ * Validates that a technology object meets database requirement
+ * 
+ * @param technology technology 
+ * @returns boolean
+ */
+const validateTechnology = (technology: ITechnology) => {
+    return Common.isNotEmpty(technology.name) && Common.isNotEmpty(technology.image) && Common.isLink(technology.image);
+}
+
+export { validateProject, validateExperince, validateTechnology };
