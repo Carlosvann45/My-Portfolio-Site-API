@@ -8,16 +8,28 @@ interface ErrorArgs {
     isOperational?: boolean;
 }
 
+class DefaultError extends Error {
+    public httpStatus: HttpCode = HttpCode.INTERNAL_SERVER_ERROR;
+    public name: HttpName = HttpName.INTERNAL_SERVER_ERROR;
+    public isOperational: boolean = true;
+
+    json() {
+        return {
+            status: this.httpStatus,
+            name: this.name,
+            message: this.message
+        }
+    }
+}
+
 /**
  * Error class to represent bad requests
  */
-export class BadRequest extends Error {
-    public readonly httpStatus = HttpCode.BAD_REQUEST;
-    public readonly name = HttpName.BAD_REQUEST;
-    public readonly isOperational: boolean = true;
-
+export class BadRequest extends DefaultError {
     constructor(args: ErrorArgs) {
         super(args.message);
+        this.httpStatus = HttpCode.BAD_REQUEST;
+        this.name = HttpName.BAD_REQUEST;
 
         Object.setPrototypeOf(this, new.target.prototype);
 
@@ -26,27 +38,17 @@ export class BadRequest extends Error {
         }
 
         Error.captureStackTrace(this);
-    }
-
-    json() {
-        return {
-            name: this.name,
-            status: this.httpStatus,
-            message: this.message
-        }
     }
 }
 
 /**
  * Error class to represent unauthorized requests
  */
-export class Unauthorized extends Error {
-    public readonly httpStatus = HttpCode.UNAUTHORIZED;
-    public readonly name = HttpName.UNAUTHORIZED;
-    public readonly isOperational: boolean = true;
-
+export class Unauthorized extends DefaultError {
     constructor(args: ErrorArgs) {
         super(args.message);
+        this.httpStatus = HttpCode.UNAUTHORIZED;
+        this.name = HttpName.UNAUTHORIZED;
 
         Object.setPrototypeOf(this, new.target.prototype);
 
@@ -55,27 +57,17 @@ export class Unauthorized extends Error {
         }
 
         Error.captureStackTrace(this);
-    }
-
-    json() {
-        return {
-            name: this.name,
-            status: this.httpStatus,
-            message: this.message
-        }
     }
 }
 
 /**
  * Error class to represent not found requests
  */
-export class NotFound extends Error {
-    public readonly httpStatus = HttpCode.NOT_FOUND;
-    public readonly name = HttpName.NOT_FOUND;
-    public readonly isOperational: boolean = true;
-
+export class NotFound extends DefaultError {
     constructor(args: ErrorArgs) {
         super(args.message);
+        this.httpStatus = HttpCode.NOT_FOUND;
+        this.name = HttpName.NOT_FOUND;
 
         Object.setPrototypeOf(this, new.target.prototype);
 
@@ -84,27 +76,17 @@ export class NotFound extends Error {
         }
 
         Error.captureStackTrace(this);
-    }
-
-    json() {
-        return {
-            name: this.name,
-            status: this.httpStatus,
-            message: this.message
-        }
     }
 }
 
 /**
  * Error class to represent internal error requests
  */
-export class InternalServerError extends Error {
-    public readonly httpStatus = HttpCode.INTERNAL_SERVER_ERROR;
-    public readonly name = HttpName.INTERNAL_SERVER_ERROR;
-    public readonly isOperational: boolean = true;
-
+export class InternalServerError extends DefaultError {
     constructor(args: ErrorArgs) {
         super(args.message);
+        this.httpStatus = HttpCode.INTERNAL_SERVER_ERROR;
+        this.name = HttpName.INTERNAL_SERVER_ERROR;
 
         Object.setPrototypeOf(this, new.target.prototype);
 
@@ -113,13 +95,5 @@ export class InternalServerError extends Error {
         }
 
         Error.captureStackTrace(this);
-    }
-
-    json() {
-        return {
-            name: this.name,
-            status: this.httpStatus,
-            message: this.message
-        }
     }
 }

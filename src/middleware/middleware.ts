@@ -23,10 +23,7 @@ const isTrustedError = (err: any): boolean =>  {
  * @param response response
  */
 const handleTrustedError = (err: BadRequest|Unauthorized|NotFound|InternalServerError, response: Response): void => {
-    response.status(err.httpStatus).json({ 
-        name: err.name, 
-        message: err.message 
-    });
+    response.status(err.httpStatus).json(err.json());
 }
 
 /**
