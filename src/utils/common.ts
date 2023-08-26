@@ -98,12 +98,21 @@ export default class Common {
      * @param subject subject
      * @param message message
      */
-    static async sendEmail(email: string, subject: string, message: string) {
-        await transporter.sendMail({
-            from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
-            to: email,
-            subject: subject,
-            text: message 
-          });
+    static async sendEmail(email: string, subject: string, message: string, isHtml: boolean = false) {
+        if (isHtml) {
+            await transporter.sendMail({
+                from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
+                to: email,
+                subject: subject,
+                text: message 
+              });
+        } else {
+            await transporter.sendMail({
+                from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
+                to: email,
+                subject: subject,
+                html: message 
+              });
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { HttpCode, Errors } from '../utils/constants';
+import { HttpCode, Errors, Email } from '../utils/constants';
 import { BadRequest, InternalServerError } from '../models/errors';
 import { Emails } from '../models/emails';
 import { validateEmail } from '../utils/validation';
@@ -28,7 +28,9 @@ const createEmail = asyncHandler(async (req: Request, res: Response) => {
     const newEmail = await Emails.create(email);
 
     try {
-        await Common.sendEmail(newEmail.email, newEmail.subject, newEmail.message)
+        await Common.sendEmail(process.env.SERVICE_EMAIL as string, newEmail.subject, newEmail.message);
+
+        await Common.sendEmail(newEmail.email, newEmail.subject, Email.RESPONSE_TEMPLATE);
 
         res.status(HttpCode.OK).json(newEmail);
     } catch (err) {
