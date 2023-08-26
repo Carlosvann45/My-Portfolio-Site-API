@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Users } from '../models/usermodel';
+import { Users } from '../models/users';
 import Common from "../utils/common";
 
 const loadDb = async () => {

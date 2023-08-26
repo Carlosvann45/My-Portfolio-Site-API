@@ -1,6 +1,7 @@
 import { Regex } from './constants';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import transporter from '../config/transporter';
 
 /*
 * Common functions
@@ -87,6 +88,22 @@ export default class Common {
     static async verifyJwt(token:string): Promise<string|JwtPayload> {
         return jwt.verify(token,process.env.JWT_SECRET as string, {
             ignoreExpiration: false
-        })
+        });
+    }
+
+    /**
+     * Handles sending email 
+     * 
+     * @param email email
+     * @param subject subject
+     * @param message message
+     */
+    static async sendEmail(email: string, subject: string, message: string) {
+        await transporter.sendMail({
+            from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
+            to: email,
+            subject: subject,
+            text: message 
+          });
     }
 }

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Unauthorized } from '../models/errors';
 import { Misc, Errors } from '../utils/constants';
-import { Users } from '../models/usermodel';
+import { Users } from '../models/users';
 import Common from '../utils/common';
 import asyncHandler from 'express-async-handler';
 

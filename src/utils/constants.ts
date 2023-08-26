@@ -13,6 +13,7 @@ export class Routes {
     public static TECH_ID_ROUTE = `${this.TECH_ROUTE}/:id`;
     public static LOGIN_ROUTE = `${this.USER_DEFAULT}/login`;
     public static TOKEN_ROUTE = `${this.USER_DEFAULT}/refresh_token`;
+    public static EMAIL_ROUTE = `${this.DEFAULT_ROUTE}/emails`;
 }
 
 /**
@@ -41,6 +42,9 @@ export class Errors {
     public static JWT_INVALID_REFRESH = 'Invalid refresh token.';
     public static LOGIN_REQUIRED = 'Username and password are required';
     public static BAD_LOGIN = 'Invalid login credentials.';
+    public static EMAIL_REQUIRED = 'All fields in email are required.';
+    public static EMAIL_LIMIT = 'Only one email is allowed per day, per email.';
+    public static EMAIL_ERROR = 'There was a issue sending email. Please try again later.';
 }
 
 export class Misc {

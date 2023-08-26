@@ -11,6 +11,7 @@
   "author": "Carlos Santiago",
   "license": "ISC",
   "dependencies": {
+    "@types/nodemailer": "^6.4.9",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

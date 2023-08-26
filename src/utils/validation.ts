@@ -1,6 +1,7 @@
 import { IProject } from "../models/projects";
 import { IExperince } from "../models/experinces";
 import { ITechnology } from "../models/technologies";
+import { IEmail } from "../models/emails";
 import Common from "./common";
 
 /**
@@ -59,4 +60,14 @@ const validateTechnology = (technology: ITechnology) => {
     return Common.isNotEmpty(technology.name) && Common.isNotEmpty(technology.image) && Common.isLink(technology.image);
 }
 
-export { validateProject, validateExperince, validateTechnology };
+/**
+ * Validates that a technology object meets database requirement
+ * 
+ * @param technology technology 
+ * @returns boolean
+ */
+const validateEmail = (email: IEmail) => {
+    return Common.isNotEmpty(email.email) && Common.isNotEmpty(email.subject) && Common.isNotEmpty(email.message);
+}
+
+export { validateProject, validateExperince, validateTechnology, validateEmail };
