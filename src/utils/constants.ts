@@ -3,6 +3,7 @@
  */
 export class Routes {
     private static DEFAULT_ROUTE = '/api';
+    private static USER_DEFAULT = `${this.DEFAULT_ROUTE}/users`;
     public static ALL_ROUTE = '*';
     public static PROJECT_ROUTE = `${this.DEFAULT_ROUTE}/projects`;
     public static PROJECT_ID_ROUTE = `${this.PROJECT_ROUTE}/:id`;
@@ -10,6 +11,8 @@ export class Routes {
     public static EXPERINCE_ID_ROUTE = `${this.EXPERINCE_ROUTE}/:id`;
     public static TECH_ROUTE = `${this.DEFAULT_ROUTE}/technologies`;
     public static TECH_ID_ROUTE = `${this.TECH_ROUTE}/:id`;
+    public static LOGIN_ROUTE = `${this.USER_DEFAULT}/login`;
+    public static TOKEN_ROUTE = `${this.USER_DEFAULT}/refresh_token`;
 }
 
 /**
@@ -32,6 +35,16 @@ export class Errors {
     public static TECH_REQUIRED = 'All fields in technology are required and links must be valid.';
     public static TECH_NOT_FOUND = 'Technology with given id does not exists.';
     public static ROUTE_NOT_FOUND = 'The given route does not exists.';
+    public static APP_ERROR = 'Application encountered a critical error';
+    public static JWT_INVALID = 'Invalid token.'
+    public static JWT_INVALID_NO_TOKEN = 'Invalid token, no token.';
+    public static JWT_INVALID_REFRESH = 'Invalid refresh token.';
+    public static LOGIN_REQUIRED = 'Username and password are required';
+    public static BAD_LOGIN = 'Invalid login credentials.';
+}
+
+export class Misc {
+    public static BEARER = 'Bearer';
 }
 
 /**

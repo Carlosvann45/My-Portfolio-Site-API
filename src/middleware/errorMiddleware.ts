@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { HttpCode } from '../utils/constants';
+import { HttpCode, HttpName, Errors } from '../utils/constants';
 import { BadRequest, Unauthorized, NotFound, InternalServerError } from '../models/errors';
 
 /**
@@ -36,10 +36,10 @@ const handleCriticalError = (err: Error|BadRequest|Unauthorized|NotFound|Interna
     if (response) {
       response
         .status(HttpCode.INTERNAL_SERVER_ERROR)
-        .json({ name: 'Internal server error', message: 'Application encountered a critical error' });
+        .json({ name: HttpName.INTERNAL_SERVER_ERROR, message: Errors.APP_ERROR });
     }
     console.log(err);
-    console.log('Application encountered a critical error');
+    console.log(Errors.APP_ERROR);
 }
 
 /**
