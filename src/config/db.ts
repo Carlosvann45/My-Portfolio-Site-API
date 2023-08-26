@@ -3,13 +3,12 @@ import { Users } from '../models/usermodel';
 import Common from "../utils/common";
 
 const loadDb = async () => {
-    const username = process.env.USERNAME as string;
-    let password = process.env.PASSWORD as string;
-    console.log(username)
-    console.log(password);
+    const username = process.env.USER_USERNAME as string;
+    let password = process.env.USER_PASSWORD as string;
+    
     try {
         const user = await Users.findOne({ username });
-        console.log('user: ' + user);
+        
         if (!user) {
             password = await Common.hashData(password);
 
@@ -17,15 +16,13 @@ const loadDb = async () => {
                 username,
                 password
             });
-
-            console.log('user created');
-        } else {
-            console.log('user already exists');
         }
-    } catch(err: any) {
-        console.log(err);
+    } catch(err) {
+        console.log(`DB Error: ${err}`);
         process.exit(1);
     }
+
+    console.log('Users Loaded');
 }
 
 const connectDb = async () => {
