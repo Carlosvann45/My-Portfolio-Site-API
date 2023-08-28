@@ -13,6 +13,7 @@ export class Routes {
     public static TECH_ID_ROUTE = `${this.TECH_ROUTE}/:id`;
     public static LOGIN_ROUTE = `${this.USER_DEFAULT}/login`;
     public static TOKEN_ROUTE = `${this.USER_DEFAULT}/refresh_token`;
+    public static VERIFY_ROUTE = `${this.USER_DEFAULT}/verify_token`;
     public static EMAIL_ROUTE = `${this.DEFAULT_ROUTE}/emails`;
 }
 

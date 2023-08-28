@@ -8,6 +8,7 @@ import emailRoutes from './routes/emailRoutes';
 import errorRoutes from './routes/errorRoutes';
 import errorHandler from './middleware/errorMiddleware';
 import connectDB from './config/db';
+import cors from 'cors';
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,8 @@ connectDB();
 const app = express();
 const routes = express.Router();
 const port = process.env.PORT;
+
+app.use(cors());
 
 routes.use(projectRoutes);
 routes.use(experinceRoutes);
