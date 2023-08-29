@@ -57,7 +57,9 @@ const refreshToken = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const verifyToken = asyncHandler(async (req: Request, res: Response) => {
-    res.status(HttpCode.OK).json({});
+    res.status(HttpCode.OK).json({
+        isVerified: true
+    });
 });
 
 export { loginUser, refreshToken, verifyToken };
