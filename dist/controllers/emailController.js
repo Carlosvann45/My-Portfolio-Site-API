@@ -43,8 +43,11 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
     }
     const newEmail = yield emails_1.Emails.create(email);
     try {
-        yield common_1.default.sendEmail(process.env.SERVICE_EMAIL, constants_1.Misc.EMAIL_SUBJECT + newEmail.subject, newEmail.message);
-        yield common_1.default.sendEmail(newEmail.email, newEmail.subject, constants_1.Email.RESPONSE_TEMPLATE);
+        const serviceEmail = process.env.SERVICE_EMAIL;
+        const serviceSubject = constants_1.Misc.EMAIL_FROM_SUBJECT + newEmail.email;
+        const serviceMessage = constants_1.Misc.EMAIL_SUBJECT + newEmail.subject + constants_1.Misc.EMAIL_MESSAGE + newEmail.message;
+        yield common_1.default.sendEmail(serviceEmail, serviceSubject, serviceMessage);
+        yield common_1.default.sendEmail(newEmail.email, constants_1.Misc.EMAIL_AUTO_SUBJECT + serviceEmail, constants_1.Email.RESPONSE_TEMPLATE);
         res.status(constants_1.HttpCode.OK).json(newEmail);
     }
     catch (err) {
