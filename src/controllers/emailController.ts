@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { HttpCode, Errors, Email } from '../utils/constants';
+import { HttpCode, Errors, Email, Misc } from '../utils/constants';
 import { BadRequest, InternalServerError } from '../models/errors';
 import { Emails } from '../models/emails';
 import { validateEmail } from '../utils/validation';
@@ -29,14 +29,14 @@ const createEmail = asyncHandler(async (req: Request, res: Response) => {
             $gte: yesterday
         } });
 
-    if (existingEmail) {
+    if (existingEmail.length > 0) {
         throw new BadRequest({ message: Errors.EMAIL_LIMIT });
     }
 
     const newEmail = await Emails.create(email);
 
     try {
-        await Common.sendEmail(process.env.SERVICE_EMAIL as string, newEmail.subject, newEmail.message);
+        await Common.sendEmail(process.env.SERVICE_EMAIL as string, Misc.EMAIL_SUBJECT + newEmail.subject, newEmail.message);
 
         await Common.sendEmail(newEmail.email, newEmail.subject, Email.RESPONSE_TEMPLATE);
 
