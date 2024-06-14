@@ -1,13 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import projectRoutes from './routes/projectRoutes';
-import experinceRoutes from './routes/experinceRoutes';
-import technologyRoutes from './routes/techologyRoutes';
-import userRoutes from './routes/userRoutes';
-import emailRoutes from './routes/emailRoutes';
-import errorRoutes from './routes/errorRoutes';
-import errorHandler from './middleware/errorMiddleware';
-import connectDB from './config/db';
+import projectRoutes from '../routes/projectRoutes';
+import experinceRoutes from '../routes/experinceRoutes';
+import technologyRoutes from '../routes/techologyRoutes';
+import userRoutes from '../routes/userRoutes';
+import emailRoutes from '../routes/emailRoutes';
+import errorRoutes from '../routes/errorRoutes';
+import errorHandler from '../middleware/errorMiddleware';
+import connectDB from '../config/db';
 import cors from 'cors';
 
 dotenv.config();
