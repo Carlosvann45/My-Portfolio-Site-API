@@ -7,13 +7,12 @@ interface IEmail extends Document {
 }
 
 const EmailSchema = new Schema({
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     subject: { type: String, required: true },
     message: { type: String, required: true },
-    expire_at: {
+    sent_at: {
         type: Date, 
-        default: Date.now, 
-        expires: 60
+        default: Date.now
     } 
 }, {
     timestamps: true
@@ -22,7 +21,7 @@ const EmailSchema = new Schema({
 // removes expire_at from user view
 EmailSchema.set('toJSON', {
     transform: (doc: any, ret: any, opt: any) => {
-        delete ret['expire_at']
+        delete ret['sent_at']
         return ret
     }
 });

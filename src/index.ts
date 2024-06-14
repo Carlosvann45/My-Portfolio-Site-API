@@ -18,7 +18,7 @@ const routes = express.Router();
 const port = process.env.PORT;
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://carlos-santiago-portfolio.vercel.app',
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET','PUT','POST','DELETE'],
   preflightContinue: false,
