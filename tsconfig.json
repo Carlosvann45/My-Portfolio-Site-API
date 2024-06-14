@@ -9,6 +9,6 @@
     "strict": true,                                      
     "skipLibCheck": true                                 
   },
-  "include": ["./src/*", "src/api/server.ts"],
+  "include": ["./src/*", "src/index.ts"],
   "exclude": []
 }

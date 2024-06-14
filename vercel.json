@@ -1,17 +1,5 @@
 {
     "version": 2,
-    "buildCommand": "npx tsc",
-    "outputDirectory": "dist",
-    "builds": [
-        {
-            "src": "./*.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "./**/*.js",
-            "use": "@vercel/node"
-        }
-    ],
     "headers": [
       {
         "source": "/(.*)",
