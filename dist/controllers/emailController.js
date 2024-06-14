@@ -38,12 +38,12 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
             $gte: yesterday
         }
     });
-    if (existingEmail) {
+    if (existingEmail.length > 0) {
         throw new errors_1.BadRequest({ message: constants_1.Errors.EMAIL_LIMIT });
     }
     const newEmail = yield emails_1.Emails.create(email);
     try {
-        yield common_1.default.sendEmail(process.env.SERVICE_EMAIL, newEmail.subject, newEmail.message);
+        yield common_1.default.sendEmail(process.env.SERVICE_EMAIL, constants_1.Misc.EMAIL_SUBJECT + newEmail.subject, newEmail.message);
         yield common_1.default.sendEmail(newEmail.email, newEmail.subject, constants_1.Email.RESPONSE_TEMPLATE);
         res.status(constants_1.HttpCode.OK).json(newEmail);
     }
