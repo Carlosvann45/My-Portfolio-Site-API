@@ -57,7 +57,10 @@ class Misc {
 }
 exports.Misc = Misc;
 Misc.BEARER = 'Bearer';
-Misc.EMAIL_SUBJECT = 'Automated Response: ';
+Misc.EMAIL_SUBJECT = 'Subject:\n';
+Misc.EMAIL_MESSAGE = '\n\nMessage:\n';
+Misc.EMAIL_FROM_SUBJECT = 'Contact Request From: ';
+Misc.EMAIL_AUTO_SUBJECT = 'Automated Response: ';
 /**
  * HttpCode constants
  */

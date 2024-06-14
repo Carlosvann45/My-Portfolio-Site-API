@@ -36,9 +36,13 @@ const createEmail = asyncHandler(async (req: Request, res: Response) => {
     const newEmail = await Emails.create(email);
 
     try {
-        await Common.sendEmail(process.env.SERVICE_EMAIL as string, Misc.EMAIL_SUBJECT + newEmail.subject, newEmail.message);
+        const serviceEmail = process.env.SERVICE_EMAIL as string;
+        const serviceSubject = Misc.EMAIL_FROM_SUBJECT + newEmail.email;
+        const serviceMessage = Misc.EMAIL_SUBJECT + newEmail.subject + Misc.EMAIL_MESSAGE + newEmail.message;
 
-        await Common.sendEmail(newEmail.email, newEmail.subject, Email.RESPONSE_TEMPLATE);
+        await Common.sendEmail(serviceEmail, serviceSubject, serviceMessage);
+
+        await Common.sendEmail(newEmail.email, Misc.EMAIL_AUTO_SUBJECT + serviceEmail, Email.RESPONSE_TEMPLATE);
 
         res.status(HttpCode.OK).json(newEmail);
     } catch (err) {

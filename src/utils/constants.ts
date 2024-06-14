@@ -50,7 +50,10 @@ export class Errors {
 
 export class Misc {
     public static BEARER = 'Bearer';
-    public static EMAIL_SUBJECT = 'Automated Response: ';
+    public static EMAIL_SUBJECT = 'Subject:\n'
+    public static EMAIL_MESSAGE = '\n\nMessage:\n'
+    public static EMAIL_FROM_SUBJECT = 'Contact Request From: ';
+    public static EMAIL_AUTO_SUBJECT = 'Automated Response: ';
 }
 
 /**
