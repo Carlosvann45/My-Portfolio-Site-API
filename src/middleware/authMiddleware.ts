@@ -28,8 +28,6 @@ const jwtHandler = asyncHandler(async (req: Request, res: Response, next: NextFu
                 throw new Unauthorized({ message: Errors.JWT_INVALID });
             }
 
-            req.body = user;
-
             next();
         } catch(err) {
             throw new Unauthorized({ message: Errors.JWT_INVALID });

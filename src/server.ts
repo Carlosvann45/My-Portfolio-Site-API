@@ -17,7 +17,13 @@ const app = express();
 const routes = express.Router();
 const port = process.env.PORT;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET','PUT','POST','DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 200
+}));
 
 routes.use(projectRoutes);
 routes.use(experinceRoutes);

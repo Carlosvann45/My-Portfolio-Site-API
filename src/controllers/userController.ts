@@ -40,7 +40,6 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
  * @param res response
  */
 const refreshToken = asyncHandler(async (req: Request, res: Response) => {
-    const user = req.body as IUser;
     const token = req.headers.authorization?.split(' ')[1];
     const verifiedToken = await Common.verifyJwt(token as string) as any;
 
@@ -49,7 +48,7 @@ const refreshToken = asyncHandler(async (req: Request, res: Response) => {
     }
 
     const response = new jwt(
-        await Common.generateJwt(user.__id),
+        await Common.generateJwt(verifiedToken.__id),
         token as string
     );
 
