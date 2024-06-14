@@ -2,7 +2,7 @@
   "name": "portfolio-site-api",
   "version": "1.0.0",
   "description": "a backend service for my portfolio site",
-  "main": "dist/server.js",
+  "main": "dist/api/server.js",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/api/server.js",
