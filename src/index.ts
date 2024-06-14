@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import projectRoutes from './routes/projectRoutes';
 import experinceRoutes from './routes/experinceRoutes';
-import technologyRoutes from './routes/techologyRoutes';
+import skillRoutes from './routes/skillRoutes';
 import userRoutes from './routes/userRoutes';
 import emailRoutes from './routes/emailRoutes';
 import errorRoutes from './routes/errorRoutes';
@@ -18,7 +18,7 @@ const routes = express.Router();
 const port = process.env.PORT;
 
 app.use(cors({
-  origin: 'https://carlos-santiago-portfolio.vercel.app',
+  origin: 'http://localhost:3000',
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET','PUT','POST','DELETE'],
   preflightContinue: false,
@@ -27,7 +27,7 @@ app.use(cors({
 
 routes.use(projectRoutes);
 routes.use(experinceRoutes);
-routes.use(technologyRoutes);
+routes.use(skillRoutes);
 routes.use(userRoutes);
 routes.use(emailRoutes);
 routes.use(errorRoutes);

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateEmail = exports.validateTechnology = exports.validateExperince = exports.validateProject = void 0;
+exports.validateEmail = exports.validateSkill = exports.validateExperince = exports.validateProject = void 0;
 const common_1 = __importDefault(require("./common"));
 /**
  * Validates that a project object meets database requirements
@@ -50,15 +50,15 @@ const validateExperince = (experince) => {
 };
 exports.validateExperince = validateExperince;
 /**
- * Validates that a technology object meets database requirement
+ * Validates that a skill object meets database requirement
  *
- * @param technology technology
+ * @param technology skill
  * @returns boolean
  */
-const validateTechnology = (technology) => {
-    return common_1.default.isNotEmpty(technology.name) && common_1.default.isNotEmpty(technology.image) && common_1.default.isLink(technology.image);
+const validateSkill = (skill) => {
+    return common_1.default.isNotEmpty(skill.name);
 };
-exports.validateTechnology = validateTechnology;
+exports.validateSkill = validateSkill;
 /**
  * Validates that a technology object meets database requirement
  *
