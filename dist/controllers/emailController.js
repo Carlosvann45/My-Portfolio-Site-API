@@ -30,7 +30,14 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
     if (!email || !(0, validation_1.validateEmail)(email)) {
         throw new errors_1.BadRequest({ message: constants_1.Errors.EMAIL_REQUIRED });
     }
-    const existingEmail = yield emails_1.Emails.findOne({ email: email.email });
+    let yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const existingEmail = yield emails_1.Emails.find({
+        email: email.email,
+        sent_at: {
+            $gte: yesterday
+        }
+    });
     if (existingEmail) {
         throw new errors_1.BadRequest({ message: constants_1.Errors.EMAIL_LIMIT });
     }

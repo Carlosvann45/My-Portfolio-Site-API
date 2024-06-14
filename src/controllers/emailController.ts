@@ -19,7 +19,15 @@ const createEmail = asyncHandler(async (req: Request, res: Response) => {
         throw new BadRequest({ message: Errors.EMAIL_REQUIRED });
     }
 
-    const existingEmail = await Emails.findOne({ email: email.email });
+    let yesterday = new Date();
+    
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    const existingEmail = await Emails.find({ 
+        email: email.email,
+        sent_at: {
+            $gte: yesterday
+        } });
 
     if (existingEmail) {
         throw new BadRequest({ message: Errors.EMAIL_LIMIT });
