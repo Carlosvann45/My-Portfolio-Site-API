@@ -35,13 +35,15 @@ const validateProject = (project: IProject) => {
  * @returns boolean
  */
 const validateExperince = (experince: IExperince) => {
-  const validCompany = Common.isNotEmpty(experince.company);
   const validTitle = Common.isNotEmpty(experince.title);
+  const validCompany = Common.isNotEmpty(experince.company);
+  const validEmploymentType = Common.isNotEmpty(experince.employmentType);
+  const validCity = Common.isNotEmpty(experince.city);
+  const validState = Common.isNotEmpty(experince.state);
   const validStartDate = Common.isNotEmpty(experince.startDate);
   const validEndDate = experince.isCurrent
     ? true
     : Common.isNotEmpty(experince.endDate);
-
   let descriptions: Array<boolean> = [];
   let skills: Array<boolean> = [];
 
@@ -64,6 +66,9 @@ const validateExperince = (experince: IExperince) => {
   return (
     validTitle &&
     validCompany &&
+    validEmploymentType &&
+    validCity &&
+    validState &&
     validStartDate &&
     validEndDate &&
     !descriptions.includes(false) &&

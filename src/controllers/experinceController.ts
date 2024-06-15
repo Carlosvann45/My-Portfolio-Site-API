@@ -3,7 +3,6 @@ import { HttpCode, Errors } from "../utils/constants";
 import { BadRequest, NotFound } from "../models/errors";
 import { validateExperince } from "../utils/validation";
 import { Experinces } from "../models/experinces";
-import Common from "../utils/common";
 
 /**
  * Handles getting all experinces
@@ -28,10 +27,6 @@ const createExperince = async (req: Request, res: Response) => {
 
   if (!experince || !validateExperince(experince)) {
     throw new BadRequest({ message: Errors.EXPERINCE_REQUIRED });
-  } else if (!Common.validDate(experince.startDate)) {
-    throw new BadRequest({ message: Errors.EXPERINCE_DATES });
-  } else if (experince.endDate && !Common.validDate(experince.endDate)) {
-    throw new BadRequest({ message: Errors.EXPERINCE_DATES });
   }
 
   const newExperince = await Experinces.create(experince);
@@ -54,10 +49,6 @@ const updateExperince = async (req: Request, res: Response) => {
     throw new NotFound({ message: Errors.EXPERINCE_NOT_FOUND });
   } else if (!validateExperince(experince)) {
     throw new BadRequest({ message: Errors.EXPERINCE_REQUIRED });
-  } else if (!Common.validDate(experince.startDate)) {
-    throw new BadRequest({ message: Errors.EXPERINCE_DATES });
-  } else if (experince.endDate && !Common.validDate(experince.endDate)) {
-    throw new BadRequest({ message: Errors.EXPERINCE_DATES });
   }
 
   await Experinces.findByIdAndUpdate(id, experince);

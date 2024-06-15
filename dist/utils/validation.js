@@ -34,8 +34,11 @@ exports.validateProject = validateProject;
  * @returns boolean
  */
 const validateExperince = (experince) => {
-    const validCompany = common_1.default.isNotEmpty(experince.company);
     const validTitle = common_1.default.isNotEmpty(experince.title);
+    const validCompany = common_1.default.isNotEmpty(experince.company);
+    const validEmploymentType = common_1.default.isNotEmpty(experince.employmentType);
+    const validCity = common_1.default.isNotEmpty(experince.city);
+    const validState = common_1.default.isNotEmpty(experince.state);
     const validStartDate = common_1.default.isNotEmpty(experince.startDate);
     const validEndDate = experince.isCurrent
         ? true
@@ -60,6 +63,9 @@ const validateExperince = (experince) => {
     }
     return (validTitle &&
         validCompany &&
+        validEmploymentType &&
+        validCity &&
+        validState &&
         validStartDate &&
         validEndDate &&
         !descriptions.includes(false) &&
