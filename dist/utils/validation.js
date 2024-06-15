@@ -13,18 +13,37 @@ const common_1 = __importDefault(require("./common"));
  */
 const validateProject = (project) => {
     const validTitle = common_1.default.isNotEmpty(project.title);
-    const validDescription = common_1.default.isNotEmpty(project.description);
-    const validLink = common_1.default.isNotEmpty(project.link) && common_1.default.isLink(project.link);
-    let images = [];
-    if (project.images) {
-        project.images.forEach((image) => {
-            images.push(common_1.default.isNotEmpty(image) && common_1.default.isLink(image));
+    const validStartDate = common_1.default.isNotEmpty(project.startDate);
+    const validEndDate = project.isCurrent
+        ? true
+        : common_1.default.isNotEmpty(project.endDate);
+    const validDescriptions = common_1.default.isNotEmpty(project.description);
+    let skills = [];
+    let links = [];
+    if (project.skills) {
+        project.skills.forEach((skill) => {
+            skills.push(common_1.default.isNotEmpty(skill));
         });
     }
     else {
-        images = [false];
+        skills = [];
     }
-    return validTitle && validDescription && validLink && !images.includes(false);
+    if (project.links) {
+        project.links.forEach((link) => {
+            const validLink = common_1.default.isLink(link.image) && common_1.default.isLink(link.image);
+            const validText = common_1.default.isNotEmpty(link.text);
+            links.push(validLink && validText);
+        });
+    }
+    else {
+        links = [];
+    }
+    return (validTitle &&
+        validStartDate &&
+        validEndDate &&
+        validDescriptions &&
+        !skills.includes(false) &&
+        !links.includes(false));
 };
 exports.validateProject = validateProject;
 /**
@@ -51,7 +70,7 @@ const validateExperince = (experince) => {
         });
     }
     else {
-        descriptions = [false];
+        descriptions = [];
     }
     if (experince.skills) {
         experince.skills.forEach((skill) => {
@@ -59,7 +78,7 @@ const validateExperince = (experince) => {
         });
     }
     else {
-        skills = [false];
+        skills = [];
     }
     return (validTitle &&
         validCompany &&

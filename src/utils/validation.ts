@@ -12,20 +12,40 @@ import Common from "./common";
  */
 const validateProject = (project: IProject) => {
   const validTitle = Common.isNotEmpty(project.title);
-  const validDescription = Common.isNotEmpty(project.description);
-  const validLink =
-    Common.isNotEmpty(project.link) && Common.isLink(project.link);
-  let images: Array<boolean> = [];
+  const validStartDate = Common.isNotEmpty(project.startDate);
+  const validEndDate = project.isCurrent
+    ? true
+    : Common.isNotEmpty(project.endDate);
+  const validDescriptions = Common.isNotEmpty(project.description);
+  let skills: Array<boolean> = [];
+  let links: Array<boolean> = [];
 
-  if (project.images) {
-    project.images.forEach((image) => {
-      images.push(Common.isNotEmpty(image) && Common.isLink(image));
+  if (project.skills) {
+    project.skills.forEach((skill) => {
+      skills.push(Common.isNotEmpty(skill));
     });
   } else {
-    images = [false];
+    skills = [];
   }
 
-  return validTitle && validDescription && validLink && !images.includes(false);
+  if (project.links) {
+    project.links.forEach((link) => {
+      const validLink = Common.isLink(link.image) && Common.isLink(link.image);
+      const validText = Common.isNotEmpty(link.text);
+      links.push(validLink && validText);
+    });
+  } else {
+    links = [];
+  }
+
+  return (
+    validTitle &&
+    validStartDate &&
+    validEndDate &&
+    validDescriptions &&
+    !skills.includes(false) &&
+    !links.includes(false)
+  );
 };
 
 /**
@@ -52,7 +72,7 @@ const validateExperince = (experince: IExperince) => {
       descriptions.push(Common.isNotEmpty(description));
     });
   } else {
-    descriptions = [false];
+    descriptions = [];
   }
 
   if (experince.skills) {
@@ -60,7 +80,7 @@ const validateExperince = (experince: IExperince) => {
       skills.push(Common.isNotEmpty(skill));
     });
   } else {
-    skills = [false];
+    skills = [];
   }
 
   return (

@@ -2,17 +2,25 @@ import { Schema, Document, model } from "mongoose";
 
 interface IProject extends Document {
   title: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent: boolean;
+  association?: string;
   description: string;
-  link: string;
-  images: Array<string>;
+  skills: Array<string>;
+  links: Array<{ image: string; text: string }>;
 }
 
 const ProjectSchema: Schema = new Schema(
   {
     title: { type: String, required: true },
+    startDate: { type: String, required: true },
+    endDate: { type: String },
+    isCurrent: { type: Boolean, required: true },
+    association: { type: String },
     description: { type: String, required: true },
-    link: { type: String, required: true },
-    images: { type: Array, required: true },
+    skills: { type: Array<string> },
+    links: { type: Array<{ image: string; text: string }> },
   },
   {
     timestamps: true,

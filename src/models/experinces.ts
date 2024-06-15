@@ -23,8 +23,8 @@ const ExperinceSchema: Schema = new Schema(
     startDate: { type: String, required: true },
     endDate: { type: String },
     isCurrent: { type: Boolean, required: true },
-    descriptions: { type: Array<string>, required: true },
-    skills: { type: Array<string>, required: true },
+    descriptions: { type: Array<string> },
+    skills: { type: Array<string> },
   },
   {
     timestamps: true,

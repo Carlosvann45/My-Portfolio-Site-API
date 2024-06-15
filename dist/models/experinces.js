@@ -11,8 +11,8 @@ const ExperinceSchema = new mongoose_1.Schema({
     startDate: { type: String, required: true },
     endDate: { type: String },
     isCurrent: { type: Boolean, required: true },
-    descriptions: { type: (Array), required: true },
-    skills: { type: (Array), required: true },
+    descriptions: { type: (Array) },
+    skills: { type: (Array) },
 }, {
     timestamps: true,
 });
