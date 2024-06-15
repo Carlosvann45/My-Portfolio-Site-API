@@ -24,7 +24,7 @@ const loadDb = () => __awaiter(void 0, void 0, void 0, function* () {
             password = yield common_1.default.hashData(password);
             yield users_1.Users.create({
                 username,
-                password
+                password,
             });
         }
     }
@@ -32,7 +32,7 @@ const loadDb = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`DB Error: ${err}`);
         process.exit(1);
     }
-    console.log('Users Loaded');
+    console.log("Users Loaded");
 });
 const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -43,7 +43,7 @@ const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`DB Error: ${err}`);
         process.exit(1);
     }
-    console.log('Loading db');
+    console.log("Loading db");
     yield loadDb();
 });
 exports.default = connectDb;

@@ -17,8 +17,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const transporter_1 = __importDefault(require("../config/transporter"));
 /*
-* Common functions
-*/
+ * Common functions
+ */
 class Common {
     /**
      * checks if any input is valid or empty
@@ -27,7 +27,7 @@ class Common {
      * @returns boolean
      */
     static isNotEmpty(data) {
-        return (data && data.trim() != '');
+        return (data === null || data === void 0 ? void 0 : data.trim()) != "";
     }
     /**
      * checks if string is a valid link
@@ -74,19 +74,21 @@ class Common {
     }
     /**
      * Handles generating either a normal or refresh token
-     * @param id user id
+     * @param __id user id
      * @param refresh refresh boolean
      * @returns string promise
      */
-    static generateJwt(id, refresh = false) {
+    static generateJwt(__id, refresh = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            const experation = refresh ? process.env.JWT_EXP_REFRESH : process.env.JWT_EXP;
+            const experation = refresh
+                ? process.env.JWT_EXP_REFRESH
+                : process.env.JWT_EXP;
             return jsonwebtoken_1.default.sign({
-                id,
-                isRefreshtoken: refresh
+                __id,
+                isRefreshtoken: refresh,
             }, process.env.JWT_SECRET, {
                 expiresIn: experation,
-                algorithm: process.env.JWT_ALG
+                algorithm: process.env.JWT_ALG,
             });
         });
     }
@@ -99,7 +101,7 @@ class Common {
     static verifyJwt(token) {
         return __awaiter(this, void 0, void 0, function* () {
             return jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET, {
-                ignoreExpiration: false
+                ignoreExpiration: false,
             });
         });
     }
@@ -117,7 +119,7 @@ class Common {
                     from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
                     to: email,
                     subject: subject,
-                    text: message
+                    text: message,
                 });
             }
             else {
@@ -125,7 +127,7 @@ class Common {
                     from: `"CS Dev Services" <${process.env.SERVICE_EMAIL}>`,
                     to: email,
                     subject: subject,
-                    html: message
+                    html: message,
                 });
             }
         });

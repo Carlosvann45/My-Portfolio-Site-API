@@ -8,7 +8,7 @@ class jwt {
     json() {
         return {
             token: this.token,
-            refreshToken: this.refreshToken
+            refreshToken: this.refreshToken,
         };
     }
 }

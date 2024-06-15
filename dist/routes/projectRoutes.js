@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const constants_1 = require("../utils/constants");
 const projectController_1 = require("../controllers/projectController");
 const authMiddleware_1 = __importDefault(require("../middleware/authMiddleware"));
-const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const projectRoutes = express_1.default.Router();
 /**
  * Route for getting all projects

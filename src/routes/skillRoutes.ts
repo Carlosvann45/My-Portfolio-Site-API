@@ -1,10 +1,13 @@
-import express from 'express';
-import { Routes } from '../utils/constants';
-import { 
-    getSkills, createSkill, updateSkill, deleteSkill 
-} from '../controllers/skillController';
-import jwtHandler from '../middleware/authMiddleware';
-import asyncHandler from 'express-async-handler';
+import express from "express";
+import asyncHandler from "express-async-handler";
+import { Routes } from "../utils/constants";
+import {
+  getSkills,
+  createSkill,
+  updateSkill,
+  deleteSkill,
+} from "../controllers/skillController";
+import jwtHandler from "../middleware/authMiddleware";
 
 const skillRoutes = express.Router();
 
@@ -26,6 +29,10 @@ skillRoutes.put(Routes.SKILL_ID_ROUTE, jwtHandler, asyncHandler(updateSkill));
 /**
  * Route for deleting a skill
  */
-skillRoutes.delete(Routes.SKILL_ID_ROUTE, jwtHandler, asyncHandler(deleteSkill));
+skillRoutes.delete(
+  Routes.SKILL_ID_ROUTE,
+  jwtHandler,
+  asyncHandler(deleteSkill),
+);
 
 export default skillRoutes;

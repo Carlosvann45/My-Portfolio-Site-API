@@ -46,9 +46,10 @@ exports.loginUser = loginUser;
  */
 const refreshToken = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
-    const verifiedToken = yield common_1.default.verifyJwt(token);
-    if (!verifiedToken.isRefreshtoken) {
+    const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+    const verifiedToken = (yield common_1.default.verifyJwt(token));
+    const user = users_1.Users.findById(verifiedToken.__id);
+    if (!verifiedToken.isRefreshtoken || !user) {
         throw new errors_1.Unauthorized({ message: constants_1.Errors.JWT_INVALID_REFRESH });
     }
     const response = new jwt_1.default(yield common_1.default.generateJwt(verifiedToken.__id), token);
@@ -57,7 +58,7 @@ const refreshToken = (0, express_async_handler_1.default)((req, res) => __awaite
 exports.refreshToken = refreshToken;
 const verifyToken = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(constants_1.HttpCode.OK).json({
-        isVerified: true
+        isVerified: true,
     });
 }));
 exports.verifyToken = verifyToken;

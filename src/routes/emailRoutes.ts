@@ -1,7 +1,7 @@
-import express from 'express';
-import { Routes } from '../utils/constants';
-import { createEmail } from '../controllers/emailController';
-import asyncHandler from 'express-async-handler';
+import express from "express";
+import asyncHandler from "express-async-handler";
+import { Routes } from "../utils/constants";
+import { createEmail } from "../controllers/emailController";
 
 const errorRoutes = express.Router();
 

@@ -20,7 +20,7 @@ const errorRoutes = express_1.default.Router();
 /**
  * Route to handle routes that dont exist
  */
-errorRoutes.all(constants_1.Routes.ALL_ROUTE, (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+errorRoutes.all(constants_1.Routes.ALL_ROUTE, (0, express_async_handler_1.default)(() => __awaiter(void 0, void 0, void 0, function* () {
     throw new errors_1.NotFound({ message: constants_1.Errors.ROUTE_NOT_FOUND });
 })));
 exports.default = errorRoutes;

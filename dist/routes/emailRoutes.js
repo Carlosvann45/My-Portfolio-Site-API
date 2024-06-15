@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const constants_1 = require("../utils/constants");
 const emailController_1 = require("../controllers/emailController");
-const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const errorRoutes = express_1.default.Router();
 /**
  * Handles routes for creating emails

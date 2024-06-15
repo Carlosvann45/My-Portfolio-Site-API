@@ -1,23 +1,36 @@
 import { Schema, Document, model } from "mongoose";
 
 interface IExperince extends Document {
-    company: string,
-    title: string,
-    startDate: string,
-    endDate?: string,
-    descriptions: Array<string>,
+  title: string;
+  company: string;
+  employmentType: string;
+  city: string;
+  state: string;
+  startDate: string;
+  endDate?: string;
+  isCurrent: boolean;
+  descriptions: Array<string>;
+  skills: Array<string>;
 }
 
-const ExperinceSchema: Schema = new Schema({
-    company: { type: String, required: true },
+const ExperinceSchema: Schema = new Schema(
+  {
     title: { type: String, required: true },
+    company: { type: String, required: true },
+    employmentType: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
     startDate: { type: String, required: true },
     endDate: { type: String },
-    descriptions: { type: Array, required: true }
-}, {
-    timestamps: true
-});
+    isCurrent: { type: Boolean, required: true },
+    descriptions: { type: Array<string>, required: true },
+    skills: { type: Array<string>, required: true },
+  },
+  {
+    timestamps: true,
+  },
+);
 
-const Experinces = model<IExperince>('experinces', ExperinceSchema);
+const Experinces = model<IExperince>("experinces", ExperinceSchema);
 
 export { IExperince, Experinces };

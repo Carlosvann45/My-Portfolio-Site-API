@@ -1,64 +1,66 @@
-import { Request, Response } from 'express';
-import { HttpCode, Errors } from '../utils/constants';
-import { BadRequest, Unauthorized } from '../models/errors';
-import { IUser, Users } from '../models/users';
-import jwt from '../models/jwt';
-import Common from '../utils/common';
-import asyncHandler from 'express-async-handler';
+import { Request, Response } from "express";
+import { HttpCode, Errors } from "../utils/constants";
+import { BadRequest, Unauthorized } from "../models/errors";
+import { Users } from "../models/users";
+import jwt from "../models/jwt";
+import Common from "../utils/common";
+import asyncHandler from "express-async-handler";
+import { JwtPayload } from "jsonwebtoken";
 
 /**
  * Handles loging in user
- * 
+ *
  * @param req request
  * @param res response
  */
 const loginUser = asyncHandler(async (req: Request, res: Response) => {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
-    if (!Common.isNotEmpty(username) && !Common.isNotEmpty(password)) {
-        throw new BadRequest({ message: Errors.LOGIN_REQUIRED });
-    }
+  if (!Common.isNotEmpty(username) && !Common.isNotEmpty(password)) {
+    throw new BadRequest({ message: Errors.LOGIN_REQUIRED });
+  }
 
-    const user = await Users.findOne({ username });
+  const user = await Users.findOne({ username });
 
-    if (!user || !await Common.hashVerified(password, user.password)) {
-        throw new BadRequest({ message: Errors.BAD_LOGIN });
-    }
+  if (!user || !(await Common.hashVerified(password, user.password))) {
+    throw new BadRequest({ message: Errors.BAD_LOGIN });
+  }
 
-    const response = new jwt(
-        await Common.generateJwt(user._id),
-        await Common.generateJwt(user._id, true)
-    );
+  const response = new jwt(
+    await Common.generateJwt(user._id),
+    await Common.generateJwt(user._id, true),
+  );
 
-    res.status(HttpCode.OK).json(response.json());
+  res.status(HttpCode.OK).json(response.json());
 });
 
 /**
  * Handles refreshing token for a user
- * 
+ *
  * @param req request
  * @param res response
  */
 const refreshToken = asyncHandler(async (req: Request, res: Response) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    const verifiedToken = await Common.verifyJwt(token as string) as any;
+  const token = req.headers.authorization?.split(" ")[1];
+  const verifiedToken = (await Common.verifyJwt(token as string)) as JwtPayload;
+  const user = Users.findById(verifiedToken.__id);
 
-    if (!verifiedToken.isRefreshtoken) {
-        throw new Unauthorized({ message: Errors.JWT_INVALID_REFRESH });
-    }
+  if (!verifiedToken.isRefreshtoken || !user) {
+    throw new Unauthorized({ message: Errors.JWT_INVALID_REFRESH });
+  }
 
-    const response = new jwt(
-        await Common.generateJwt(verifiedToken.__id),
-        token as string
-    );
+  const response = new jwt(
+    await Common.generateJwt(verifiedToken.__id),
+    token as string,
+  );
 
-    res.status(HttpCode.OK).json(response.json());
+  res.status(HttpCode.OK).json(response.json());
 });
 
 const verifyToken = asyncHandler(async (req: Request, res: Response) => {
-    res.status(HttpCode.OK).json({
-        isVerified: true
-    });
+  res.status(HttpCode.OK).json({
+    isVerified: true,
+  });
 });
 
 export { loginUser, refreshToken, verifyToken };

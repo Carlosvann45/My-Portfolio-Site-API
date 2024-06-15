@@ -8,7 +8,7 @@ const ProjectSchema = new mongoose_1.Schema({
     link: { type: String, required: true },
     images: { type: Array, required: true },
 }, {
-    timestamps: true
+    timestamps: true,
 });
-const Projects = (0, mongoose_1.model)('projects', ProjectSchema);
+const Projects = (0, mongoose_1.model)("projects", ProjectSchema);
 exports.Projects = Projects;

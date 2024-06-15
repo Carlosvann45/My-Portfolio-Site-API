@@ -30,13 +30,13 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
     if (!email || !(0, validation_1.validateEmail)(email)) {
         throw new errors_1.BadRequest({ message: constants_1.Errors.EMAIL_REQUIRED });
     }
-    let yesterday = new Date();
+    const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     const existingEmail = yield emails_1.Emails.find({
         email: email.email,
         sent_at: {
-            $gte: yesterday
-        }
+            $gte: yesterday,
+        },
     });
     if (existingEmail.length > 0) {
         throw new errors_1.BadRequest({ message: constants_1.Errors.EMAIL_LIMIT });
@@ -45,7 +45,10 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
     try {
         const serviceEmail = process.env.SERVICE_EMAIL;
         const serviceSubject = constants_1.Misc.EMAIL_FROM_SUBJECT + newEmail.email;
-        const serviceMessage = constants_1.Misc.EMAIL_SUBJECT + newEmail.subject + constants_1.Misc.EMAIL_MESSAGE + newEmail.message;
+        const serviceMessage = constants_1.Misc.EMAIL_SUBJECT +
+            newEmail.subject +
+            constants_1.Misc.EMAIL_MESSAGE +
+            newEmail.message;
         yield common_1.default.sendEmail(serviceEmail, serviceSubject, serviceMessage);
         yield common_1.default.sendEmail(newEmail.email, constants_1.Misc.EMAIL_AUTO_SUBJECT + serviceEmail, constants_1.Email.RESPONSE_TEMPLATE);
         res.status(constants_1.HttpCode.OK).json(newEmail);
@@ -54,7 +57,7 @@ const createEmail = (0, express_async_handler_1.default)((req, res) => __awaiter
         console.log(err);
         yield emails_1.Emails.findByIdAndDelete(newEmail._id);
         throw new errors_1.InternalServerError({
-            message: constants_1.Errors.EMAIL_ERROR
+            message: constants_1.Errors.EMAIL_ERROR,
         });
     }
 }));

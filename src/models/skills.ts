@@ -1,15 +1,18 @@
 import { Schema, Document, model } from "mongoose";
 
 interface ISkill extends Document {
-    name: string,
+  name: string;
 }
 
-const SkillSchema: Schema = new Schema({
-    name: { type: String, required: true }
-}, {
-    timestamps: true
-});
+const SkillSchema: Schema = new Schema(
+  {
+    name: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  },
+);
 
-const Skills = model<ISkill>('skills', SkillSchema);
+const Skills = model<ISkill>("skills", SkillSchema);
 
 export { ISkill, Skills };

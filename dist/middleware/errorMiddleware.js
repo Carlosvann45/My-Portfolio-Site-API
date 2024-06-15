@@ -9,7 +9,10 @@ const errors_1 = require("../models/errors");
  * @returns boolean
  */
 const isTrustedError = (err) => {
-    if (err instanceof errors_1.BadRequest || err instanceof errors_1.Unauthorized || err instanceof errors_1.NotFound || err instanceof errors_1.InternalServerError) {
+    if (err instanceof errors_1.BadRequest ||
+        err instanceof errors_1.Unauthorized ||
+        err instanceof errors_1.NotFound ||
+        err instanceof errors_1.InternalServerError) {
         return err.isOperational;
     }
     return false;
@@ -31,9 +34,10 @@ const handleTrustedError = (err, response) => {
  */
 const handleCriticalError = (err, response) => {
     if (response) {
-        response
-            .status(constants_1.HttpCode.INTERNAL_SERVER_ERROR)
-            .json({ name: constants_1.HttpName.INTERNAL_SERVER_ERROR, message: constants_1.Errors.APP_ERROR });
+        response.status(constants_1.HttpCode.INTERNAL_SERVER_ERROR).json({
+            name: constants_1.HttpName.INTERNAL_SERVER_ERROR,
+            message: constants_1.Errors.APP_ERROR,
+        });
     }
     console.log(err);
     console.log(constants_1.Errors.APP_ERROR);
@@ -46,7 +50,7 @@ const handleCriticalError = (err, response) => {
  * @param res response
  * @param next next function
  */
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
     if (isTrustedError(err) && res) {
         handleTrustedError(err, res);
     }

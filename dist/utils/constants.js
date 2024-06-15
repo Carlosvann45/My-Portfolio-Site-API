@@ -9,9 +9,9 @@ class Routes {
 }
 exports.Routes = Routes;
 _a = Routes;
-Routes.DEFAULT_ROUTE = '/api/v1';
+Routes.DEFAULT_ROUTE = "/api/v1";
 Routes.USER_DEFAULT = `${_a.DEFAULT_ROUTE}/users`;
-Routes.ALL_ROUTE = '*';
+Routes.ALL_ROUTE = "*";
 Routes.PROJECT_ROUTE = `${_a.DEFAULT_ROUTE}/projects`;
 Routes.PROJECT_ID_ROUTE = `${_a.PROJECT_ROUTE}/:id`;
 Routes.EXPERINCE_ROUTE = `${_a.DEFAULT_ROUTE}/experinces`;
@@ -29,38 +29,38 @@ class Regex {
 }
 exports.Regex = Regex;
 Regex.LINK = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/i;
-Regex.DATE = /((0[13578]|1[02])[\/.](0[1-9]|[12][0-9]|3[01])[\/.](18|19|20)[0-9]{2})|((0[469]|11)[\/.](0[1-9]|[12][0-9]|30)[\/.](18|19|20)[0-9]{2})|((02)[\/.](0[1-9]|1[0-9]|2[0-8])[\/.](18|19|20)[0-9]{2})|((02)[\/.]29[\/.](((18|19|20)(04|08|[2468][048]|[13579][26]))|2000))/;
+Regex.DATE = /((0[13578]|1[02])[/.](0[1-9]|[12][0-9]|3[01])[/.](18|19|20)[0-9]{2})|((0[469]|11)[/.](0[1-9]|[12][0-9]|30)[/.](18|19|20)[0-9]{2})|((02)[/.](0[1-9]|1[0-9]|2[0-8])[/.](18|19|20)[0-9]{2})|((02)[/.]29[/.](((18|19|20)(04|08|[2468][048]|[13579][26]))|2000))/;
 /**
  * Error constants
  */
 class Errors {
 }
 exports.Errors = Errors;
-Errors.PROJECT_REQUIRED = 'All fields in project are required and links must be valid.';
-Errors.PROJECT_NOT_FOUND = 'Project with given id does not exists.';
-Errors.EXPERINCE_REQUIRED = 'All fields in experince are required except endDate.';
-Errors.EXPERINCE_DATES = 'Date fields in experince must match format: mm/dd/yyyy';
-Errors.EXPERINCE_NOT_FOUND = 'Experince with given id does not exists.';
-Errors.SKILL_REQUIRED = 'All fields in skill are required and links must be valid.';
-Errors.SKILL_NOT_FOUND = 'Skill with given id does not exists.';
-Errors.ROUTE_NOT_FOUND = 'The given route does not exists.';
-Errors.APP_ERROR = 'Application encountered a critical error';
-Errors.JWT_INVALID = 'Invalid token.';
-Errors.JWT_INVALID_NO_TOKEN = 'Invalid token, no token.';
-Errors.JWT_INVALID_REFRESH = 'Invalid refresh token.';
-Errors.LOGIN_REQUIRED = 'Username and password are required';
-Errors.BAD_LOGIN = 'Invalid login credentials.';
-Errors.EMAIL_REQUIRED = 'All fields in email are required.';
-Errors.EMAIL_LIMIT = 'Only one email is allowed per day, per email.';
-Errors.EMAIL_ERROR = 'There was a issue sending email. Please try again later.';
+Errors.PROJECT_REQUIRED = "All fields in project are required and links must be valid.";
+Errors.PROJECT_NOT_FOUND = "Project with given id does not exists.";
+Errors.EXPERINCE_REQUIRED = "All fields in experince are required except endDate.";
+Errors.EXPERINCE_DATES = "Date fields in experince must match format: mm/dd/yyyy";
+Errors.EXPERINCE_NOT_FOUND = "Experince with given id does not exists.";
+Errors.SKILL_REQUIRED = "All fields in skill are required and links must be valid.";
+Errors.SKILL_NOT_FOUND = "Skill with given id does not exists.";
+Errors.ROUTE_NOT_FOUND = "The given route does not exists.";
+Errors.APP_ERROR = "Application encountered a critical error";
+Errors.JWT_INVALID = "Invalid token.";
+Errors.JWT_INVALID_NO_TOKEN = "Invalid token, no token.";
+Errors.JWT_INVALID_REFRESH = "Invalid refresh token.";
+Errors.LOGIN_REQUIRED = "Username and password are required";
+Errors.BAD_LOGIN = "Invalid login credentials.";
+Errors.EMAIL_REQUIRED = "All fields in email are required.";
+Errors.EMAIL_LIMIT = "Only one email is allowed per day, per email.";
+Errors.EMAIL_ERROR = "There was a issue sending email. Please try again later.";
 class Misc {
 }
 exports.Misc = Misc;
-Misc.BEARER = 'Bearer';
-Misc.EMAIL_SUBJECT = 'Subject:\n';
-Misc.EMAIL_MESSAGE = '\n\nMessage:\n';
-Misc.EMAIL_FROM_SUBJECT = 'Contact Request From: ';
-Misc.EMAIL_AUTO_SUBJECT = 'Automated Response: ';
+Misc.BEARER = "Bearer";
+Misc.EMAIL_SUBJECT = "Subject:\n";
+Misc.EMAIL_MESSAGE = "\n\nMessage:\n";
+Misc.EMAIL_FROM_SUBJECT = "Contact Request From: ";
+Misc.EMAIL_AUTO_SUBJECT = "Automated Response: ";
 /**
  * HttpCode constants
  */

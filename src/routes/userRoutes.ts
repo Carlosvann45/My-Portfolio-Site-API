@@ -1,8 +1,12 @@
-import express from 'express';
-import { Routes } from '../utils/constants';
-import { loginUser, refreshToken, verifyToken } from '../controllers/userController';
-import jwtHandler from '../middleware/authMiddleware';
-import asyncHandler from 'express-async-handler';
+import express from "express";
+import asyncHandler from "express-async-handler";
+import { Routes } from "../utils/constants";
+import {
+  loginUser,
+  refreshToken,
+  verifyToken,
+} from "../controllers/userController";
+import jwtHandler from "../middleware/authMiddleware";
 
 const userRoutes = express.Router();
 

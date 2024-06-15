@@ -17,7 +17,7 @@ const validateProject = (project) => {
     const validLink = common_1.default.isNotEmpty(project.link) && common_1.default.isLink(project.link);
     let images = [];
     if (project.images) {
-        project.images.forEach(image => {
+        project.images.forEach((image) => {
             images.push(common_1.default.isNotEmpty(image) && common_1.default.isLink(image));
         });
     }
@@ -36,17 +36,34 @@ exports.validateProject = validateProject;
 const validateExperince = (experince) => {
     const validCompany = common_1.default.isNotEmpty(experince.company);
     const validTitle = common_1.default.isNotEmpty(experince.title);
-    const validStartDate = experince.startDate !== null || experince.startDate !== undefined;
+    const validStartDate = common_1.default.isNotEmpty(experince.startDate);
+    const validEndDate = experince.isCurrent
+        ? true
+        : common_1.default.isNotEmpty(experince.endDate);
     let descriptions = [];
+    let skills = [];
     if (experince.descriptions) {
-        experince.descriptions.forEach(description => {
+        experince.descriptions.forEach((description) => {
             descriptions.push(common_1.default.isNotEmpty(description));
         });
     }
     else {
         descriptions = [false];
     }
-    return validTitle && validCompany && validStartDate && !descriptions.includes(false);
+    if (experince.skills) {
+        experince.skills.forEach((skill) => {
+            skills.push(common_1.default.isNotEmpty(skill));
+        });
+    }
+    else {
+        skills = [false];
+    }
+    return (validTitle &&
+        validCompany &&
+        validStartDate &&
+        validEndDate &&
+        !descriptions.includes(false) &&
+        !skills.includes(false));
 };
 exports.validateExperince = validateExperince;
 /**
@@ -66,6 +83,8 @@ exports.validateSkill = validateSkill;
  * @returns boolean
  */
 const validateEmail = (email) => {
-    return common_1.default.isNotEmpty(email.email) && common_1.default.isNotEmpty(email.subject) && common_1.default.isNotEmpty(email.message);
+    return (common_1.default.isNotEmpty(email.email) &&
+        common_1.default.isNotEmpty(email.subject) &&
+        common_1.default.isNotEmpty(email.message));
 };
 exports.validateEmail = validateEmail;

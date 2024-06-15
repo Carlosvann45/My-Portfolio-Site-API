@@ -8,12 +8,19 @@
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
     "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "add-build": "git add dist",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.ts\" --write --ignore-path .gitignore"
   },
   "pre-commit": [
-      "ts.check",
-      "build",
-      "add-build"
+    "lint",
+    "ts.check",
+    "build",
+    "add-build"
   ],
   "author": "Carlos Santiago",
   "license": "ISC",
@@ -35,9 +42,13 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.5.1",
     "@types/nodemailer": "^6.4.9",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "concurrently": "^8.2.0",
+    "eslint": "^8.57.0",
     "nodemon": "^3.0.1",
     "pre-commit": "^1.2.2",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.7",
     "typescript": "^5.1.6"
   }

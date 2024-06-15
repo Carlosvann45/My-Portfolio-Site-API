@@ -1,10 +1,13 @@
-import express from 'express';
-import { Routes } from '../utils/constants';
-import { 
-    getExperinces, createExperince, updateExperince, deleteExperince 
-} from '../controllers/experinceController';
-import jwtHandler from '../middleware/authMiddleware';
-import asyncHandler from 'express-async-handler';
+import express from "express";
+import asyncHandler from "express-async-handler";
+import { Routes } from "../utils/constants";
+import {
+  getExperinces,
+  createExperince,
+  updateExperince,
+  deleteExperince,
+} from "../controllers/experinceController";
+import jwtHandler from "../middleware/authMiddleware";
 
 const experinceRoutes = express.Router();
 
@@ -16,16 +19,28 @@ experinceRoutes.get(Routes.EXPERINCE_ROUTE, asyncHandler(getExperinces));
 /**
  * Route for creating a experince
  */
-experinceRoutes.post(Routes.EXPERINCE_ROUTE, jwtHandler, asyncHandler(createExperince));
+experinceRoutes.post(
+  Routes.EXPERINCE_ROUTE,
+  jwtHandler,
+  asyncHandler(createExperince),
+);
 
 /**
  * Route for updating a experince
  */
-experinceRoutes.put(Routes.EXPERINCE_ID_ROUTE, jwtHandler, asyncHandler(updateExperince));
+experinceRoutes.put(
+  Routes.EXPERINCE_ID_ROUTE,
+  jwtHandler,
+  asyncHandler(updateExperince),
+);
 
 /**
  * Route fro deleting a experince
  */
-experinceRoutes.delete(Routes.EXPERINCE_ID_ROUTE, jwtHandler, asyncHandler(deleteExperince));
+experinceRoutes.delete(
+  Routes.EXPERINCE_ID_ROUTE,
+  jwtHandler,
+  asyncHandler(deleteExperince),
+);
 
 export default experinceRoutes;

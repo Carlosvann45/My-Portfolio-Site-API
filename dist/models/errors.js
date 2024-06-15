@@ -13,7 +13,7 @@ class DefaultError extends Error {
         return {
             status: this.httpStatus,
             name: this.name,
-            message: this.message
+            message: this.message,
         };
     }
 }
