@@ -30,9 +30,10 @@ const validateProject = (project) => {
     }
     if (project.links) {
         project.links.forEach((link) => {
-            const validLink = common_1.default.isLink(link.image) && common_1.default.isLink(link.image);
+            const validImage = common_1.default.isNotEmpty(link.image) && common_1.default.isLink(link.image);
             const validText = common_1.default.isNotEmpty(link.text);
-            links.push(validLink && validText);
+            const validLink = common_1.default.isNotEmpty(link.link) && common_1.default.isLink(link.link);
+            links.push(validImage && validText && validLink);
         });
     }
     else {

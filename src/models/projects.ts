@@ -8,7 +8,7 @@ interface IProject extends Document {
   association?: string;
   description: string;
   skills: Array<string>;
-  links: Array<{ image: string; text: string }>;
+  links: Array<{ image: string; text: string; link: string }>;
 }
 
 const ProjectSchema: Schema = new Schema(
@@ -20,7 +20,7 @@ const ProjectSchema: Schema = new Schema(
     association: { type: String },
     description: { type: String, required: true },
     skills: { type: Array<string> },
-    links: { type: Array<{ image: string; text: string }> },
+    links: { type: Array<{ image: string; text: string; link: string }> },
   },
   {
     timestamps: true,

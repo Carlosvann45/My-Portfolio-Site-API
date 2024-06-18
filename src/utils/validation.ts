@@ -30,9 +30,12 @@ const validateProject = (project: IProject) => {
 
   if (project.links) {
     project.links.forEach((link) => {
-      const validLink = Common.isLink(link.image) && Common.isLink(link.image);
+      const validImage =
+        Common.isNotEmpty(link.image) && Common.isLink(link.image);
       const validText = Common.isNotEmpty(link.text);
-      links.push(validLink && validText);
+      const validLink =
+        Common.isNotEmpty(link.link) && Common.isLink(link.link);
+      links.push(validImage && validText && validLink);
     });
   } else {
     links = [];
