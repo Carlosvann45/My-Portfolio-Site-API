@@ -1,13 +1,13 @@
-import express from "express";
-import asyncHandler from "express-async-handler";
-import { Routes } from "../utils/constants";
+import express from 'express';
+import asyncHandler from 'express-async-handler';
+import { Routes } from '../utils/constants';
 import {
   getSkills,
   createSkill,
   updateSkill,
   deleteSkill,
-} from "../controllers/skillController";
-import jwtHandler from "../middleware/authMiddleware";
+} from '../controllers/skillController';
+import jwtHandler from '../middleware/authMiddleware';
 
 const skillRoutes = express.Router();
 

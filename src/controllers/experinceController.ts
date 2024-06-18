@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { HttpCode, Errors } from "../utils/constants";
-import { BadRequest, NotFound } from "../models/errors";
-import { validateExperince } from "../utils/validation";
-import { Experinces } from "../models/experinces";
+import { Request, Response } from 'express';
+import { HttpCode, Errors } from '../utils/constants';
+import { BadRequest, NotFound } from '../models/errors';
+import { validateExperince } from '../utils/validation';
+import { Experinces } from '../models/experinces';
 
 /**
  * Handles getting all experinces

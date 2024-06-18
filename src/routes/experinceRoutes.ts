@@ -1,13 +1,13 @@
-import express from "express";
-import asyncHandler from "express-async-handler";
-import { Routes } from "../utils/constants";
+import express from 'express';
+import asyncHandler from 'express-async-handler';
+import { Routes } from '../utils/constants';
 import {
   getExperinces,
   createExperince,
   updateExperince,
   deleteExperince,
-} from "../controllers/experinceController";
-import jwtHandler from "../middleware/authMiddleware";
+} from '../controllers/experinceController';
+import jwtHandler from '../middleware/authMiddleware';
 
 const experinceRoutes = express.Router();
 

@@ -11,6 +11,7 @@ const experinceRoutes_1 = __importDefault(require("./routes/experinceRoutes"));
 const skillRoutes_1 = __importDefault(require("./routes/skillRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const emailRoutes_1 = __importDefault(require("./routes/emailRoutes"));
+const educationRoutes_1 = __importDefault(require("./routes/educationRoutes"));
 const errorRoutes_1 = __importDefault(require("./routes/errorRoutes"));
 const errorMiddleware_1 = __importDefault(require("./middleware/errorMiddleware"));
 const db_1 = __importDefault(require("./config/db"));
@@ -20,9 +21,9 @@ const app = (0, express_1.default)();
 const routes = express_1.default.Router();
 const port = process.env.PORT;
 app.use((0, cors_1.default)({
-    origin: "http://localhost:3000",
-    allowedHeaders: ["Content-Type", "Authorization"],
-    methods: ["GET", "PUT", "POST", "DELETE"],
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 200,
 }));
@@ -31,11 +32,12 @@ routes.use(experinceRoutes_1.default);
 routes.use(skillRoutes_1.default);
 routes.use(userRoutes_1.default);
 routes.use(emailRoutes_1.default);
+routes.use(educationRoutes_1.default);
 routes.use(errorRoutes_1.default);
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(routes);
 app.use(errorMiddleware_1.default);
 app.listen(port, () => {
-    console.log("⚡️[server]: Server is running");
+    console.log('⚡️[server]: Server is running');
 });

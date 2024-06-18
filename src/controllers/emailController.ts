@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { HttpCode, Errors, Email, Misc } from "../utils/constants";
-import { BadRequest, InternalServerError } from "../models/errors";
-import { Emails } from "../models/emails";
-import { validateEmail } from "../utils/validation";
-import Common from "../utils/common";
-import asyncHandler from "express-async-handler";
+import { Request, Response } from 'express';
+import { HttpCode, Errors, Email, Misc } from '../utils/constants';
+import { BadRequest, InternalServerError } from '../models/errors';
+import { Emails } from '../models/emails';
+import { validateEmail } from '../utils/validation';
+import Common from '../utils/common';
+import asyncHandler from 'express-async-handler';
 
 /**
  * Handles loging in user

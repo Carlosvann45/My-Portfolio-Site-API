@@ -1,8 +1,9 @@
-import { IProject } from "../models/projects";
-import { IExperince } from "../models/experinces";
-import { ISkill } from "../models/skills";
-import { IEmail } from "../models/emails";
-import Common from "./common";
+import { IProject } from '../models/projects';
+import { IExperince } from '../models/experinces';
+import { ISkill } from '../models/skills';
+import { IEmail } from '../models/emails';
+import { IEducation } from '../models/education';
+import Common from './common';
 
 /**
  * Validates that a project object meets database requirements
@@ -100,9 +101,39 @@ const validateExperince = (experince: IExperince) => {
 };
 
 /**
+ * Validates that a experince object meets database requirements
+ *
+ * @param experince experince to validate
+ * @returns boolean
+ */
+const validateEducation = (education: IEducation) => {
+  const validSchool = Common.isNotEmpty(education.school);
+  const validDegree = Common.isNotEmpty(education.degree);
+  const validMajor = Common.isNotEmpty(education.major);
+  const validStartDate = Common.isNotEmpty(education.startDate);
+  const validEndDate = education.isCurrent
+    ? true
+    : Common.isNotEmpty(education.endDate);
+  const validMap = [] as Array<boolean>;
+
+  education.activities.forEach((value: string, key: string) => {
+    validMap.push(Common.isNotEmpty(value) && Common.isNotEmpty(key));
+  });
+
+  return (
+    validSchool &&
+    validDegree &&
+    validMajor &&
+    validStartDate &&
+    validEndDate &&
+    !validMap.includes(false)
+  );
+};
+
+/**
  * Validates that a skill object meets database requirement
  *
- * @param technology skill
+ * @param skill skill
  * @returns boolean
  */
 const validateSkill = (skill: ISkill) => {
@@ -123,4 +154,10 @@ const validateEmail = (email: IEmail) => {
   );
 };
 
-export { validateProject, validateExperince, validateSkill, validateEmail };
+export {
+  validateProject,
+  validateExperince,
+  validateSkill,
+  validateEmail,
+  validateEducation,
+};

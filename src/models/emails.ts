@@ -1,4 +1,4 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Document, model } from 'mongoose';
 
 interface IEmail extends Document {
   email: string;
@@ -21,6 +21,6 @@ const EmailSchema = new Schema(
   },
 );
 
-const Emails = model<IEmail>("emails", EmailSchema);
+const Emails = model<IEmail>('emails', EmailSchema);
 
 export { IEmail, Emails };

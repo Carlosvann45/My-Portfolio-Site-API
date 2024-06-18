@@ -8,5 +8,5 @@ const UserSchema = new mongoose_1.Schema({
 }, {
     timestamps: true,
 });
-const Users = (0, mongoose_1.model)("users", UserSchema);
+const Users = (0, mongoose_1.model)('users', UserSchema);
 exports.Users = Users;

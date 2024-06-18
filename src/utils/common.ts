@@ -1,7 +1,7 @@
-import { Regex } from "./constants";
-import jwt, { JwtPayload } from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import transporter from "../config/transporter";
+import { Regex } from './constants';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import transporter from '../config/transporter';
 
 /*
  * Common functions
@@ -14,7 +14,7 @@ export default class Common {
    * @returns boolean
    */
   static isNotEmpty(data: string | null | undefined): boolean {
-    return data?.trim() != "";
+    return data?.trim() != '';
   }
 
   /**

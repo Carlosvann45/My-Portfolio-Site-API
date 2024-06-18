@@ -2,9 +2,9 @@
  * Route constants
  */
 export class Routes {
-  private static DEFAULT_ROUTE = "/api/v1";
+  private static DEFAULT_ROUTE = '/api/v1';
   private static USER_DEFAULT = `${this.DEFAULT_ROUTE}/users`;
-  public static ALL_ROUTE = "*";
+  public static ALL_ROUTE = '*';
   public static PROJECT_ROUTE = `${this.DEFAULT_ROUTE}/projects`;
   public static PROJECT_ID_ROUTE = `${this.PROJECT_ROUTE}/:id`;
   public static EXPERINCE_ROUTE = `${this.DEFAULT_ROUTE}/experinces`;
@@ -15,6 +15,8 @@ export class Routes {
   public static TOKEN_ROUTE = `${this.USER_DEFAULT}/refresh_token`;
   public static VERIFY_ROUTE = `${this.USER_DEFAULT}/verify_token`;
   public static EMAIL_ROUTE = `${this.DEFAULT_ROUTE}/emails`;
+  public static EDUCATION_ROUTE = `${this.DEFAULT_ROUTE}/educations`;
+  public static EDUCATION_ID_ROUTE = `${this.EDUCATION_ROUTE}/:id`;
 }
 
 /**
@@ -32,36 +34,40 @@ export class Regex {
  */
 export class Errors {
   public static PROJECT_REQUIRED =
-    "All fields in project are required and links must be valid.";
-  public static PROJECT_NOT_FOUND = "Project with given id does not exists.";
+    'All fields in project are required and links must be valid.';
+  public static PROJECT_NOT_FOUND = 'Project with given id does not exists.';
   public static EXPERINCE_REQUIRED =
-    "All fields in experince are required except endDate.";
+    'All fields in experince are required except endDate.';
   public static EXPERINCE_DATES =
-    "Date fields in experince must match format: mm/dd/yyyy";
+    'Date fields in experince must match format: mm/dd/yyyy';
   public static EXPERINCE_NOT_FOUND =
-    "Experince with given id does not exists.";
+    'Experince with given id does not exists.';
   public static SKILL_REQUIRED =
-    "All fields in skill are required and links must be valid.";
-  public static SKILL_NOT_FOUND = "Skill with given id does not exists.";
-  public static ROUTE_NOT_FOUND = "The given route does not exists.";
-  public static APP_ERROR = "Application encountered a critical error";
-  public static JWT_INVALID = "Invalid token.";
-  public static JWT_INVALID_NO_TOKEN = "Invalid token, no token.";
-  public static JWT_INVALID_REFRESH = "Invalid refresh token.";
-  public static LOGIN_REQUIRED = "Username and password are required";
-  public static BAD_LOGIN = "Invalid login credentials.";
-  public static EMAIL_REQUIRED = "All fields in email are required.";
-  public static EMAIL_LIMIT = "Only one email is allowed per day, per email.";
+    'All fields in skill are required and links must be valid.';
+  public static SKILL_NOT_FOUND = 'Skill with given id does not exists.';
+  public static ROUTE_NOT_FOUND = 'The given route does not exists.';
+  public static APP_ERROR = 'Application encountered a critical error';
+  public static JWT_INVALID = 'Invalid token.';
+  public static JWT_INVALID_NO_TOKEN = 'Invalid token, no token.';
+  public static JWT_INVALID_REFRESH = 'Invalid refresh token.';
+  public static LOGIN_REQUIRED = 'Username and password are required';
+  public static BAD_LOGIN = 'Invalid login credentials.';
+  public static EMAIL_REQUIRED = 'All fields in email are required.';
+  public static EMAIL_LIMIT = 'Only one email is allowed per day, per email.';
   public static EMAIL_ERROR =
-    "There was a issue sending email. Please try again later.";
+    'There was a issue sending email. Please try again later.';
+  public static EDUCATION_REQUIRED =
+    'All fields in education are required and links must be valid.';
+  public static EDUCATION_NOT_FOUND =
+    'Education with given id does not exists.';
 }
 
 export class Misc {
-  public static BEARER = "Bearer";
-  public static EMAIL_SUBJECT = "Subject:\n";
-  public static EMAIL_MESSAGE = "\n\nMessage:\n";
-  public static EMAIL_FROM_SUBJECT = "Contact Request From: ";
-  public static EMAIL_AUTO_SUBJECT = "Automated Response: ";
+  public static BEARER = 'Bearer';
+  public static EMAIL_SUBJECT = 'Subject:\n';
+  public static EMAIL_MESSAGE = '\n\nMessage:\n';
+  public static EMAIL_FROM_SUBJECT = 'Contact Request From: ';
+  public static EMAIL_AUTO_SUBJECT = 'Automated Response: ';
 }
 
 /**
@@ -81,10 +87,10 @@ export enum HttpCode {
  * HttpName constants
  */
 export enum HttpName {
-  BAD_REQUEST = "Bad Request",
-  UNAUTHORIZED = "Unauthorized",
-  NOT_FOUND = "Not found",
-  INTERNAL_SERVER_ERROR = "Internal Server Error",
+  BAD_REQUEST = 'Bad Request',
+  UNAUTHORIZED = 'Unauthorized',
+  NOT_FOUND = 'Not found',
+  INTERNAL_SERVER_ERROR = 'Internal Server Error',
 }
 
 export class Email {

@@ -16,5 +16,5 @@ const ExperinceSchema = new mongoose_1.Schema({
 }, {
     timestamps: true,
 });
-const Experinces = (0, mongoose_1.model)("experinces", ExperinceSchema);
+const Experinces = (0, mongoose_1.model)('experinces', ExperinceSchema);
 exports.Experinces = Experinces;

@@ -1,7 +1,7 @@
-import express from "express";
-import { Routes, Errors } from "../utils/constants";
-import { NotFound } from "../models/errors";
-import asyncHandler from "express-async-handler";
+import express from 'express';
+import { Routes, Errors } from '../utils/constants';
+import { NotFound } from '../models/errors';
+import asyncHandler from 'express-async-handler';
 
 const errorRoutes = express.Router();
 

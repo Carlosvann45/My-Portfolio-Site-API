@@ -29,7 +29,7 @@ const jwtHandler = (0, express_async_handler_1.default)((req, res, next) => __aw
     let token;
     if (authHeader && (authHeader === null || authHeader === void 0 ? void 0 : authHeader.startsWith(constants_1.Misc.BEARER))) {
         try {
-            token = authHeader.split(" ")[1];
+            token = authHeader.split(' ')[1];
             const decodedId = (yield common_1.default.verifyJwt(token));
             const user = yield users_1.Users.findById(decodedId.__id);
             if (!user) {

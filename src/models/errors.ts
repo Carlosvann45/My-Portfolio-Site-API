@@ -1,4 +1,4 @@
-import { HttpCode, HttpName } from "../utils/constants";
+import { HttpCode, HttpName } from '../utils/constants';
 
 /**
  * INterface for error class arguments

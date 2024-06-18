@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { HttpCode, Errors } from "../utils/constants";
-import { validateSkill } from "../utils/validation";
-import { BadRequest, NotFound } from "../models/errors";
-import { Skills } from "../models/skills";
+import { Request, Response } from 'express';
+import { HttpCode, Errors } from '../utils/constants';
+import { validateSkill } from '../utils/validation';
+import { BadRequest, NotFound } from '../models/errors';
+import { Skills } from '../models/skills';
 
 /**
  * Handles getting all skills

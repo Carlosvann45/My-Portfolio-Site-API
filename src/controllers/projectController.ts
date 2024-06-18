@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { HttpCode, Errors } from "../utils/constants";
-import { Projects } from "../models/projects";
-import { validateProject } from "../utils/validation";
-import { BadRequest, NotFound } from "../models/errors";
+import { Request, Response } from 'express';
+import { HttpCode, Errors } from '../utils/constants';
+import { Projects } from '../models/projects';
+import { validateProject } from '../utils/validation';
+import { BadRequest, NotFound } from '../models/errors';
 
 /**
  * Handles getting all projects

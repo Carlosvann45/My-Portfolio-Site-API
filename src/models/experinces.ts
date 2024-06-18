@@ -1,4 +1,4 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Document, model } from 'mongoose';
 
 interface IExperince extends Document {
   title: string;
@@ -31,6 +31,6 @@ const ExperinceSchema: Schema = new Schema(
   },
 );
 
-const Experinces = model<IExperince>("experinces", ExperinceSchema);
+const Experinces = model<IExperince>('experinces', ExperinceSchema);
 
 export { IExperince, Experinces };

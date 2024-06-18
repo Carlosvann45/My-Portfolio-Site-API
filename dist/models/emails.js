@@ -13,5 +13,5 @@ const EmailSchema = new mongoose_1.Schema({
 }, {
     timestamps: true,
 });
-const Emails = (0, mongoose_1.model)("emails", EmailSchema);
+const Emails = (0, mongoose_1.model)('emails', EmailSchema);
 exports.Emails = Emails;

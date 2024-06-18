@@ -1,4 +1,4 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Document, model } from 'mongoose';
 
 interface ISkill extends Document {
   name: string;
@@ -13,6 +13,6 @@ const SkillSchema: Schema = new Schema(
   },
 );
 
-const Skills = model<ISkill>("skills", SkillSchema);
+const Skills = model<ISkill>('skills', SkillSchema);
 
 export { ISkill, Skills };

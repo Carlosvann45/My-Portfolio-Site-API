@@ -1,13 +1,13 @@
-import express from "express";
-import asyncHandler from "express-async-handler";
-import { Routes } from "../utils/constants";
+import express from 'express';
+import asyncHandler from 'express-async-handler';
+import { Routes } from '../utils/constants';
 import {
   getProjects,
   createProject,
   updateProject,
   deleteProject,
-} from "../controllers/projectController";
-import jwtHandler from "../middleware/authMiddleware";
+} from '../controllers/projectController';
+import jwtHandler from '../middleware/authMiddleware';
 
 const projectRoutes = express.Router();
 

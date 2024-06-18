@@ -14,5 +14,5 @@ const ProjectSchema = new mongoose_1.Schema({
 }, {
     timestamps: true,
 });
-const Projects = (0, mongoose_1.model)("projects", ProjectSchema);
+const Projects = (0, mongoose_1.model)('projects', ProjectSchema);
 exports.Projects = Projects;

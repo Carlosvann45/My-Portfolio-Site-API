@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import { HttpCode, HttpName, Errors } from "../utils/constants";
+import { Request, Response } from 'express';
+import { HttpCode, HttpName, Errors } from '../utils/constants';
 import {
   BadRequest,
   Unauthorized,
   NotFound,
   InternalServerError,
-} from "../models/errors";
+} from '../models/errors';
 
 /**
  * checks if error is a code based one

@@ -46,7 +46,7 @@ exports.loginUser = loginUser;
  */
 const refreshToken = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+    const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
     const verifiedToken = (yield common_1.default.verifyJwt(token));
     const user = users_1.Users.findById(verifiedToken.__id);
     if (!verifiedToken.isRefreshtoken || !user) {

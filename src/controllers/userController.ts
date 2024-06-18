@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import { HttpCode, Errors } from "../utils/constants";
-import { BadRequest, Unauthorized } from "../models/errors";
-import { Users } from "../models/users";
-import jwt from "../models/jwt";
-import Common from "../utils/common";
-import asyncHandler from "express-async-handler";
-import { JwtPayload } from "jsonwebtoken";
+import { Request, Response } from 'express';
+import { HttpCode, Errors } from '../utils/constants';
+import { BadRequest, Unauthorized } from '../models/errors';
+import { Users } from '../models/users';
+import jwt from '../models/jwt';
+import Common from '../utils/common';
+import asyncHandler from 'express-async-handler';
+import { JwtPayload } from 'jsonwebtoken';
 
 /**
  * Handles loging in user
@@ -41,7 +41,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
  * @param res response
  */
 const refreshToken = asyncHandler(async (req: Request, res: Response) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const token = req.headers.authorization?.split(' ')[1];
   const verifiedToken = (await Common.verifyJwt(token as string)) as JwtPayload;
   const user = Users.findById(verifiedToken.__id);
 

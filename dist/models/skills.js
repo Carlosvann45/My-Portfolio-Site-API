@@ -7,5 +7,5 @@ const SkillSchema = new mongoose_1.Schema({
 }, {
     timestamps: true,
 });
-const Skills = (0, mongoose_1.model)("skills", SkillSchema);
+const Skills = (0, mongoose_1.model)('skills', SkillSchema);
 exports.Skills = Skills;

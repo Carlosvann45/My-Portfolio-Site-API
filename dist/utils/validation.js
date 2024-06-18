@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateEmail = exports.validateSkill = exports.validateExperince = exports.validateProject = void 0;
+exports.validateEducation = exports.validateEmail = exports.validateSkill = exports.validateExperince = exports.validateProject = void 0;
 const common_1 = __importDefault(require("./common"));
 /**
  * Validates that a project object meets database requirements
@@ -93,9 +93,35 @@ const validateExperince = (experince) => {
 };
 exports.validateExperince = validateExperince;
 /**
+ * Validates that a experince object meets database requirements
+ *
+ * @param experince experince to validate
+ * @returns boolean
+ */
+const validateEducation = (education) => {
+    const validSchool = common_1.default.isNotEmpty(education.school);
+    const validDegree = common_1.default.isNotEmpty(education.degree);
+    const validMajor = common_1.default.isNotEmpty(education.major);
+    const validStartDate = common_1.default.isNotEmpty(education.startDate);
+    const validEndDate = education.isCurrent
+        ? true
+        : common_1.default.isNotEmpty(education.endDate);
+    const validMap = [];
+    education.activities.forEach((value, key) => {
+        validMap.push(common_1.default.isNotEmpty(value) && common_1.default.isNotEmpty(key));
+    });
+    return (validSchool &&
+        validDegree &&
+        validMajor &&
+        validStartDate &&
+        validEndDate &&
+        !validMap.includes(false));
+};
+exports.validateEducation = validateEducation;
+/**
  * Validates that a skill object meets database requirement
  *
- * @param technology skill
+ * @param skill skill
  * @returns boolean
  */
 const validateSkill = (skill) => {

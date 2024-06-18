@@ -27,7 +27,7 @@ class Common {
      * @returns boolean
      */
     static isNotEmpty(data) {
-        return (data === null || data === void 0 ? void 0 : data.trim()) != "";
+        return (data === null || data === void 0 ? void 0 : data.trim()) != '';
     }
     /**
      * checks if string is a valid link

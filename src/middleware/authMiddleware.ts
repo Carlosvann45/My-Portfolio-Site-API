@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express";
-import { Unauthorized } from "../models/errors";
-import { Misc, Errors } from "../utils/constants";
-import { Users } from "../models/users";
-import Common from "../utils/common";
-import asyncHandler from "express-async-handler";
-import { JwtPayload } from "jsonwebtoken";
+import { Request, Response, NextFunction } from 'express';
+import { Unauthorized } from '../models/errors';
+import { Misc, Errors } from '../utils/constants';
+import { Users } from '../models/users';
+import Common from '../utils/common';
+import asyncHandler from 'express-async-handler';
+import { JwtPayload } from 'jsonwebtoken';
 
 /**
  * Handles loging in user
@@ -20,7 +20,7 @@ const jwtHandler = asyncHandler(
 
     if (authHeader && authHeader?.startsWith(Misc.BEARER)) {
       try {
-        token = authHeader.split(" ")[1];
+        token = authHeader.split(' ')[1];
 
         const decodedId = (await Common.verifyJwt(token)) as JwtPayload;
 
