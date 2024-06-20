@@ -8,7 +8,7 @@ interface IEducation extends Document {
   endDate?: string;
   isCurrent: boolean;
   grade: number;
-  activities: Map<string, string>;
+  activities: Array<{ name: string; description: string }>;
 }
 
 const EducationSchema: Schema = new Schema(
@@ -20,11 +20,8 @@ const EducationSchema: Schema = new Schema(
     endDate: { type: String },
     isCurrent: { type: Boolean, required: true },
     activities: {
-      type: Map,
-      of: new Schema({
-        name: { type: String },
-        description: { type: String },
-      }),
+      type: Array<{ name: string; description: string }>,
+      required: true,
     },
   },
   {

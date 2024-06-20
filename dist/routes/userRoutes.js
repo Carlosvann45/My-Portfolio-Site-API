@@ -18,6 +18,10 @@ userRoutes.get(constants_1.Routes.TOKEN_ROUTE, authMiddleware_1.default, (0, exp
  */
 userRoutes.get(constants_1.Routes.VERIFY_ROUTE, authMiddleware_1.default, (0, express_async_handler_1.default)(userController_1.verifyToken));
 /**
+ * Route handles updating a user
+ */
+userRoutes.post(constants_1.Routes.USER_ID_ROUTE, authMiddleware_1.default, (0, express_async_handler_1.default)(userController_1.updateUser));
+/**
  * Route for loging in a user
  */
 userRoutes.post(constants_1.Routes.LOGIN_ROUTE, (0, express_async_handler_1.default)(userController_1.loginUser));

@@ -4,6 +4,7 @@
 export class Routes {
   private static DEFAULT_ROUTE = '/api/v1';
   private static USER_DEFAULT = `${this.DEFAULT_ROUTE}/users`;
+  public static USER_ID_ROUTE = `${this.USER_DEFAULT}/:id`;
   public static ALL_ROUTE = '*';
   public static PROJECT_ROUTE = `${this.DEFAULT_ROUTE}/projects`;
   public static PROJECT_ID_ROUTE = `${this.PROJECT_ROUTE}/:id`;
@@ -51,6 +52,7 @@ export class Errors {
   public static JWT_INVALID_NO_TOKEN = 'Invalid token, no token.';
   public static JWT_INVALID_REFRESH = 'Invalid refresh token.';
   public static LOGIN_REQUIRED = 'Username and password are required';
+  public static BAD_ID = 'Provided ID is not valid.';
   public static BAD_LOGIN = 'Invalid login credentials.';
   public static EMAIL_REQUIRED = 'All fields in email are required.';
   public static EMAIL_LIMIT = 'Only one email is allowed per day, per email.';

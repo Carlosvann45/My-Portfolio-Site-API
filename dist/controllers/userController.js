@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.refreshToken = exports.loginUser = void 0;
+exports.updateUser = exports.verifyToken = exports.refreshToken = exports.loginUser = void 0;
 const constants_1 = require("../utils/constants");
 const errors_1 = require("../models/errors");
 const users_1 = require("../models/users");
@@ -48,7 +48,7 @@ const refreshToken = (0, express_async_handler_1.default)((req, res) => __awaite
     var _a;
     const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
     const verifiedToken = (yield common_1.default.verifyJwt(token));
-    const user = users_1.Users.findById(verifiedToken.__id);
+    const user = yield users_1.Users.findById(verifiedToken.__id);
     if (!verifiedToken.isRefreshtoken || !user) {
         throw new errors_1.Unauthorized({ message: constants_1.Errors.JWT_INVALID_REFRESH });
     }
@@ -62,3 +62,12 @@ const verifyToken = (0, express_async_handler_1.default)((req, res) => __awaiter
     });
 }));
 exports.verifyToken = verifyToken;
+const updateUser = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const actualUser = yield users_1.Users.findById(id);
+    if (actualUser == null) {
+        throw new errors_1.BadRequest({ message: constants_1.Errors.BAD_ID });
+    }
+    res.status(constants_1.HttpCode.OK).json({});
+}));
+exports.updateUser = updateUser;

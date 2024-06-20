@@ -18,33 +18,33 @@ const validateProject = (project) => {
         ? true
         : common_1.default.isNotEmpty(project.endDate);
     const validDescriptions = common_1.default.isNotEmpty(project.description);
-    let skills = [];
-    let links = [];
+    let validSkills = [];
+    let validLinks = [];
     if (project.skills) {
         project.skills.forEach((skill) => {
-            skills.push(common_1.default.isNotEmpty(skill));
+            validSkills.push(common_1.default.isNotEmpty(skill));
         });
     }
     else {
-        skills = [];
+        validSkills = [];
     }
     if (project.links) {
         project.links.forEach((link) => {
             const validImage = common_1.default.isNotEmpty(link.image) && common_1.default.isLink(link.image);
             const validText = common_1.default.isNotEmpty(link.text);
             const validLink = common_1.default.isNotEmpty(link.link) && common_1.default.isLink(link.link);
-            links.push(validImage && validText && validLink);
+            validLinks.push(validImage && validText && validLink);
         });
     }
     else {
-        links = [];
+        validLinks = [];
     }
     return (validTitle &&
         validStartDate &&
         validEndDate &&
         validDescriptions &&
-        !skills.includes(false) &&
-        !links.includes(false));
+        !validSkills.includes(false) &&
+        !validLinks.includes(false));
 };
 exports.validateProject = validateProject;
 /**
@@ -63,23 +63,23 @@ const validateExperince = (experince) => {
     const validEndDate = experince.isCurrent
         ? true
         : common_1.default.isNotEmpty(experince.endDate);
-    let descriptions = [];
-    let skills = [];
+    let validDescriptions = [];
+    let validSkills = [];
     if (experince.descriptions) {
         experince.descriptions.forEach((description) => {
-            descriptions.push(common_1.default.isNotEmpty(description));
+            validDescriptions.push(common_1.default.isNotEmpty(description));
         });
     }
     else {
-        descriptions = [];
+        validDescriptions = [];
     }
     if (experince.skills) {
         experince.skills.forEach((skill) => {
-            skills.push(common_1.default.isNotEmpty(skill));
+            validSkills.push(common_1.default.isNotEmpty(skill));
         });
     }
     else {
-        skills = [];
+        validSkills = [];
     }
     return (validTitle &&
         validCompany &&
@@ -88,8 +88,8 @@ const validateExperince = (experince) => {
         validState &&
         validStartDate &&
         validEndDate &&
-        !descriptions.includes(false) &&
-        !skills.includes(false));
+        !validDescriptions.includes(false) &&
+        !validSkills.includes(false));
 };
 exports.validateExperince = validateExperince;
 /**
@@ -106,16 +106,17 @@ const validateEducation = (education) => {
     const validEndDate = education.isCurrent
         ? true
         : common_1.default.isNotEmpty(education.endDate);
-    const validMap = [];
-    education.activities.forEach((value, key) => {
-        validMap.push(common_1.default.isNotEmpty(value) && common_1.default.isNotEmpty(key));
+    const validActivities = [];
+    education.activities.forEach((activity) => {
+        validActivities.push(common_1.default.isNotEmpty(activity.name) &&
+            common_1.default.isNotEmpty(activity.description));
     });
     return (validSchool &&
         validDegree &&
         validMajor &&
         validStartDate &&
         validEndDate &&
-        !validMap.includes(false));
+        !validActivities.includes(false));
 };
 exports.validateEducation = validateEducation;
 /**

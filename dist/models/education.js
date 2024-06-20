@@ -10,11 +10,8 @@ const EducationSchema = new mongoose_1.Schema({
     endDate: { type: String },
     isCurrent: { type: Boolean, required: true },
     activities: {
-        type: Map,
-        of: new mongoose_1.Schema({
-            name: { type: String },
-            description: { type: String },
-        }),
+        type: (Array),
+        required: true,
     },
 }, {
     timestamps: true,

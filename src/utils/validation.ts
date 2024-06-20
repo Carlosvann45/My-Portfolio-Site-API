@@ -18,15 +18,15 @@ const validateProject = (project: IProject) => {
     ? true
     : Common.isNotEmpty(project.endDate);
   const validDescriptions = Common.isNotEmpty(project.description);
-  let skills: Array<boolean> = [];
-  let links: Array<boolean> = [];
+  let validSkills: Array<boolean> = [];
+  let validLinks: Array<boolean> = [];
 
   if (project.skills) {
     project.skills.forEach((skill) => {
-      skills.push(Common.isNotEmpty(skill));
+      validSkills.push(Common.isNotEmpty(skill));
     });
   } else {
-    skills = [];
+    validSkills = [];
   }
 
   if (project.links) {
@@ -36,10 +36,10 @@ const validateProject = (project: IProject) => {
       const validText = Common.isNotEmpty(link.text);
       const validLink =
         Common.isNotEmpty(link.link) && Common.isLink(link.link);
-      links.push(validImage && validText && validLink);
+      validLinks.push(validImage && validText && validLink);
     });
   } else {
-    links = [];
+    validLinks = [];
   }
 
   return (
@@ -47,8 +47,8 @@ const validateProject = (project: IProject) => {
     validStartDate &&
     validEndDate &&
     validDescriptions &&
-    !skills.includes(false) &&
-    !links.includes(false)
+    !validSkills.includes(false) &&
+    !validLinks.includes(false)
   );
 };
 
@@ -68,23 +68,23 @@ const validateExperince = (experince: IExperince) => {
   const validEndDate = experince.isCurrent
     ? true
     : Common.isNotEmpty(experince.endDate);
-  let descriptions: Array<boolean> = [];
-  let skills: Array<boolean> = [];
+  let validDescriptions: Array<boolean> = [];
+  let validSkills: Array<boolean> = [];
 
   if (experince.descriptions) {
     experince.descriptions.forEach((description) => {
-      descriptions.push(Common.isNotEmpty(description));
+      validDescriptions.push(Common.isNotEmpty(description));
     });
   } else {
-    descriptions = [];
+    validDescriptions = [];
   }
 
   if (experince.skills) {
     experince.skills.forEach((skill) => {
-      skills.push(Common.isNotEmpty(skill));
+      validSkills.push(Common.isNotEmpty(skill));
     });
   } else {
-    skills = [];
+    validSkills = [];
   }
 
   return (
@@ -95,8 +95,8 @@ const validateExperince = (experince: IExperince) => {
     validState &&
     validStartDate &&
     validEndDate &&
-    !descriptions.includes(false) &&
-    !skills.includes(false)
+    !validDescriptions.includes(false) &&
+    !validSkills.includes(false)
   );
 };
 
@@ -114,11 +114,16 @@ const validateEducation = (education: IEducation) => {
   const validEndDate = education.isCurrent
     ? true
     : Common.isNotEmpty(education.endDate);
-  const validMap = [] as Array<boolean>;
+  const validActivities = [] as Array<boolean>;
 
-  education.activities.forEach((value: string, key: string) => {
-    validMap.push(Common.isNotEmpty(value) && Common.isNotEmpty(key));
-  });
+  education.activities.forEach(
+    (activity: { name: string; description: string }) => {
+      validActivities.push(
+        Common.isNotEmpty(activity.name) &&
+          Common.isNotEmpty(activity.description),
+      );
+    },
+  );
 
   return (
     validSchool &&
@@ -126,7 +131,7 @@ const validateEducation = (education: IEducation) => {
     validMajor &&
     validStartDate &&
     validEndDate &&
-    !validMap.includes(false)
+    !validActivities.includes(false)
   );
 };
 

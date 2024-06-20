@@ -43,7 +43,7 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 const refreshToken = asyncHandler(async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(' ')[1];
   const verifiedToken = (await Common.verifyJwt(token as string)) as JwtPayload;
-  const user = Users.findById(verifiedToken.__id);
+  const user = await Users.findById(verifiedToken.__id);
 
   if (!verifiedToken.isRefreshtoken || !user) {
     throw new Unauthorized({ message: Errors.JWT_INVALID_REFRESH });
@@ -63,4 +63,16 @@ const verifyToken = asyncHandler(async (req: Request, res: Response) => {
   });
 });
 
-export { loginUser, refreshToken, verifyToken };
+const updateUser = asyncHandler(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const actualUser = await Users.findById(id);
+
+  if (actualUser == null) {
+    throw new BadRequest({ message: Errors.BAD_ID });
+  }
+
+  res.status(HttpCode.OK).json({});
+});
+
+export { loginUser, refreshToken, verifyToken, updateUser };

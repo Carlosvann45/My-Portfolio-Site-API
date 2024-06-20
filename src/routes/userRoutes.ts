@@ -5,6 +5,7 @@ import {
   loginUser,
   refreshToken,
   verifyToken,
+  updateUser,
 } from '../controllers/userController';
 import jwtHandler from '../middleware/authMiddleware';
 
@@ -19,6 +20,11 @@ userRoutes.get(Routes.TOKEN_ROUTE, jwtHandler, asyncHandler(refreshToken));
  * Route handles verifying token
  */
 userRoutes.get(Routes.VERIFY_ROUTE, jwtHandler, asyncHandler(verifyToken));
+
+/**
+ * Route handles updating a user
+ */
+userRoutes.post(Routes.USER_ID_ROUTE, jwtHandler, asyncHandler(updateUser));
 
 /**
  * Route for loging in a user
